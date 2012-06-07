@@ -3,6 +3,6 @@
 #https://USER:PASS@code.google.com/p/PROJ/
 open(".hg/hgrc","rb"){|f|
 	s=f.read
-	s=~/:(\w+)@/
-	print $1
+	s=~/:\/\/(\w+):(\w+)@/
+	print "-u "+$1+" -w "+$2
 }

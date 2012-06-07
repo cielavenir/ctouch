@@ -24,9 +24,9 @@ publish:
 	ln -s ctouch_standard.crx ctouch_standard_r$(shell hg log -l1 --template '{rev}').crx
 	ln -s ctouch_fixed.crx ctouch_fixed_r$(shell hg log -l1 --template '{rev}').crx
 	ln -s ctouch_external.crx ctouch_external_r$(shell hg log -l1 --template '{rev}').crx
-	python googlecode_upload.py -s ctouch_standard_r$(shell hg log -l1 --template '{rev}') -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_standard_r$(shell hg log -l1 --template '{rev}').crx
-	python googlecode_upload.py -s ctouch_fixed_r$(shell hg log -l1 --template '{rev}') -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_fixed_r$(shell hg log -l1 --template '{rev}').crx
-	python googlecode_upload.py -s ctouch_external_r$(shell hg log -l1 --template '{rev}') -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_external_r$(shell hg log -l1 --template '{rev}').crx
+	python googlecode_upload.py -s ctouch_standard_r$(shell hg log -l1 --template '{rev}') -p ctouch $(shell ruby getcredential.rb) ctouch_standard_r$(shell hg log -l1 --template '{rev}').crx
+	python googlecode_upload.py -s ctouch_fixed_r$(shell hg log -l1 --template '{rev}') -p ctouch $(shell ruby getcredential.rb) ctouch_fixed_r$(shell hg log -l1 --template '{rev}').crx
+	python googlecode_upload.py -s ctouch_external_r$(shell hg log -l1 --template '{rev}') -p ctouch $(shell ruby getcredential.rb) ctouch_external_r$(shell hg log -l1 --template '{rev}').crx
 	rm ctouch_standard_r$(shell hg log -l1 --template '{rev}').crx
 	rm ctouch_fixed_r$(shell hg log -l1 --template '{rev}').crx
 	rm ctouch_external_r$(shell hg log -l1 --template '{rev}').crx
