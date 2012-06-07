@@ -1,6 +1,6 @@
 CRX = ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx
 
-.PHONY: all
+.PHONY: all clean publish
 all: $(CRX)
 
 CTOUCH_COMMON = ctouch_common/*
@@ -20,3 +20,7 @@ ctouch_common/ctouch_touch.js: ctouch_touch.js
 
 clean:
 	rm $(CRX)
+publish:
+	python googlecode_upload.py -s ctouch_standard -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_standard.crx
+	python googlecode_upload.py -s ctouch_fixed -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_fixed.crx
+	python googlecode_upload.py -s ctouch_external -p ctouch -u cielartisan -w $(shell ruby getpass.rb) ctouch_external.crx
