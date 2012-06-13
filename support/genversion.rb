@@ -1,5 +1,8 @@
 #!/usr/bin/ruby
-V="1.5.0"
 
-t=Time.new
-printf("%d%02d%02d",t.year%10,t.month,t.day)
+T=Time.new
+V="1.5.0."+sprintf("%d%02d%02d",T.year%10,T.month,T.day)
+
+def getver
+	print V
+end

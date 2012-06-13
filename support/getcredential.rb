@@ -10,5 +10,9 @@
 open(".hg/hgrc","rb"){|f|
 	s=f.read
 	s=~/:\/\/(\w+):(\w+)@/
-	print "-u "+$1+" -w "+$2
+	if ARGV[0]=="-googlecode"
+		print "-u "+$1+" -w "+$2
+	else
+		print $1+":"+$2
+	end
 }
