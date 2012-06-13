@@ -30,7 +30,7 @@ release:
 	ruby support/updatemanifest.rb ctouch_standard/manifest.json
 	ruby support/updatemanifest.rb ctouch_fixed/manifest.json
 	ruby support/updatemanifest.rb ctouch_external/manifest.json
-	ruby support/genupdate.rb > update.xml
+	ruby support/genupdate.rb > updates.xml
 	make all
 
 publish:
