@@ -10,8 +10,8 @@ CTOUCH_STANDARD_FILES = ctouch_standard/*
 CTOUCH_FIXED_FILES = ctouch_fixed/*
 CTOUCH_EXTERNAL_FILES = ctouch_external/*
 
-ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_FILES)
-	
+ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
+	ruby support/crx.rb $@ ctouch_standard.pem ctouch_common ctouch_standard
 ctouch_fixed.crx: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
 	ruby support/crx.rb $@ ctouch_fixed.pem ctouch_common ctouch_fixed
 ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
@@ -27,10 +27,11 @@ clean:
 
 #make sure to release before "hg commit"
 release:
-	ruby support/crx.rb $@ ctouch_standard.pem ctouch_common ctouch_standard
-	ruby support/crx.rb $@ ctouch_fixed.pem ctouch_common ctouch_fixed
-	ruby support/crx.rb $@ ctouch_external.pem ctouch_common ctouch_external
+	ruby support/updatemanifest.rb ctouch_standard/manifest.json
+	ruby support/updatemanifest.rb ctouch_fixed/manifest.json
+	ruby support/updatemanifest.rb ctouch_external/manifest.json
 	ruby support/genupdate.rb > update.xml
+	make all
 
 publish:
 	ln -s ctouch_standard.crx ctouch_standard-$(VERSION).crx

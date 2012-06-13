@@ -7,23 +7,6 @@
  * ctouch_touch.js (C) @jkumo.
  * navigator.* writer by wakuworks.
  * Synchronous AJAX by Patrick Hunlock.
- * 
- * [History]
- * 1.0.0.120409 Patched mpw in order not to "attack" mpw.jp.
- * 1.0.1.120411 Added modifying UA. Released internally to @Akazami.
- * 1.0.2.120413 Extracted imitation.js to combine with mouse2touch.
- * 1.1.0.120429 Workaround to call x.ontouchstart(). Click with holding shift key (fix gree::3429).
- * 1.2.0.120430 imitation.js is now combined to mouse2touch to generate brand-new cTouch addon. Easy GUI added.
- * 1.2.1.120501 Fixed a bug in imitation.js; now navigator.* are overwritten correctly (fix gree::452).
- * 1.3.0.120501 Using workaround to use sessionStorage... (first non-beta)
- * 1.3.1.120504 Currently I should use Linux arm... (fix mbga::dp)
- * 1.3.2.120504 Added more preset UAs.
- * 1.4.0.120515 Fixed navigator.platform on iDevice (fix games by gree).
- * 1.4.1.120519 Embed ctouch_touch.js using innerText (fix gree::1).
- * 1.4.1.120522 ontouchstart bypass (fix gree::51157).
- * 1.4.1.120527 ongesturestart bypass (fix gree::3221 iDevice).
- * 1.4.1.120601 Fixed and optimized calling x.ontouchstart() (you still need to hold shift key) (fix gree::3429 fever button).
- * 1.5.0.120607 Refined source structure.
 */
 
 // http://www.hunlock.com/blogs/Snippets:_Synchronous_AJAX

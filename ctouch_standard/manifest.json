@@ -1,8 +1,9 @@
 {
 	"name": "cTouch r2 (standard)",
 	"description": "You can browse smartphone websites.",
-	"version": "1.5.0",
+	"version": "1.5.1.20613",
 	"manifest_version": 2,
+	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"background": {
 		"scripts": ["ctouch_bg.js"]
 	},
