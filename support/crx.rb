@@ -54,7 +54,7 @@ def run(argv)
 	sig=key.sign(OpenSSL::Digest::SHA1.new,zip_buffer)
 
 	key = key.public_key.to_der
-	if key.index(KEY)!=0 then key=KEY+key end
+	if key.index(KEY)!=0 then key=KEY+key end #ruby 1.8 wrap
 	File.open(crx,'wb'){|f|
 		f << MAGIC
 		f << [2].pack('V')
