@@ -11,6 +11,7 @@
 1.4.1.20519 Embed ctouch_touch.js using innerText (fix gree::1).
 1.4.1.20522 ontouchstart bypass (fix gree::51157).
 1.4.1.20527 ongesturestart bypass (fix gree::3221 iDevice).
-1.4.1.20601 Fixed and optimized calling x.ontouchstart() (you still need to hold shift key) (fix gree::3429 fever button).
+1.4.1.20601 Fixed and optimized calling x.ontouchstart() (you still need to hold shift key) (fix gree::3429 fever).
 1.5.0.20607 Refined source structure.
 1.5.1.20613 Supported update.xml.
+1.5.2.20615 Supported dragging object using touchmove (fix gree::3560).

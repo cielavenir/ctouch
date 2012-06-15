@@ -49,6 +49,7 @@ var repeatMouse;
 /** リピート用のマウスイベント */
 var repeatKey;
 
+var isMouseDown=null;
 
 
 /**
@@ -79,9 +80,11 @@ var mouse2touch = function(event)
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchend'))
 		event.target.dispatchEvent(docEvent);//
 	}else if(event.type == "mousemove"){//マウスが動いた
-		docEvent = setEvent(event,"touchmove");
-		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchmove'))
-		event.target.dispatchEvent(docEvent);//
+		if(isMouseDown){
+			docEvent = setEvent(event,"touchmove");
+			if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchmove'))
+			event.target.dispatchEvent(docEvent);//
+		}
 	}else if(event.type == "keydown"){
 		if(key_repeat_flag == 1){//リピート状態のキー押下(Any)
 			if(!event.altKey && event.keyIdentifier != "Enter"){//Altキー押下状態でない
@@ -148,6 +151,10 @@ function setEvent(event,type){
 		clientX: event.clientX,
 		clientY: event.clientY
 	};
+	if(type == 'touchstart')isMouseDown=e.touches;
+	if(type == 'touchend')isMouseDown=null;
+	e.targetTouches = isMouseDown;
+	e.changedTouches = isMouseDown;
 	return(e);
 }
 
@@ -240,24 +247,11 @@ function mouseRepeatUP(){
 //	event = reMouseEventUp;
 }
 
-
-
-
-
-
-
-
-
-
-
 //イベントリスナーのセット
 document.addEventListener("mousedown",mouse2touch,false);
 document.addEventListener("mouseup",mouse2touch,false);
 document.addEventListener("mousemove",mouse2touch,false);
 document.addEventListener("keydown",mouse2touch,false);
-
-
-
 
 var myself = document.getElementById('ctouch_touch_js');
 if(myself)myself.parentNode.removeChild(myself);

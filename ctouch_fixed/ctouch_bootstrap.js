@@ -70,8 +70,6 @@ document.createNSResolver = null;\
 document.createTouch = function createTouch(){return;};\
 document.createTouchList = function createTouchList(){return;};\
 document.evaluate = null;\
-document.ongesturestart = function(){return;};\
-document.ontouchstart = function(){return;};\
 document.webkitHidden = null;\
 document.webkitVisibilityState = null;\
 window.ArrayBuffer = null;\
@@ -267,9 +265,7 @@ window.external = null;\
 window.matchMedia = null;\
 window.media = new Object();\
 window.ondeviceorientation = null;\
-window.ongesturestart = function(){return;};\
 window.onorientationchange = null;\
-window.ontouchstart = function(){return;};\
 window.orientation = 0;\
 window.performance = null;\
 window.styleMedia = null;\
@@ -293,6 +289,16 @@ window.webkitResolveLocalFileSystemURL = null;\
 window.webkitStorageInfo = null;\
 window.webkitURL = null;";
 /// GPL BLOCK END ///
+
+// my original bypass
+s.innerText += "\
+document.ondragstart = function(){return false;};\
+document.ongesturestart = function(){return;};\
+document.ontouchstart = function(){return;};\
+window.ondragstart = function(){return false;};\
+window.ongesturestart = function(){return;};\
+window.ontouchstart = function(){return;};\
+";
 
 // http://jsdo.it/wakuworks/userAgent.test
 s.innerText += "\
