@@ -1,14 +1,14 @@
-VERSION = $(shell ruby -rsupport/genversion.rb -e getver)
+VERSION := $(shell ruby -Isupport -rgenversion -e getver)
 
-CRX = ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx
+CRX := ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx
 
 .PHONY: all clean publish
 all: $(CRX)
 
-CTOUCH_COMMON = ctouch_common/*
-CTOUCH_STANDARD_FILES = ctouch_standard/*
-CTOUCH_FIXED_FILES = ctouch_fixed/*
-CTOUCH_EXTERNAL_FILES = ctouch_external/*
+CTOUCH_COMMON := ctouch_common/*
+CTOUCH_STANDARD_FILES := ctouch_standard/*
+CTOUCH_FIXED_FILES := ctouch_fixed/*
+CTOUCH_EXTERNAL_FILES := ctouch_external/*
 
 ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
 	ruby support/crx.rb $@ ctouch_standard.pem ctouch_common ctouch_standard
