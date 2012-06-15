@@ -15,3 +15,4 @@
 1.5.0.20607 Refined source structure.
 1.5.1.20613 Supported update.xml.
 1.5.2.20615 Supported dragging object using touchmove (fix gree::3560).
+1.5.2.20616 ongesturestart bypass is enabled on iDevice (fix gree::55446).

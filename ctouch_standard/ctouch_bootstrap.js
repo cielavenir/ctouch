@@ -292,12 +292,15 @@ window.webkitURL = null;";
 // my original bypass
 s.innerText += "\
 document.ondragstart = function(){return false;};\
-document.ongesturestart = function(){return;};\
 document.ontouchstart = function(){return;};\
 window.ondragstart = function(){return false;};\
-window.ongesturestart = function(){return;};\
 window.ontouchstart = function(){return;};\
 ";
+
+if(vendor == "Apple Computer, Inc."){
+	s.innerText+="document.ongesturestart = function(){return;};";
+	s.innerText+="window.ongesturestart = function(){return;};";
+}
 
 // http://jsdo.it/wakuworks/userAgent.test
 s.innerText += "\
