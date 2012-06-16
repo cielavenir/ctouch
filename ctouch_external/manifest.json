@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (external)",
 	"description": "You can browse smartphone websites.",
-	"version": "1.5.2.20616",
+	"version": "1.5.3.20616",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"background": {
@@ -22,6 +22,12 @@
 		"js": ["ctouch_bootstrap.js","ctouch_touch.js"],
 		"matches": ["<all_urls>"],
 		"run_at": "document_start"
+	},
+	{
+		"all_frames": true,
+		"js": ["ctouch_css.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_end"
 	}
 	],
 	"icons": {
