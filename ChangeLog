@@ -18,3 +18,4 @@
 1.5.2.20616 ongesturestart bypass is enabled only on iDevice (fix gree::55446).
 1.5.3.20616 sets "overflow:visible" to body (fix gree::54690).
 1.5.4.20617 sets "color:black" to option (fix several including gree::tknight).
+1.5.5.20617 Now text is selectable.
