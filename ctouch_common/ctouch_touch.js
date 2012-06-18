@@ -69,19 +69,21 @@ var mouse2touch = function(event)\n\
 	if(event.type == 'mousedown'){//ボタンが押された\n\
 		//マウスイベントの偽装\n\
 		docEvent = setEvent(event,'touchstart');\n\
+		reMouseEventDown = event;\n\
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchstart'))\n\
 		event.target.dispatchEvent(docEvent);//\n\
 	}else if(event.type == 'mouseup'){//ボタンが放された\n\
 		docEvent = setEvent(event,'touchend');\n\
-		\n\
 		//Alt+ClickでもEnterをリピートさせる\n\
-		if(event.altKey){//Altキー押下状態\n\
+		if(event.ctrlKey && event.altKey){\n\
+			key_repeat_flag = 1;//リピートフラグを立てる\n\
+			startRepeat(MOUSE);//リピートの開始\n\
+		}else if(event.altKey){//Altキー押下状態\n\
 			//イベントの保持\n\
-			repeatEvent = event;\n\
 			key_repeat_flag = 1;//リピートフラグを立てる\n\
 			startRepeat(KEYBOARD);//リピートの開始\n\
-			\n\
 		}//あえて抜けない\n\
+		reMouseEventUp = event;\n\
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchend'))\n\
 		event.target.dispatchEvent(docEvent);//\n\
 	}else if(event.type == 'mousemove'){//マウスが動いた\n\
@@ -111,24 +113,6 @@ var mouse2touch = function(event)\n\
 	}else{\n\
 		return;//処理を抜ける\n\
 	}\n\
-	\n\
-	\n\
-	//作成中\n\
-//	\n\
-//	if(event.type == 'mousedown'){//ボタンが押された\n\
-//		if(event.altKey){//Altキー押下状態なら\n\
-//			reMouseEventDown = event;//ドキュメントイベントを保持する\n\
-//		}\n\
-//	}else if(event.type == 'mouseup'){//ボタンが放された\n\
-//		if(event.altKey){//Altキー押下状態\n\
-//			//ドキュメントイベントを保持する\n\
-//			reMouseEventUp = event;\n\
-//			//リピートの開始\n\
-//			startRepeat(MOUSE);\n\
-//			//リピートフラグを立てる\n\
-//			mouse_repeat_flag = 1;\n\
-//		}\n\
-//	}\n\
 }\n\
 \n\
 \n\
@@ -157,21 +141,19 @@ function setEvent(event,type){\n\
 		clientY: event.clientY\n\
 	};\n\
 	if(type == 'touchstart')isMouseDown=e.touches;\n\
-	if(type == 'touchend')isMouseDown=null;\n\
+	if(isMouseDown)isMouseDown=e.touches;\n\
 	e.targetTouches = isMouseDown;\n\
 	e.changedTouches = isMouseDown;\n\
+	if(type == 'touchend')isMouseDown=null;\n\
 	return(e);\n\
 }\n\
-\n\
-\n\
-\n\
 \n\
 /** リピートの開始 */\n\
 function startRepeat(ID){\n\
 	if(ID == MOUSE){\n\
 		//０．１秒毎に呼ばれる\n\
-		repeat_ID[ID] = setInterval('mouseRepeatDOWN()',100);\n\
-		repeat_ID[ID+1] = setInterval('mouseRepeatUP()',100);\n\
+		repeat_ID[ID] = setInterval('mouseRepeatDOWN()',500);\n\
+		repeat_ID[ID+1] = setInterval('mouseRepeatUP()',500);\n\
 	}else if(ID == KEYBOARD){\n\
 		//０．１秒毎に呼ばれる\n\
 		repeat_ID[ID] = setInterval('keyRepeat()',100);\n\
@@ -213,43 +195,30 @@ function keyRepeat(){\n\
 			false\n\
 		};\n\
 	//キーボードイベントを作成する\n\
-	e.initKeyboardEvent(o.type, o.canBubble, o.cancelable, o.view,o.keyIdentifier, o.keyLocation, o.ctrlKey, o.shiftKey, o.altKey,o.metaKey, o.altGraphKey);document.dispatchEvent(e); \n\
+	e.initKeyboardEvent(o.type, o.canBubble, o.cancelable, o.view,o.keyIdentifier, o.keyLocation, o.ctrlKey, o.shiftKey, o.altKey,o.metaKey, o.altGraphKey);\n\
+	document.dispatchEvent(e); \n\
 }\n\
 /** マウスリピート本体 */\n\
 function mouseRepeatDOWN(){\n\
-	\n\
-	//作成中\n\
-//	var e = document.createEvent('Event');\n\
-//	//イベントの設定\n\
-//	e.initEvent('touchstart',true,true);\n\
-//	//イベント座標の受け渡し\n\
-//	e.screenX = event.screenX;\n\
-//	e.screenY = event.screenY;\n\
-//	e.pageX = event.pageX;\n\
-//	e.pageY = event.pageY;\n\
-//	e.clientX = event.clientX;\n\
-//	e.clientY = event.clientY;\n\
-//	//タッチイベントの初期化\n\
-//	e.touches = new Array();\n\
-//	e.touches[0] = {\n\
-//		screenX: event.screenX,\n\
-//		screenY: event.screenY,\n\
-//		pageX: event.pageX,\n\
-//		pageY: event.pageY,\n\
-//		clientX: event.clientX,\n\
-//		clientY: event.clientY\n\
-//	};\n\
-//	\n\
-	\n\
+	//Eventを作る\n\
+	var e = document.createEvent('Event');\n\
+	var event = reMouseEventDown;\n\
+	//Touchイベントに変換\n\
+	e = setEvent(event,'touchstart');\n\
+	//イベントを発生させる\n\
+	event.target.dispatchEvent(e);\n\
 }\n\
 \n\
 \n\
 /** マウスリピート本体 */\n\
 function mouseRepeatUP(){\n\
-	//作成中\n\
-//	event.target.dispatchEvent(reMouseEventDown);//Downイベント\n\
-//	event.target.dispatchEvent(reMouseEventUp);//Upイベント\n\
-//	event = reMouseEventUp;\n\
+	//Eventを作る\n\
+	var e = document.createEvent('Event');\n\
+	var event = reMouseEventUp;\n\
+	//Touchイベントに変換\n\
+	e = setEvent(event,'touchEnd');\n\
+	//イベントを発生させる\n\
+	event.target.dispatchEvent(e);\n\
 }\n\
 \n\
 //イベントリスナーのセット\n\
