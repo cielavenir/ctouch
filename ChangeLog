@@ -20,3 +20,4 @@
 1.5.4.20617 sets "color:black" to option (fix several including gree::tknight).
 1.5.5.20617 Now text is selectable.
 1.5.6.20618 Better handling of changedTouches(I hope) (fix gree::53754).
+1.5.7.20628 Modified ontouchstart bypass (fix gree::3451).

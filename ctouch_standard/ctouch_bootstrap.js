@@ -294,12 +294,12 @@ s.innerText += "\
 document.ondragstart = function(){return false;};\
 document.ontouchstart = function(){return;};\
 window.ondragstart = function(){return false;};\
-window.ontouchstart = function(){return;};\
+window.ontouchstart = null;\
 ";
 
 if(vendor == "Apple Computer, Inc."){
 	s.innerText+="document.ongesturestart = function(){return;};";
-	s.innerText+="window.ongesturestart = function(){return;};";
+	s.innerText+="window.ongesturestart = null;";
 }
 
 // http://jsdo.it/wakuworks/userAgent.test
