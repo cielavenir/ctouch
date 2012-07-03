@@ -16,7 +16,7 @@ function getFile(url){
 		AJAX=new XMLHttpRequest();
 	}else{
 		console.log("run_at: document_start isn't suitable");
-		//AJAX=new ActiveXObject("Microsoft.XMLHTTP");
+		//AJAX=new ActiveXObject("Microsoft.XMLHTTP"); //ignore IE
 	}
 	if(!AJAX)return "";
 	AJAX.open("GET", url, false);
@@ -25,7 +25,7 @@ function getFile(url){
 }
 var ctouch_option=JSON.parse(getFile("http://localhost:12380/ctouch_external.cgi"));
 
-//function init(){
+function init(){
 	var s;
 	//s = document.createElement("script");
 	//s.type = "text/javascript";
@@ -35,25 +35,26 @@ var ctouch_option=JSON.parse(getFile("http://localhost:12380/ctouch_external.cgi
 
 	if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
 		var useragent=ctouch_option["UA"+ctouch_option["preferedUA"]];
-		var platform="hello";
-		var vendor="Google, Inc.";
+		var platform="none";
+		var vendor="";
 		if(useragent.indexOf("Android")!=-1){
 			vendor="Google, Inc.";
 			//platform="Linux i686"; //Android Atom machine :p
 			platform="Linux armv7l";
 		}
-		if(useragent.indexOf("iPod")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPod";
-		}
 		if(useragent.indexOf("iPhone")!=-1){
 			vendor="Apple Computer, Inc.";
 			platform="iPhone";
+		}
+		if(useragent.indexOf("iPod")!=-1){
+			vendor="Apple Computer, Inc.";
+			platform="iPod";
 		}
 		if(useragent.indexOf("iPad")!=-1){
 			vendor="Apple Computer, Inc.";
 			platform="iPad";
 		}
+		if(platform=="none")return;
 
 		s = document.createElement("script");
 		s.type = "text/javascript";
@@ -82,6 +83,8 @@ document.createExpression = null;\
 document.createNSResolver = null;\
 document.createTouch = function(){return;};\
 document.createTouchList = function(){return;};\
+document.documentElement.createTouch = function(){return;};\
+document.documentElement.createTouchList = function(){return;};\
 document.evaluate = null;\
 document.webkitHidden = null;\
 document.webkitVisibilityState = null;\
@@ -307,12 +310,14 @@ window.webkitURL = null;";
 s.innerText += "\
 document.ondragstart = function(){return false;};\
 document.ontouchstart = function(){return;};\
+document.documentElement.ontouchstart = function(){return;};\
 window.ondragstart = function(){return false;};\
 window.ontouchstart = null;\
 ";
 
 if(vendor == "Apple Computer, Inc."){
 	s.innerText+="document.ongesturestart = function(){return;};";
+	s.innerText+="document.documentElement.ongesturestart = function(){return;};";
 	s.innerText+="window.ongesturestart = null;";
 }
 
@@ -362,4 +367,5 @@ var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);";
 		document.documentElement.appendChild(s);
 	}
-//}
+}
+init();

@@ -1,5 +1,5 @@
 /*
- * cTouch (to mimic smartphone) [standard] by ciel.
+ * cTouch (to mimic smartphone) [safari/less] by ciel.
  * javascript imitation / touch event / modifying UserAgent -> all in one.
  * 
  * [Potion Notice]
@@ -8,8 +8,8 @@
  * navigator.* writer by wakuworks.
 */
 
-var ctouch_option=sessionStorage;
-if(typeof ctouch_option["preferedUA"] === "undefined")document.location.href=document.location.href; //reload...
+//var ctouch_option=sessionStorage;
+//if(typeof ctouch_option["preferedUA"] === "undefined")document.location.href=document.location.href; //reload...
 
 function init(){
 	var s;
@@ -19,10 +19,10 @@ function init(){
 	//s.src = chrome.extension.getURL("ctouch_touch.js"); // need to embed to DOM to access x.ontouchstart().
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
-	if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
-		var useragent=ctouch_option["UA"+ctouch_option["preferedUA"]];
+	//if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
+		var useragent=navigator.userAgent;
 		var platform="none";
-		var vendor="";
+		var vendor="none";
 		if(useragent.indexOf("Android")!=-1){
 			vendor="Google, Inc.";
 			//platform="Linux i686"; //Android Atom machine :p
@@ -32,13 +32,13 @@ function init(){
 			vendor="Apple Computer, Inc.";
 			platform="iPhone";
 		}
-		if(useragent.indexOf("iPod")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPod";
-		}
 		if(useragent.indexOf("iPad")!=-1){
 			vendor="Apple Computer, Inc.";
 			platform="iPad";
+		}
+		if(useragent.indexOf("iPod")!=-1){
+			vendor="Apple Computer, Inc.";
+			platform="iPod";
 		}
 		if(platform=="none")return;
 
@@ -67,8 +67,8 @@ function init(){
 s.innerText += "\
 document.createExpression = null;\
 document.createNSResolver = null;\
-document.createTouch = function(){return;};\
-document.createTouchList = function(){return;};\
+document.createTouch = function createTouch(){return;};\
+document.createTouchList = function createTouchList(){return;};\
 document.documentElement.createTouch = function(){return;};\
 document.documentElement.createTouchList = function(){return;};\
 document.evaluate = null;\
@@ -352,6 +352,6 @@ if(navigator.__defineGetter__){\
 var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);";
 		document.documentElement.appendChild(s);
-	}
+	//}
 }
 init();

@@ -2,7 +2,7 @@ function getFile(url, passData){
 	if(window.XMLHttpRequest){
 		AJAX=new XMLHttpRequest();
 	}else{
-		AJAX=new ActiveXObject("Microsoft.XMLHTTP");
+		//AJAX=new ActiveXObject("Microsoft.XMLHTTP"); //ignore IE
 	}
 	if(!AJAX)return "";
 	AJAX.open("POST", url, false);

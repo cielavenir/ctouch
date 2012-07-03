@@ -25,7 +25,7 @@ end
 def run(argv)
 	crx=argv.shift
 	pkey=argv.shift
-	key=""
+	key=''
 	begin
 		open(pkey,'rb'){|f|
 			key=OpenSSL::PKey::RSA.new(f)

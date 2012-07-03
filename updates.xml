@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
-<app appid='mcekdlcnjgikdollcdciklionpbdledk'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_standard-1.5.7.20628.crx' version='1.5.7.20628'/></app>
-<app appid='dlfkkflnlipgkphcdncfpcnaiemdjekc'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_fixed-1.5.7.20628.crx' version='1.5.7.20628'/></app>
-<app appid='blebjmmceflglbgfanihlnlhjbbdpdkp'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_external-1.5.7.20628.crx' version='1.5.7.20628'/></app>
+<app appid='mcekdlcnjgikdollcdciklionpbdledk'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_standard-1.5.8.20703.crx' version='1.5.8.20703'/></app>
+<app appid='dlfkkflnlipgkphcdncfpcnaiemdjekc'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_fixed-1.5.8.20703.crx' version='1.5.8.20703'/></app>
+<app appid='blebjmmceflglbgfanihlnlhjbbdpdkp'><updatecheck codebase='https://ctouch.googlecode.com/files/ctouch_external-1.5.8.20703.crx' version='1.5.8.20703'/></app>
 </gupdate>

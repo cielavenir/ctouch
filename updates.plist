@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>Extension Updates</key>
+<array>
+	<dict>
+		<key>CFBundleIdentifier</key>
+		<string>com.cielavenir.ctouch</string>
+		<key>Developer Identifier</key>
+		<string>ZMS86BA3S8</string>
+		<key>CFBundleVersion</key>
+		<string>1.5.8.20703</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.5.8.20703</string>
+		<key>URL</key>
+		<string>https://ctouch.googlecode.com/files/ctouch-1.5.8.20703.safariextz</string>
+	</dict>
+</array>
+</dict>
+</plist>
