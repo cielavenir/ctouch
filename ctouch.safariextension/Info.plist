@@ -23,6 +23,10 @@
 				<string>ctouch_bootstrap.js</string>
 				<string>ctouch_touch.js</string>
 			</array>
+			<key>End</key>
+			<array>
+				<string>ctouch_css.js</string>
+			</array>
 		</dict>
 		<key>Global Page</key>
 		<string>ctouch_bg.html</string>
