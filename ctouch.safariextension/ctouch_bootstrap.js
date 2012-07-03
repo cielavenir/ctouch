@@ -22,7 +22,7 @@ function init(){
 	//if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
 		var useragent=navigator.userAgent;
 		var platform="none";
-		var vendor="none";
+		var vendor="";
 		if(useragent.indexOf("Android")!=-1){
 			vendor="Google, Inc.";
 			//platform="Linux i686"; //Android Atom machine :p
@@ -32,13 +32,13 @@ function init(){
 			vendor="Apple Computer, Inc.";
 			platform="iPhone";
 		}
-		if(useragent.indexOf("iPad")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPad";
-		}
 		if(useragent.indexOf("iPod")!=-1){
 			vendor="Apple Computer, Inc.";
 			platform="iPod";
+		}
+		if(useragent.indexOf("iPad")!=-1){
+			vendor="Apple Computer, Inc.";
+			platform="iPad";
 		}
 		if(platform=="none")return;
 
