@@ -67,6 +67,7 @@ var mouse2touch = function(event)
 		reMouseEventDown = event;
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchstart'))
 		event.target.dispatchEvent(docEvent);//
+		//event.preventDefault();event.stopPropagation();
 	}else if(event.type == "mouseup"){//ボタンが放された
 		docEvent = setEvent(event,"touchend");
 		//Alt+ClickでもEnterをリピートさせる
@@ -81,11 +82,13 @@ var mouse2touch = function(event)
 		reMouseEventUp = event;
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchend'))
 		event.target.dispatchEvent(docEvent);//
+		//event.preventDefault();event.stopPropagation();
 	}else if(event.type == "mousemove"){//マウスが動いた
 		if(isMouseDown){
 			docEvent = setEvent(event,"touchmove");
 			if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchmove'))
 			event.target.dispatchEvent(docEvent);//
+			//event.preventDefault();event.stopPropagation();
 		}
 	}else if(event.type == "keydown"){
 		if(key_repeat_flag == 1){//リピート状態のキー押下(Any)
