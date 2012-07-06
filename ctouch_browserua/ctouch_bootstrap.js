@@ -1,5 +1,5 @@
 /*
- * cTouch (to mimic smartphone) [safari/less] by ciel.
+ * cTouch (to mimic smartphone) [browserUA] by ciel.
  * javascript imitation / touch event / modifying UserAgent -> all in one.
  * 
  * [Potion Notice]
@@ -20,6 +20,7 @@ function init(){
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
 	//if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
+		//var useragent=ctouch_option["UA"+ctouch_option["preferedUA"]];
 		var useragent=navigator.userAgent;
 		var platform="none";
 		var vendor="";
