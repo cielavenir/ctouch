@@ -52,12 +52,14 @@ int main(){
 	puts("Cache-Control: no-store, no-cache, must-revalidate");
 	puts("");
 	char *request_method=getenv("REQUEST_METHOD");
-	if(!strcasecmp(request_method,"POST")){
+	if(request_method&&!strcasecmp(request_method,"POST")){
 		f=fopen(FILENAME,"wb");
+		if(!f)return 1;
 		base64_decode(stdin,f);
 		fclose(f);
 	}else{
 		f=fopen(FILENAME,"rb");
+		if(!f)return 1;
 		for(;~(c=fgetc(f));)putchar(c);
 		fclose(f);
 	}
