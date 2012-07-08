@@ -50,6 +50,8 @@ int main(){
 	//chdir("."); //change this, if curdir isn't the same as CGI dir.
 	puts("Content-Type: text/plain");
 	puts("Cache-Control: no-store, no-cache, must-revalidate");
+	puts("Pragma: no-cache");
+	puts("Expires: 0");
 	puts("");
 	char *request_method=getenv("REQUEST_METHOD");
 	if(request_method&&!strcasecmp(request_method,"POST")){
