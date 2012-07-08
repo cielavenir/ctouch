@@ -32,7 +32,7 @@
 		<string>ctouch_bg.html</string>
 	</dict>
 	<key>Description</key>
-	<string>You can browse smartphone websites. No configuration screen; it depends on Safari's UserAgent.</string>
+	<string>You can browse smartphone websites. No configuration screens; it depends on Safari's UserAgent.</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
