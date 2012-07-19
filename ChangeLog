@@ -23,3 +23,5 @@
 1.5.7.20628 Modified ontouchstart bypass (fix gree::3451).
 1.5.8.20703 Improved document.documentElement.* handling. Initial Safari port.
 1.5.9.20706 Added browserUA version.
+1.6.0.20719 Modified embed-div handling (fix gree::56911).
+1.6.1.20719 Fixed ctouch_inner.rb.

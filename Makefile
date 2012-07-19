@@ -34,7 +34,9 @@ ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ ctouch_true.pem ctouch_common ctouch_true
 
 ctouch_common/ctouch_touch.js: ctouch_touch.js
-	ruby support/ctouch_touch_inner.rb < $< > $@
+	ruby support/ctouch_inner.rb $< > $@
+ctouch_common/ctouch_css.js: ctouch_css.js
+	ruby support/ctouch_inner.rb $< > $@
 
 clean:
 	rm $(CRX)

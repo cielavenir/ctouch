@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (browserUA)",
-	"description": "You can browse smartphone websites. No configuration screens; command line --user-agent value is used. In that way this works even on very old Chromium.",
-	"version": "1.5.9.20706",
+	"description": "You can browse smartphone websites. No configuration screens; command line --user-agent value is used.",
+	"version": "1.6.1.20719",
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"content_scripts": [
