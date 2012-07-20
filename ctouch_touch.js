@@ -228,12 +228,14 @@ document.addEventListener("mouseup",mouse2touch,false);
 document.addEventListener("mousemove",mouse2touch,false);
 document.addEventListener("keydown",mouse2touch,false);
 
-CanvasRenderingContext2D.prototype.__fillText=CanvasRenderingContext2D.prototype.fillText;
-CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
-	l = l || 0;
-	if(l<10)CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y);
-	else CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y,l);
-};
+if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
+	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;
+	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
+		l = l || 0;
+		if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);
+		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);
+	};
+}
 
 var myself = document.getElementById('ctouch_touch_js');
 if(myself)myself.parentNode.removeChild(myself);
