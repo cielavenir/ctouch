@@ -10,8 +10,8 @@
 	<string>com.cielavenir.ctouch</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleShortVersionString</key><string>1.6.2.20720</string>
-	<key>CFBundleVersion</key><string>1.6.2.20720</string>
+	<key>CFBundleShortVersionString</key><string>1.6.3.20720</string>
+	<key>CFBundleVersion</key><string>1.6.3.20720</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>

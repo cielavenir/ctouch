@@ -25,4 +25,5 @@
 1.5.9.20706 Added browserUA version.
 1.6.0.20719 Modified embed-div handling (fix gree::56911).
 1.6.1.20719 Fixed ctouch_inner.rb.
-1.6.2.20720 Fixed fillText() and click() issue (fix mbga's ExGame and 12008259)
+1.6.2.20720 Fixed fillText() and click() issue (fix mbga's ExGame and 12008259).
+1.6.3.20720 Better fixing fillText().

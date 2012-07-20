@@ -16,25 +16,12 @@ if(embed&&embed.length==1){\n\
 	var parent=embed[0].parentNode;\n\
 	if(parent.tagName=='DIV')parent.style.height='100%';\n\
 }\n\
-\n\
-var hackcanvas_cnt=0;\n\
-var hackcanvas=function(){\n\
-	var canvas=document.getElementsByTagName('canvas');\n\
-	if(canvas&&canvas.length==1){\n\
-		var ctx=canvas[0].getContext('2d');\n\
-		ctx.__proto__.__fillText=ctx.__proto__.fillText;\n\
-		ctx.__proto__.fillText=function(s,x,y,l){\n\
-			l = l || 0;\n\
-			if(l<10)ctx.__fillText.call(this,s,x,y);\n\
-			else ctx.__fillText.call(this,s,x,y,l);\n\
-		};\n\
-	}else{\n\
-		hackcanvas_cnt++;\n\
-		if(hackcanvas_cnt<5)setTimeout(hackcanvas,200);\n\
-	}\n\
+CanvasRenderingContext2D.prototype.__fillText=CanvasRenderingContext2D.prototype.fillText;\n\
+CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){\n\
+	l = l || 0;\n\
+	if(l<10)CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y);\n\
+	else CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y,l);\n\
 };\n\
-setTimeout(hackcanvas,200);\n\
-\n\
 var myself = document.getElementById('ctouch_css_js');\n\
 myself.parentNode.removeChild(myself);\n\
 })();\n\
