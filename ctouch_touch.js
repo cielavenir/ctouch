@@ -1,4 +1,5 @@
 //ctouch_touch: execute anytime
+(function(){
 function rec1(o,n,d,e,z){
 	var sent=false;
 	if(n==o||!n)return false;
@@ -80,6 +81,8 @@ var mouse2touch = function(event)
 			startRepeat(KEYBOARD);//リピートの開始
 		}//あえて抜けない
 		reMouseEventUp = event;
+
+		if(window.click){window.click();return;}
 		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchend'))
 		event.target.dispatchEvent(docEvent);//
 		//event.preventDefault();event.stopPropagation();
@@ -227,3 +230,4 @@ document.addEventListener("keydown",mouse2touch,false);
 
 var myself = document.getElementById('ctouch_touch_js');
 if(myself)myself.parentNode.removeChild(myself);
+})();
