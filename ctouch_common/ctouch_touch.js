@@ -233,6 +233,13 @@ document.addEventListener('mouseup',mouse2touch,false);\n\
 document.addEventListener('mousemove',mouse2touch,false);\n\
 document.addEventListener('keydown',mouse2touch,false);\n\
 \n\
+CanvasRenderingContext2D.prototype.__fillText=CanvasRenderingContext2D.prototype.fillText;\n\
+CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){\n\
+	l = l || 0;\n\
+	if(l<10)CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y);\n\
+	else CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y,l);\n\
+};\n\
+\n\
 var myself = document.getElementById('ctouch_touch_js');\n\
 if(myself)myself.parentNode.removeChild(myself);\n\
 })();\n\

@@ -11,12 +11,6 @@ if(embed&&embed.length==1){
 	var parent=embed[0].parentNode;
 	if(parent.tagName=='DIV')parent.style.height='100%';
 }
-CanvasRenderingContext2D.prototype.__fillText=CanvasRenderingContext2D.prototype.fillText;
-CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
-	l = l || 0;
-	if(l<10)CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y);
-	else CanvasRenderingContext2D.prototype.__fillText.call(this,s,x,y,l);
-};
 var myself = document.getElementById('ctouch_css_js');
 myself.parentNode.removeChild(myself);
 })();
