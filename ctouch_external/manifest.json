@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (external)",
 	"description": "You can browse smartphone websites. Configuration is saved to external CGI.",
-	"version": "1.6.4.20721",
+	"version": "1.6.5.20727",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",

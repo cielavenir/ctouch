@@ -1,8 +1,13 @@
 (function(){
+//var ratio=1;
+var ratio=window.devicePixelRatio;
+document.documentElement.style.zoom=ratio;
 var body=document.getElementsByTagName('body');
 if(body&&body[0]){ //lol?
 	body[0].style.overflow='visible';
+	//body[0].style.userSelect='auto';
 	body[0].style.webkitUserSelect='auto';
+	body[0].style.zoom=ratio;
 }
 var opt=document.getElementsByTagName('option');
 if(opt)for(i=0;i<opt.length;i++)opt[i].style.color='black';

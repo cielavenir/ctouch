@@ -4,10 +4,15 @@ s.type='text/javascript';
 s.id='ctouch_css_js';
 s.innerHTML="\
 (function(){\n\
+//var ratio=1;\n\
+var ratio=window.devicePixelRatio;\n\
+document.documentElement.style.zoom=ratio;\n\
 var body=document.getElementsByTagName('body');\n\
 if(body&&body[0]){ //lol?\n\
 	body[0].style.overflow='visible';\n\
+	//body[0].style.userSelect='auto';\n\
 	body[0].style.webkitUserSelect='auto';\n\
+	body[0].style.zoom=ratio;\n\
 }\n\
 var opt=document.getElementsByTagName('option');\n\
 if(opt)for(i=0;i<opt.length;i++)opt[i].style.color='black';\n\

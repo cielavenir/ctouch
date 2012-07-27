@@ -2,7 +2,7 @@
 #coding:utf-8
 if RUBY_VERSION < '1.9.0' then $KCODE="u" end
 
-#usage: ctouch_touch_inner.rb ctouch_touch.js > ctouch/ctouch_touch.js
+#usage: ctouch_inner.rb ctouch_touch.js > ctouch/ctouch_touch.js
 id=ARGV[0].sub('.','_')
 
 #I need to use innerHTML to handle linebreak.
