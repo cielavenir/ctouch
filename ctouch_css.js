@@ -7,7 +7,7 @@ if(body&&body[0]){ //lol?
 	body[0].style.overflow='visible';
 	//body[0].style.userSelect='auto';
 	body[0].style.webkitUserSelect='auto';
-	body[0].style.zoom=ratio;
+	body[0].style.zoom=1;
 }
 var opt=document.getElementsByTagName('option');
 if(opt)for(i=0;i<opt.length;i++)opt[i].style.color='black';
