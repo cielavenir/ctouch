@@ -34,3 +34,4 @@
 * GUI of standard and external edition is completely rewritten.
 * You can have as many User-Agents as you want. The list is also sortable thanks to jQuery UI.
 * "Resurrection spell": You can backup and restore current configuration.
+1.7.1.20810 Fixed fatal bug of standard edition. Never use 1.7.0.20810, which is malfuncional.

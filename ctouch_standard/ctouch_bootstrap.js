@@ -20,7 +20,7 @@ function init(){
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
 	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
-		var useragent=ctouch_option.UA[ctouch_option.preferedUA];
+		var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
 		var platform='none';
 		var vendor='';
 		if(useragent.indexOf('Android')!=-1){
