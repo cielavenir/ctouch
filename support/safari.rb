@@ -27,7 +27,7 @@ def run(argv)
 	open(pkey,'rb'){|f|
 		key=OpenSSL::PKey::RSA.new(f)
 	}
-	siglen=key.sign(OpenSSL::Digest::SHA1.new,"").size
+	siglen=key.sign(OpenSSL::Digest::SHA1.new,'').size
 
 	system(%Q("#{XAR}" -cf "#{name}.safariextz" "#{name}.safariextension/"))
 

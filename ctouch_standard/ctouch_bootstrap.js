@@ -8,44 +8,44 @@
  * navigator.* writer by wakuworks.
 */
 
-var ctouch_option=sessionStorage;
-if(typeof ctouch_option["preferedUA"] === "undefined")document.location.href=document.location.href; //reload...
+if(typeof sessionStorage['config'] === 'undefined')document.location.href=document.location.href; //reload...
+var ctouch_option=JSON.parse(sessionStorage['config']);
 
 function init(){
 	var s;
-	//s = document.createElement("script");
-	//s.type = "text/javascript";
-	//s.id = "ctouch_touch_js";
-	//s.src = chrome.extension.getURL("ctouch_touch.js"); // need to embed to DOM to access x.ontouchstart().
+	//s = document.createElement('script');
+	//s.type = 'text/javascript';
+	//s.id = 'ctouch_touch_js';
+	//s.src = chrome.extension.getURL('ctouch_touch.js'); // need to embed to DOM to access x.ontouchstart().
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
-	if(ctouch_option["enable_imitation"] && ctouch_option["preferedUA"]!="0"){
-		var useragent=ctouch_option["UA"+ctouch_option["preferedUA"]];
-		var platform="none";
-		var vendor="";
-		if(useragent.indexOf("Android")!=-1){
-			vendor="Google, Inc.";
-			//platform="Linux i686"; //Android Atom machine :p
-			platform="Linux armv7l";
+	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
+		var useragent=ctouch_option.UA[ctouch_option.preferedUA];
+		var platform='none';
+		var vendor='';
+		if(useragent.indexOf('Android')!=-1){
+			vendor='Google, Inc.';
+			//platform='Linux i686'; //Android Atom machine :p
+			platform='Linux armv7l';
 		}
-		if(useragent.indexOf("iPhone")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPhone";
+		if(useragent.indexOf('iPhone')!=-1){
+			vendor='Apple Computer, Inc.';
+			platform='iPhone';
 		}
-		if(useragent.indexOf("iPod")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPod";
+		if(useragent.indexOf('iPod')!=-1){
+			vendor='Apple Computer, Inc.';
+			platform='iPod';
 		}
-		if(useragent.indexOf("iPad")!=-1){
-			vendor="Apple Computer, Inc.";
-			platform="iPad";
+		if(useragent.indexOf('iPad')!=-1){
+			vendor='Apple Computer, Inc.';
+			platform='iPad';
 		}
-		if(platform=="none")return;
+		if(platform=='none')return;
 
-		s = document.createElement("script");
-		s.type = "text/javascript";
-		s.id = "ctouch_imitation_js";
-		s.innerText = "";
+		s = document.createElement('script');
+		s.type = 'text/javascript';
+		s.id = 'ctouch_imitation_js';
+		s.innerText = '';
 
 /// GPL BLOCK START ///
 // ----------------------------------------------------------------------------
@@ -64,7 +64,7 @@ function init(){
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------------------
-s.innerText += "\
+s.innerText += '\
 document.createExpression = null;\
 document.createNSResolver = null;\
 document.createTouch = function(){return;};\
@@ -289,22 +289,22 @@ window.webkitRequestAnimationFrame = null;\
 window.webkitRequestFileSystem = null;\
 window.webkitResolveLocalFileSystemURL = null;\
 window.webkitStorageInfo = null;\
-window.webkitURL = null;";
+window.webkitURL = null;';
 /// GPL BLOCK END ///
 
 // my original bypass
-s.innerText += "\
+s.innerText += '\
 document.ondragstart = function(){return false;};\
 document.ontouchstart = function(){return;};\
 document.documentElement.ontouchstart = function(){return;};\
 window.ondragstart = function(){return false;};\
 window.ontouchstart = null;\
-";
+';
 
-if(vendor == "Apple Computer, Inc."){
-	s.innerText+="document.ongesturestart = function(){return;};";
-	s.innerText+="document.documentElement.ongesturestart = function(){return;};";
-	s.innerText+="window.ongesturestart = null;";
+if(vendor == 'Apple Computer, Inc.'){
+	s.innerText+='document.ongesturestart = function(){return;};';
+	s.innerText+='document.documentElement.ongesturestart = function(){return;};';
+	s.innerText+='window.ongesturestart = null;';
 }
 
 // http://jsdo.it/wakuworks/userAgent.test

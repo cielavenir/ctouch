@@ -30,3 +30,7 @@
 1.6.4.20720 Allows multiple cTouch installation again...
 1.6.4.20721 Fixed some (strange) warnings...
 1.6.5.20727 Fixed zoom handling (fix gree::3241).
+1.7.0.20810
+* GUI of standard and external edition is completely rewritten.
+* You can have as many User-Agents as you want. The list is also sortable thanks to jQuery UI.
+* "Resurrection spell": You can backup and restore current configuration.
