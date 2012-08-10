@@ -7,6 +7,14 @@ var initialize=function(){
 		var tr=document.createElement('tr');
 		var td,input;
 		td=document.createElement('td');
+		td.style.width='25px';
+			input=document.createElement('input');
+			input.type='radio';
+			input.name='ua';
+			if(i==config.preferedUA)input.checked=true;
+			td.appendChild(input);
+		tr.appendChild(td);
+		td=document.createElement('td');
 		td.style.width='30%';
 			input=document.createElement('input');
 			input.type='text';
@@ -50,6 +58,13 @@ window.onload=function(){
 		var tr=document.createElement('tr');
 		var td,input;
 		td=document.createElement('td');
+		td.style.width='25px';
+			input=document.createElement('input');
+			input.type='radio';
+			input.name='ua';
+			td.appendChild(input);
+		tr.appendChild(td);
+		td=document.createElement('td');
 		td.style.width='30%';
 			input=document.createElement('input');
 			input.type='text';
@@ -84,8 +99,10 @@ window.onload=function(){
 		var table=document.getElementById('UA');
 		var i=0;
 		for(;i<table.children.length;i++){
-			config.UA.push([table.children[i].children[0].children[0].value,table.children[i].children[1].children[0].value]);
+			config.UA.push([table.children[i].children[1].children[0].value,table.children[i].children[2].children[0].value]);
+			if(table.children[i].children[0].children[0].checked)config.preferedUA=i;
 		}
+		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
 		localStorage['config']=JSON.stringify(config,null,' ');
 		initialize();
 	};
