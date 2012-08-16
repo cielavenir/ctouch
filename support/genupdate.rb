@@ -21,6 +21,7 @@ def pkey_to_id(pkey)
 	key = key.public_key.to_der
 	if key.index(KEY)!=0 then key=KEY+key end #ruby 1.8 wrap
 
+	#note: (Ruby 1.9.2+) manifest.json's "key" value == Base64.strict_encode64(key)
 	hash = Digest::SHA256.hexdigest(key)[0...32]
 	# Shift hex from 0-9a-f to a-p
 	return hash.unpack('C*').map{ |c| c < 97 ? c + 49 : c + 10 }.pack('C*')

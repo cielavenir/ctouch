@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+#this won't work if update_url is specified. lol...
 open(ARGV[0],'rb'){|fin|
 	size=fin.size
 	fin.sysread(8)
