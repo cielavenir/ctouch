@@ -1,10 +1,18 @@
 VERSION := $(shell ruby -Isupport -rgenversion -e getver)
 
-CRX := ctouch.safariextz ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx
+SAFARI := ctouch.safariextz
+CRX := ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx
 #ctouch_true.crx
+ZIP := ctouch_fixed.zip ctouch_browserua.zip
+#ZIP := ctouch_standard.zip ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip
+#ctouch_true.zip
 
 .PHONY: all clean publish
-all: $(CRX)
+all: safari crx
+#zip
+safari: $(SAFARI)
+crx: $(CRX)
+zip: $(ZIP)
 
 CTOUCH_SAFARI := ctouch.safariextension/Info.plist
 CTOUCH_COMMON := ctouch_common/*
@@ -21,9 +29,9 @@ ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
 	ln ctouch_browserua/ctouch_bootstrap.js ctouch.safariextension/
 	ruby support/safari.rb ctouch ctouch_safari.pem
 	rm -f ctouch.safariextension/*.js
+	
 ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ ctouch_browserua.pem ctouch_common ctouch_browserua
-
 ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
 	ruby support/crx.rb $@ ctouch_standard.pem ctouch_common ctouch_standard
 ctouch_fixed.crx: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
@@ -33,13 +41,24 @@ ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
 ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ ctouch_true.pem ctouch_common ctouch_true
 
+ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
+	ruby support/zip.rb $@ ctouch_browserua.pem ctouch_common ctouch_browserua
+ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
+	ruby support/zip.rb $@ ctouch_standard.pem ctouch_common ctouch_standard
+ctouch_fixed.zip: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
+	ruby support/zip.rb $@ ctouch_fixed.pem ctouch_common ctouch_fixed
+ctouch_external.zip: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
+	ruby support/zip.rb $@ ctouch_external.pem ctouch_common ctouch_external
+ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
+	ruby support/zip.rb $@ ctouch_true.pem ctouch_common ctouch_true
+
 ctouch_common/ctouch_touch.js: ctouch_touch.js
 	ruby support/ctouch_inner.rb $< > $@
 ctouch_common/ctouch_css.js: ctouch_css.js
 	ruby support/ctouch_inner.rb $< > $@
 
 clean:
-	rm $(CRX)
+	rm -f $(SAFARI) $(CRX) $(ZIP)
 
 #REVISION=$(shell hg log -l1 --template '{rev}')
 

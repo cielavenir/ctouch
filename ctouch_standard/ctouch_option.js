@@ -46,9 +46,9 @@ var initialize=function(){
 };
 
 window.onload=function(){
-	$(function() {
+	$(function(){
 		$("tbody").sortable();
-		$("tbody").disableSelection();
+		//$("tbody").disableSelection();
 	});
 
 	initialize();
