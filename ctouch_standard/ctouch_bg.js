@@ -44,13 +44,12 @@ if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''
 				"Mozilla/5.0 (iPod; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3"],
 			["iPad (iOS 5.1.1)",
 				"Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3"],
-			["iPhone (iOS 6.0 beta)",
+			["iPhone (iOS 6.0 Beta3)",
 				"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25"],
-			["iPod Touch (iOS 6.0 beta)",
+			["iPod Touch (iOS 6.0 Beta3)",
 				"Mozilla/5.0 (iPod; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25"],
-			["iPad (iOS 6.0 beta)",
+			["iPad (iOS 6.0 Beta3)",
 				"Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25"]
-
 		],
 		"preferedUA": -1,
 		"enable_imitation": true

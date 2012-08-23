@@ -23,6 +23,10 @@ function init(){
 		var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
 		var platform='none';
 		var vendor='';
+		//var appName='Netscape'; //I believe WebKit always uses Netscape.
+		var appCodeName_idx=useragent.indexOf('/',0);
+		var appCodeName=useragent.substr(0,appCodeName_idx);
+		var appVersion=useragent.substr(appCodeName_idx+1);
 		if(useragent.indexOf('Android')!=-1){
 			vendor='Google, Inc.';
 			//platform='Linux i686'; //Android Atom machine :p
@@ -75,8 +79,8 @@ document.evaluate = null;\
 document.webkitHidden = null;\
 document.webkitVisibilityState = null;\
 window.ArrayBuffer = null;\
-window.CSSVariablesDeclaration = function CSSVariablesDeclaration(){return;};\
-window.CSSVariablesRule = function CSSVariablesRule(){return;};\
+window.CSSVariablesDeclaration = function(){return;};\
+window.CSSVariablesRule = function(){return;};\
 window.CanvasGradient = null;\
 window.CanvasPattern = null;\
 window.CloseEvent = null;\
@@ -341,13 +345,17 @@ var __original = navigator;\
 var navigator = {};\
 navigator.__proto__ = __original;\
 if(navigator.__defineGetter__){\
-	navigator.__defineGetter__('userAgent', function () { return '"+useragent+"'; });\
-	navigator.__defineGetter__('vendor', function () { return '"+vendor+"'; });\
-	navigator.__defineGetter__('platform', function () { return '"+platform+"'; });\
+	navigator.__defineGetter__('userAgent',function(){return '"+useragent+"';});\
+	navigator.__defineGetter__('vendor',function(){return '"+vendor+"';});\
+	navigator.__defineGetter__('platform',function(){return '"+platform+"';});\
+	navigator.__defineGetter__('appCodeName',function(){return '"+appCodeName+"';});\
+	navigator.__defineGetter__('appVersion',function(){return '"+appVersion+"';});\
 }else{\
 	navigator.userAgent = '"+useragent+"';\
 	navigator.vendor = '"+vendor+"';\
 	navigator.platform = '"+platform+"';\
+	navigator.appCodeName = '"+appCodeName+"';\
+	navigator.appVersion = '"+appVersion+"';\
 }\
 var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);";
