@@ -32,7 +32,10 @@ class CTouchDaemon < WEBrick::HTTPServlet::AbstractServlet
 	def do_POST(request,response) query(true,request,response) end
 end
 
-s = WEBrick::HTTPServer.new(:Port => 12380,:DocumentRoot => ENV['HOME']+'/bin/ctouch')
+d = File.dirname(__FILE__)
+if ENV['OCRA_EXECUTABLE'] then d = ENV['OCRA_EXECUTABLE'] end
+
+s = WEBrick::HTTPServer.new(:Port => 12380,:DocumentRoot => d+'/bin/ctouch')
 s.mount('/',CTouchDaemon)
 begin
 trap('INT'){s.shutdown}
@@ -41,4 +44,6 @@ trap('ABRT'){s.shutdown}
 trap('TERM'){s.shutdown}
 trap('HUP'){s.shutdown} #in case SSH?
 rescue ArgumentError; end
+
+if defined?(Ocra) then exit end
 s.start
