@@ -40,6 +40,6 @@
 * Added many User-Agents including JellyBean and iOS6.
 * Fixed navigator.appVersion.
 1.7.4.20xxx
-* Fixed GUI. Now textboxes aren't bugged due to window width.
+* Fixed GUI. Now textboxes aren't bugged regardless of window width.
 * Combined ctouch_external.cgi to ctouch_webrick.rb.
 * Configuring CGI isn't required anymore as long as you have Ruby on your machine.
