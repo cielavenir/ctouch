@@ -35,7 +35,7 @@ end
 d = File.dirname(__FILE__)
 if ENV['OCRA_EXECUTABLE'] then d = File.dirname(ENV['OCRA_EXECUTABLE']) end
 
-s = WEBrick::HTTPServer.new(:Port => 12380,:DocumentRoot => d+'/bin/ctouch')
+s = WEBrick::HTTPServer.new(:Port => 12380,:DocumentRoot => d)
 s.mount('/',CTouchDaemon)
 begin
 trap('INT'){s.shutdown}
