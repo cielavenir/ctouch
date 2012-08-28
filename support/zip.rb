@@ -20,7 +20,7 @@ def run(argv)
 			keybody=f.read
 		}
 	rescue
-		key=OpenSSL::PKey::RSA.generate(KEY_SIZE).export
+		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
 		open(pkey,'wb'){|f|
 			keybody=key.export()
 			f<<keybody
