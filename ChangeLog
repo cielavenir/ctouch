@@ -46,3 +46,6 @@
 * Windows users can now use Ocra-packed exe.
 * Now that crxes are hosted on webstore, standard's official support is dropped.
 * Adds e.keyCode=0 when firing touch event (fix gree::3392).
+1.7.5.20902
+* Stripped GPL block.
+* window.chrome is now undefined (fix gree::3429).
