@@ -123,9 +123,17 @@ var mouseevent=function(e){\n\
 };\n\
 \n\
 //Finally set the event.\n\
-document.addEventListener('mousedown',mouseevent,true);\n\
-document.addEventListener('mousemove',mouseevent,true);\n\
-document.addEventListener('mouseup',mouseevent,true);\n\
+//var useragent=''; //meh, I'll fix after releasing ctouch_true. When? I never know.\n\
+//var platform='none';\n\
+//if(useragent.indexOf('Android')!=-1)platform='Linux armv7l';\n\
+//if(useragent.indexOf('iPhone')!=-1)platform='iPhone';\n\
+//if(useragent.indexOf('iPod')!=-1)platform='iPod';\n\
+//if(useragent.indexOf('iPad')!=-1)platform='iPad';\n\
+//if(platform!='none'){\n\
+	document.addEventListener('mousedown',mouseevent,true);\n\
+	document.addEventListener('mousemove',mouseevent,true);\n\
+	document.addEventListener('mouseup',mouseevent,true);\n\
+//}\n\
 \n\
 var myself = document.getElementById('ctouch_touch_js');\n\
 if(myself)myself.parentNode.removeChild(myself);\n\
