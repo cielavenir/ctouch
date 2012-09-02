@@ -4,8 +4,8 @@
  * 
  * [Potion Notice]
  * ctouch_touch.js (C) @jkumo.
- * navigator.* writer by wakuworks.
- * Synchronous AJAX by Patrick Hunlock.
+ * navigator.* writer (C) wakuworks under MIT license.
+ * Synchronous AJAX by Patrick Hunlock (public domain).
 */
 
 // http://www.hunlock.com/blogs/Snippets:_Synchronous_AJAX

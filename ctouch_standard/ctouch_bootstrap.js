@@ -4,7 +4,7 @@
  * 
  * [Potion Notice]
  * ctouch_touch.js (C) @jkumo.
- * navigator.* writer by wakuworks.
+ * navigator.* writer (C) wakuworks under MIT license.
 */
 
 if(typeof sessionStorage['config'] === 'undefined')document.location.href=document.location.href; //reload...
