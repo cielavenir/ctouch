@@ -142,4 +142,12 @@ window.onload=function(){
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
 	};
+
+	//easter for debug
+	document.getElementById('popup_page').onclick=function(){
+		window.open(chrome.extension.getURL('ctouch_popup.html'));
+	};
+	document.getElementById('extensions_page').onclick=function(){
+		window.open('chrome://extensions');
+	};
 };

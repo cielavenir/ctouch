@@ -49,3 +49,6 @@
 1.7.5.20902
 * Stripped GPL block.
 * window.chrome is now undefined (fix gree::3429).
+1.7.6.20903
+* Rewrote touch event generator.
+* Successfully killed other JavaScript mouse events (fix gree::51612).

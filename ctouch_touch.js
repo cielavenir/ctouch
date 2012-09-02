@@ -1,14 +1,24 @@
 //ctouch_touch: execute anytime
 (function(){
-function rec1(o,n,d,e,z){
+//fix ExGame fillText issue by monkey patch.
+if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
+	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;
+	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
+		l = l || 0;
+		if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);
+		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);
+	};
+}
+
+//Let's fire element.ontouchstart.
+var rec1=function(o,n,d,e,z){
 	var sent=false;
 	if(n==o||!n)return false;
 	if(n[z]){n[z](e);sent=true;}
 	if(rec1(n,n.parentNode,d,e,z)){sent=true;}
 	return sent;
-}
-
-function rec2(o,x,y,d,e,z){
+};
+var rec2=function(o,x,y,d,e,z){
 	var sent=false;
 	var n = d.elementFromPoint(x,y); //
 	if(n==o||!n)return false;
@@ -18,225 +28,99 @@ function rec2(o,x,y,d,e,z){
 	if(rec2(n,x,y,d,e,z)){sent=true;}
 	n.style.visibility=v; //
 	return sent;
-}
-
-function rec(x,y,d,e,z){
+};
+var rec=function(x,y,d,e,z){
 	if(rec1(null,d.elementFromPoint(x,y),d,e,z))return true;
 	//if(rec2(null,x,y,d,e,z))return true;
 	return false;
-}
+};
 
-/** キーボード */
-var KEYBOARD = 0;
-/** マウス */
-var MOUSE = 1;
-/** キーボードインターバルフラグ */
-var key_repeat_flag = 0;
-/** マウスインターバル */
-var mouse_repeat_flag = 0;
-/** キーイベント保持用 */
-var repeatEvent;
-
-/** キーイベント保持用 */
-var reMouseEventDown;
-/** キーイベント保持用 */
-var reMouseEventUp;
-
-
-/** リピートID */
-var repeat_ID = new Array();
-/** リピート用のマウスイベント */
-var repeatMouse;
-/** リピート用のマウスイベント */
-var repeatKey;
-
+//Compile touch event.
+//http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html
 var isMouseDown=null;
+var touchevent=function(e,type){
+	ev=document.createEvent('Event');
+	ev.initEvent(type,true,true);
+	ev.altkey=false;
+	ev.bubbles=true;
+	ev.cancelBubble=false;
+	ev.cancelable=true;
+	ev.charCode=0;
+	ev.clientX=e.clientX;
+	ev.clientY=e.clientY;
+	//ev.clipboardData
+	ev.ctrlKey=false;
+	ev.currentTarget=ev.currentTarget;
+	//ev.detail
+	//ev.eventPhase
+	ev.keyCode=0;
+	ev.layerX=e.layerX;
+	ev.layerY=e.layerY;
+	ev.metaKey=false;
+	ev.offsetX=e.offsetX;
+	ev.offsetY=e.offsetY;
+	ev.pageX=e.pageX;
+	ev.pageY=e.pageY;
+	ev.preventDefault=e.preventDefault;
+	ev.returnValue=e.returnValue;
+	ev.screenX=e.screenX;
+	ev.screenY=e.screenY;
+	ev.shiftKey=false;
+	ev.srcElement=e.srcElement;
+	//ev.target=e.target;
+	ev.timestamp=e.timestamp;
+	ev.view=e.view;
 
+	ev.rotation=0.0;
+	ev.scale=1.0;
+	
+	ev.touches=new Array();
+	ev.touches[0]={
+		clientX: e.clientX,
+		clientY: e.clientY,
+		force: 1.0,
+		//identifier:
+		pageX: e.pageX,
+		pageY: e.pageY,
+		//radiusX:
+		//radiusY:
+		screenX: e.screenX,
+		screenY: e.screenY,
+		target: e.target,
+	};
+	if(type=='touchstart'||isMouseDown)isMouseDown=ev.touches;
+	ev.changedTouches=ev.targetTouches=isMouseDown;
+	if(type=='touchend')isMouseDown=null;
+	return ev;
+};
 
-/**
- * マウスイベントからタッチイベントへ変更
- */
-var mouse2touch = function(event)
-{
-	var eventType = "";
-	//docmentからeventの作成
-	var docEvent = document.createEvent("Event");
-	//イベントタイプの判定
-	if(event.type == "mousedown"){//ボタンが押された
-		//マウスイベントの偽装
-		docEvent = setEvent(event,"touchstart");
-		reMouseEventDown = event;
-		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchstart'))
-		event.target.dispatchEvent(docEvent);//
-		//event.preventDefault();event.stopPropagation();
-	}else if(event.type == "mouseup"){//ボタンが放された
-		docEvent = setEvent(event,"touchend");
-		//Alt+ClickでもEnterをリピートさせる
-		if(event.ctrlKey && event.altKey){
-			key_repeat_flag = 1;//リピートフラグを立てる
-			startRepeat(MOUSE);//リピートの開始
-		}else if(event.altKey){//Altキー押下状態
-			//イベントの保持
-			key_repeat_flag = 1;//リピートフラグを立てる
-			startRepeat(KEYBOARD);//リピートの開始
-		}//あえて抜けない
-		reMouseEventUp = event;
-
-		if(window.click){window.click();return;}
-		if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchend'))
-		event.target.dispatchEvent(docEvent);//
-		//event.preventDefault();event.stopPropagation();
-	}else if(event.type == "mousemove"){//マウスが動いた
+//Generate touchevent and fire it. And kills inside mouse events.
+var mouseevent=function(e){
+	if(e.type=='mousedown'){
+		ev=touchevent(e,'touchstart');
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart'))
+		e.target.dispatchEvent(ev);
+		e.stopPropagation();
+	}else if(e.type=='mousemove'){
 		if(isMouseDown){
-			docEvent = setEvent(event,"touchmove");
-			if(!event.shiftKey || !rec(event.clientX,event.clientY,event.target.ownerDocument,docEvent,'ontouchmove'))
-			event.target.dispatchEvent(docEvent);//
-			//event.preventDefault();event.stopPropagation();
+			ev=touchevent(e,'touchmove');
+			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove'))
+			e.target.dispatchEvent(ev);
 		}
-	}else if(event.type == "keydown"){
-		if(key_repeat_flag == 1){//リピート状態のキー押下(Any)
-			if(!event.altKey && event.keyIdentifier != "Enter"){//Altキー押下状態でない
-				stopRepeat(KEYBOARD);//リピートを止める
-				key_repeat_flag = 0;//リピートフラグを下げる
-			}
-		}else{
-			if(event.altKey){//Altキー押下状態
-				if(event.keyIdentifier == "Enter"){
-					//イベントの保持
-					repeatEvent = event;
-					key_repeat_flag = 1;//リピートフラグを立てる
-					startRepeat(KEYBOARD);//リピートの開始
-					
-				}
-			}else{//Altキー押されていない
-			}
-		}
-	}else{
-		return;//処理を抜ける
+		e.stopPropagation();
+	}else if(e.type=='mouseup'){
+		ev=touchevent(e,'touchend');
+		if(window.click){window.click();return;}
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend'))
+		e.target.dispatchEvent(ev);
+		e.stopPropagation();
 	}
-}
+};
 
-
-/**
- * マウスイベントとタッチイベントのすり替えを行う
- */
-function setEvent(event,type){
-	var e = document.createEvent("Event");
-	//イベントの設定
-	e.initEvent(type,true,true);
-	//イベント座標の受け渡し
-	e.screenX = event.screenX;
-	e.screenY = event.screenY;
-	e.pageX = event.pageX;
-	e.pageY = event.pageY;
-	e.clientX = event.clientX;
-	e.clientY = event.clientY;
-	//タッチイベントの初期化
-	e.touches = new Array();
-	e.touches[0] = {
-		screenX: event.screenX,
-		screenY: event.screenY,
-		pageX: event.pageX,
-		pageY: event.pageY,
-		clientX: event.clientX,
-		clientY: event.clientY
-	};
-	e.keyCode = 0; //bah.
-	if(type == 'touchstart')isMouseDown=e.touches;
-	if(isMouseDown)isMouseDown=e.touches;
-	e.targetTouches = isMouseDown;
-	e.changedTouches = isMouseDown;
-	if(type == 'touchend')isMouseDown=null;
-	return(e);
-}
-
-/** リピートの開始 */
-function startRepeat(ID){
-	if(ID == MOUSE){
-		//０．１秒毎に呼ばれる
-		repeat_ID[ID] = setInterval("mouseRepeatDOWN()",500);
-		repeat_ID[ID+1] = setInterval("mouseRepeatUP()",500);
-	}else if(ID == KEYBOARD){
-		//０．１秒毎に呼ばれる
-		repeat_ID[ID] = setInterval("keyRepeat()",100);
-	}
-	
-}
-/** リピートの停止 */
-function stopRepeat(ID){
-	clearInterval(repeat_ID[ID]);
-	if(ID == MOUSE){
-		clearInterval(repeat_ID[ID+1]);
-	}
-}
-/** リピート本体 */
-function keyRepeat(){
-	//Enter押下を擬似的に発生させる
-	
-	//Chromeの仕様というかDOMの仕様を理解していないので
-	//ネットのソース丸コピ
-	//参考サイト
-	//http://groups.google.com/group/chrome-api-developers-jp/browse_thread/thread/9d9816fdceb576fb?fwc=1
-	
-	//KeyboardEventの作成
-	var e = document.createEvent('KeyboardEvent');
-	//入力パラメータの作成
-	var o = { 
-			type:'keydown',
-			canBubble: true,
-			cancelable: true,
-			view: window, 
-			keyIdentifier: 'Enter',
-			keyLocation: 0,
-			ctrlKey: false,
-			shiftKey: 
-			false,
-			altKey: false,
-			metaKey: false,
-			altGraphKey: 
-			false
-		};
-	//キーボードイベントを作成する
-	e.initKeyboardEvent(o.type, o.canBubble, o.cancelable, o.view,o.keyIdentifier, o.keyLocation, o.ctrlKey, o.shiftKey, o.altKey,o.metaKey, o.altGraphKey);
-	document.dispatchEvent(e); 
-}
-/** マウスリピート本体 */
-function mouseRepeatDOWN(){
-	//Eventを作る
-	var e = document.createEvent("Event");
-	var event = reMouseEventDown;
-	//Touchイベントに変換
-	e = setEvent(event,"touchstart");
-	//イベントを発生させる
-	event.target.dispatchEvent(e);
-}
-
-
-/** マウスリピート本体 */
-function mouseRepeatUP(){
-	//Eventを作る
-	var e = document.createEvent("Event");
-	var event = reMouseEventUp;
-	//Touchイベントに変換
-	e = setEvent(event,"touchEnd");
-	//イベントを発生させる
-	event.target.dispatchEvent(e);
-}
-
-//イベントリスナーのセット
-document.addEventListener("mousedown",mouse2touch,false);
-document.addEventListener("mouseup",mouse2touch,false);
-document.addEventListener("mousemove",mouse2touch,false);
-document.addEventListener("keydown",mouse2touch,false);
-
-if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
-	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;
-	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
-		l = l || 0;
-		if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);
-		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);
-	};
-}
+//Finally set the event.
+document.addEventListener('mousedown',mouseevent,true);
+document.addEventListener('mousemove',mouseevent,true);
+document.addEventListener('mouseup',mouseevent,true);
 
 var myself = document.getElementById('ctouch_touch_js');
 if(myself)myself.parentNode.removeChild(myself);

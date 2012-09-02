@@ -158,4 +158,12 @@ window.onload=function(){
 		initialize();
 		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
 	};
+
+	//easter for debug
+	document.getElementById('popup_page').onclick=function(){
+		window.open(chrome.extension.getURL('ctouch_popup.html'));
+	};
+	document.getElementById('extensions_page').onclick=function(){
+		window.open('chrome://extensions');
+	};
 };

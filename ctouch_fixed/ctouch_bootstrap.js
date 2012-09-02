@@ -3,14 +3,15 @@
  * javascript imitation / touch event / modifying UserAgent -> all in one.
  * 
  * [Potion Notice]
- * ctouch_touch.js (C) @jkumo.
+ * ctouch_touch.js is rewritten based on mouse2touch (@jkumo).
  * navigator.* writer (C) wakuworks under MIT license.
 */
 
+(function(){
 //if(typeof sessionStorage['config'] === 'undefined')document.location.href=document.location.href; //reload...
 //var ctouch_option=JSON.parse(sessionStorage['config']);
 
-function init(){
+var init=function(){
 	var s;
 	//s = document.createElement('script');
 	//s.type = 'text/javascript';
@@ -126,5 +127,6 @@ var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);";
 		document.documentElement.appendChild(s);
 	//}
-}
+};
 init();
+})();

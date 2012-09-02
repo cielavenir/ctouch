@@ -65,7 +65,14 @@ window.onload=function(){
 		localStorage['config']=JSON.stringify(config,null,' ');
 	};
 
-	document.getElementById('link').onclick=function(){
+	document.getElementById('option_page').onclick=function(){
 		window.open(chrome.extension.getURL('ctouch_option.html'));
+	};
+	//easter for debug
+	document.getElementById('popup_page').onclick=function(){
+		window.open(chrome.extension.getURL('ctouch_popup.html'));
+	};
+	document.getElementById('extensions_page').onclick=function(){
+		window.open('chrome://extensions');
 	};
 };
