@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+#Pack with: ocra --gem-minimal --no-enc --no-autodll --no-autoload ctouch_webrick.rb
 require 'webrick'
 require 'base64'
 class CTouchDaemon < WEBrick::HTTPServlet::AbstractServlet

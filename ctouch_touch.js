@@ -141,6 +141,7 @@ function setEvent(event,type){
 		clientX: event.clientX,
 		clientY: event.clientY
 	};
+	e.keyCode = 0; //bah.
 	if(type == 'touchstart')isMouseDown=e.touches;
 	if(isMouseDown)isMouseDown=e.touches;
 	e.targetTouches = isMouseDown;
