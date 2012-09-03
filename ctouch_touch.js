@@ -122,7 +122,7 @@ var mouseevent=function(e){
 		//e.stopPropagation();
 	}else if(e.type=='mouseup'){
 		var ev=touchevent(e,'touchend');
-		if(window.click){window.click();return;}
+		if(window.click){window.click();return true;}
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){
 			var b=e.target.dispatchEvent(ev);
 			if(!b){

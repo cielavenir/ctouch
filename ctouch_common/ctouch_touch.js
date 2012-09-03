@@ -127,7 +127,7 @@ var mouseevent=function(e){\n\
 		//e.stopPropagation();\n\
 	}else if(e.type=='mouseup'){\n\
 		var ev=touchevent(e,'touchend');\n\
-		if(window.click){window.click();return;}\n\
+		if(window.click){window.click();return true;}\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
 			if(!b){\n\
