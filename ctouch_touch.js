@@ -119,7 +119,6 @@ var mouseevent=function(e){
 				return b;
 			}else return true;
 		}
-		//e.stopPropagation();
 	}else if(e.type=='mouseup'){
 		var ev=touchevent(e,'touchend');
 		if(window.click){window.click();return true;}
