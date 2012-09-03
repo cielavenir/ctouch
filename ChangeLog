@@ -52,3 +52,4 @@
 1.7.6.20903
 * Rewrote touch event generator.
 * Successfully killed other JavaScript mouse events (fix gree::51612).
+1.7.7.20903 Fixed suppressing mouse events...

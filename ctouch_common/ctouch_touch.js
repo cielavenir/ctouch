@@ -44,7 +44,7 @@ var rec=function(x,y,d,e,z){\n\
 //http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html\n\
 var isMouseDown=null;\n\
 var touchevent=function(e,type){\n\
-	ev=document.createEvent('Event');\n\
+	var ev=document.createEvent('Event');\n\
 	ev.initEvent(type,true,true);\n\
 	ev.altkey=false;\n\
 	ev.bubbles=true;\n\
@@ -59,8 +59,8 @@ var touchevent=function(e,type){\n\
 	//ev.detail\n\
 	//ev.eventPhase\n\
 	ev.keyCode=0;\n\
-	ev.layerX=e.layerX;\n\
-	ev.layerY=e.layerY;\n\
+	//ev.layerX=e.layerX;\n\
+	//ev.layerY=e.layerY;\n\
 	ev.metaKey=false;\n\
 	ev.offsetX=e.offsetX;\n\
 	ev.offsetY=e.offsetY;\n\
@@ -102,24 +102,38 @@ var touchevent=function(e,type){\n\
 //Generate touchevent and fire it. And kills inside mouse events.\n\
 var mouseevent=function(e){\n\
 	if(e.type=='mousedown'){\n\
-		ev=touchevent(e,'touchstart');\n\
+		var ev=touchevent(e,'touchstart');\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart'))\n\
-		e.target.dispatchEvent(ev);\n\
-		e.stopPropagation();\n\
+		var b=e.target.dispatchEvent(ev);\n\
+		if(!b){\n\
+			//since mouse event is already issued,\n\
+			//I need to kill rest events using stopPropagation().\n\
+			//preventDefault() isn't OK.\n\
+			e.stopPropagation();\n\
+		}\n\
+		return b;\n\
 	}else if(e.type=='mousemove'){\n\
 		if(isMouseDown){\n\
-			ev=touchevent(e,'touchmove');\n\
+			var ev=touchevent(e,'touchmove');\n\
 			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove'))\n\
-			e.target.dispatchEvent(ev);\n\
+			var b=e.target.dispatchEvent(ev);\n\
+			if(!b){\n\
+				e.stopPropagation();\n\
+			}\n\
+			return b;\n\
 		}\n\
-		e.stopPropagation();\n\
+		//e.stopPropagation();\n\
 	}else if(e.type=='mouseup'){\n\
-		ev=touchevent(e,'touchend');\n\
+		var ev=touchevent(e,'touchend');\n\
 		if(window.click){window.click();return;}\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend'))\n\
-		e.target.dispatchEvent(ev);\n\
-		e.stopPropagation();\n\
+		var b=e.target.dispatchEvent(ev);\n\
+		if(!b){\n\
+			e.stopPropagation();\n\
+		}\n\
+		return b;\n\
 	}\n\
+	return true;\n\
 };\n\
 \n\
 //Finally set the event.\n\

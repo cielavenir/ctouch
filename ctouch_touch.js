@@ -39,7 +39,7 @@ var rec=function(x,y,d,e,z){
 //http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html
 var isMouseDown=null;
 var touchevent=function(e,type){
-	ev=document.createEvent('Event');
+	var ev=document.createEvent('Event');
 	ev.initEvent(type,true,true);
 	ev.altkey=false;
 	ev.bubbles=true;
@@ -54,8 +54,8 @@ var touchevent=function(e,type){
 	//ev.detail
 	//ev.eventPhase
 	ev.keyCode=0;
-	ev.layerX=e.layerX;
-	ev.layerY=e.layerY;
+	//ev.layerX=e.layerX;
+	//ev.layerY=e.layerY;
 	ev.metaKey=false;
 	ev.offsetX=e.offsetX;
 	ev.offsetY=e.offsetY;
@@ -97,24 +97,38 @@ var touchevent=function(e,type){
 //Generate touchevent and fire it. And kills inside mouse events.
 var mouseevent=function(e){
 	if(e.type=='mousedown'){
-		ev=touchevent(e,'touchstart');
+		var ev=touchevent(e,'touchstart');
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart'))
-		e.target.dispatchEvent(ev);
-		e.stopPropagation();
+		var b=e.target.dispatchEvent(ev);
+		if(!b){
+			//since mouse event is already issued,
+			//I need to kill rest events using stopPropagation().
+			//preventDefault() isn't OK.
+			e.stopPropagation();
+		}
+		return b;
 	}else if(e.type=='mousemove'){
 		if(isMouseDown){
-			ev=touchevent(e,'touchmove');
+			var ev=touchevent(e,'touchmove');
 			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove'))
-			e.target.dispatchEvent(ev);
+			var b=e.target.dispatchEvent(ev);
+			if(!b){
+				e.stopPropagation();
+			}
+			return b;
 		}
-		e.stopPropagation();
+		//e.stopPropagation();
 	}else if(e.type=='mouseup'){
-		ev=touchevent(e,'touchend');
+		var ev=touchevent(e,'touchend');
 		if(window.click){window.click();return;}
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend'))
-		e.target.dispatchEvent(ev);
-		e.stopPropagation();
+		var b=e.target.dispatchEvent(ev);
+		if(!b){
+			e.stopPropagation();
+		}
+		return b;
 	}
+	return true;
 };
 
 //Finally set the event.
