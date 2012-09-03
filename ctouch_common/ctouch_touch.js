@@ -124,7 +124,6 @@ var mouseevent=function(e){\n\
 				return b;\n\
 			}else return true;\n\
 		}\n\
-		//e.stopPropagation();\n\
 	}else if(e.type=='mouseup'){\n\
 		var ev=touchevent(e,'touchend');\n\
 		if(window.click){window.click();return true;}\n\
