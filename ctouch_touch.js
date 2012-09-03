@@ -98,35 +98,38 @@ var touchevent=function(e,type){
 var mouseevent=function(e){
 	if(e.type=='mousedown'){
 		var ev=touchevent(e,'touchstart');
-		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart'))
-		var b=e.target.dispatchEvent(ev);
-		if(!b){
-			//since mouse event is already issued,
-			//I need to kill rest events using stopPropagation().
-			//preventDefault() isn't OK.
-			e.stopPropagation();
-		}
-		return b;
-	}else if(e.type=='mousemove'){
-		if(isMouseDown){
-			var ev=touchevent(e,'touchmove');
-			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove'))
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){
 			var b=e.target.dispatchEvent(ev);
 			if(!b){
+				//since mouse event is already issued,
+				//I need to kill rest events using stopPropagation().
+				//preventDefault() isn't OK.
 				e.stopPropagation();
 			}
 			return b;
+		}else return true;
+	}else if(e.type=='mousemove'){
+		if(isMouseDown){
+			var ev=touchevent(e,'touchmove');
+			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove')){
+				var b=e.target.dispatchEvent(ev);
+				if(!b){
+					e.stopPropagation();
+				}
+				return b;
+			}else return true;
 		}
 		//e.stopPropagation();
 	}else if(e.type=='mouseup'){
 		var ev=touchevent(e,'touchend');
 		if(window.click){window.click();return;}
-		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend'))
-		var b=e.target.dispatchEvent(ev);
-		if(!b){
-			e.stopPropagation();
-		}
-		return b;
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){
+			var b=e.target.dispatchEvent(ev);
+			if(!b){
+				e.stopPropagation();
+			}
+			return b;
+		}else return true;
 	}
 	return true;
 };

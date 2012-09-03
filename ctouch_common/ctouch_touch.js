@@ -103,35 +103,38 @@ var touchevent=function(e,type){\n\
 var mouseevent=function(e){\n\
 	if(e.type=='mousedown'){\n\
 		var ev=touchevent(e,'touchstart');\n\
-		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart'))\n\
-		var b=e.target.dispatchEvent(ev);\n\
-		if(!b){\n\
-			//since mouse event is already issued,\n\
-			//I need to kill rest events using stopPropagation().\n\
-			//preventDefault() isn't OK.\n\
-			e.stopPropagation();\n\
-		}\n\
-		return b;\n\
-	}else if(e.type=='mousemove'){\n\
-		if(isMouseDown){\n\
-			var ev=touchevent(e,'touchmove');\n\
-			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove'))\n\
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
 			if(!b){\n\
+				//since mouse event is already issued,\n\
+				//I need to kill rest events using stopPropagation().\n\
+				//preventDefault() isn't OK.\n\
 				e.stopPropagation();\n\
 			}\n\
 			return b;\n\
+		}else return true;\n\
+	}else if(e.type=='mousemove'){\n\
+		if(isMouseDown){\n\
+			var ev=touchevent(e,'touchmove');\n\
+			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove')){\n\
+				var b=e.target.dispatchEvent(ev);\n\
+				if(!b){\n\
+					e.stopPropagation();\n\
+				}\n\
+				return b;\n\
+			}else return true;\n\
 		}\n\
 		//e.stopPropagation();\n\
 	}else if(e.type=='mouseup'){\n\
 		var ev=touchevent(e,'touchend');\n\
 		if(window.click){window.click();return;}\n\
-		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend'))\n\
-		var b=e.target.dispatchEvent(ev);\n\
-		if(!b){\n\
-			e.stopPropagation();\n\
-		}\n\
-		return b;\n\
+		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){\n\
+			var b=e.target.dispatchEvent(ev);\n\
+			if(!b){\n\
+				e.stopPropagation();\n\
+			}\n\
+			return b;\n\
+		}else return true;\n\
 	}\n\
 	return true;\n\
 };\n\
