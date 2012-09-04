@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (browserUA)",
 	"description": "You can browse smartphone websites. No configuration screens; command line --user-agent value is used.",
-	"version": "1.7.7.20903",
+	"version": "1.7.7.20904",
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"content_scripts": [

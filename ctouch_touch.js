@@ -61,14 +61,14 @@ var touchevent=function(e,type){
 	ev.offsetY=e.offsetY;
 	ev.pageX=e.pageX;
 	ev.pageY=e.pageY;
-	ev.preventDefault=e.preventDefault;
-	ev.returnValue=e.returnValue;
+	//ev.preventDefault=e.preventDefault;
+	//ev.returnValue=e.returnValue;
 	ev.screenX=e.screenX;
 	ev.screenY=e.screenY;
 	ev.shiftKey=false;
 	ev.srcElement=e.srcElement;
 	//ev.target=e.target;
-	ev.timestamp=e.timestamp;
+	ev.timeStamp=e.timeStamp;
 	ev.view=e.view;
 
 	ev.rotation=0.0;
