@@ -43,6 +43,7 @@ var rec=function(x,y,d,e,z){\n\
 //Compile touch event.\n\
 //http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html\n\
 var isMouseDown=null;\n\
+var preventDefault=false;\n\
 var touchevent=function(e,type){\n\
 	var ev=document.createEvent('Event');\n\
 	ev.initEvent(type,true,true);\n\
@@ -106,6 +107,7 @@ var mouseevent=function(e){\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
 			if(!b){\n\
+				preventDefault=true;\n\
 				//since mouse event is already issued,\n\
 				//I need to kill rest events using stopPropagation().\n\
 				//preventDefault() isn't OK.\n\
@@ -118,7 +120,8 @@ var mouseevent=function(e){\n\
 			var ev=touchevent(e,'touchmove');\n\
 			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove')){\n\
 				var b=e.target.dispatchEvent(ev);\n\
-				if(!b){\n\
+				if(!b||preventDefault){\n\
+					preventDefault=true;\n\
 					e.stopPropagation();\n\
 				}\n\
 				return b;\n\
@@ -129,11 +132,16 @@ var mouseevent=function(e){\n\
 		if(window.click){window.click();return true;}\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
-			if(!b){\n\
+			if(!b||preventDefault){\n\
+				//preventDefault=true;\n\
 				e.stopPropagation();\n\
 			}\n\
+			preventDefault=false;\n\
 			return b;\n\
-		}else return true;\n\
+		}else{\n\
+			preventDefault=false;\n\
+			return true;\n\
+		}\n\
 	}\n\
 	return true;\n\
 };\n\

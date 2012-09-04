@@ -38,6 +38,7 @@ var rec=function(x,y,d,e,z){
 //Compile touch event.
 //http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html
 var isMouseDown=null;
+var preventDefault=false;
 var touchevent=function(e,type){
 	var ev=document.createEvent('Event');
 	ev.initEvent(type,true,true);
@@ -101,6 +102,7 @@ var mouseevent=function(e){
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){
 			var b=e.target.dispatchEvent(ev);
 			if(!b){
+				preventDefault=true;
 				//since mouse event is already issued,
 				//I need to kill rest events using stopPropagation().
 				//preventDefault() isn't OK.
@@ -113,7 +115,8 @@ var mouseevent=function(e){
 			var ev=touchevent(e,'touchmove');
 			if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchmove')){
 				var b=e.target.dispatchEvent(ev);
-				if(!b){
+				if(!b||preventDefault){
+					preventDefault=true;
 					e.stopPropagation();
 				}
 				return b;
@@ -124,11 +127,16 @@ var mouseevent=function(e){
 		if(window.click){window.click();return true;}
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){
 			var b=e.target.dispatchEvent(ev);
-			if(!b){
+			if(!b||preventDefault){
+				//preventDefault=true;
 				e.stopPropagation();
 			}
+			preventDefault=false;
 			return b;
-		}else return true;
+		}else{
+			preventDefault=false;
+			return true;
+		}
 	}
 	return true;
 };
