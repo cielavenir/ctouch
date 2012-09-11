@@ -1,5 +1,15 @@
 #!/usr/bin/ruby
-#Pack with: ocra --gem-minimal --no-enc --no-autodll --no-autoload ctouch_webrick.rb
+
+#How to generate smaller Windows executable:
+#0. install RubyInstaller and install MinGW (for strip)
+#1. install Ocra: gem install ocra
+#2. strip ruby.exe/dll and libraries:
+#   strip C:\path\to\ruby\bin\msvcrt-ruby191.dll C:\path\to\ruby\bin\ruby.exe
+#   for /R C:\path\to\ruby\lib\ruby\1.9.1\i386-mingw32 %f in (*.so) do strip %f
+#3. kill dependency to libeay.dll with dropping HTTP (Digest) auth.
+#   edit C:\path\to\ruby\lib\ruby\1.9.1\webrick.rb to comment-out the line "require 'webrick/httpauth.rb'".
+#4. finally pack with: ocra --gem-minimal --no-enc --no-autodll --no-autoload ctouch_webrick.rb
+
 require 'webrick'
 require 'base64'
 class CTouchDaemon < WEBrick::HTTPServlet::AbstractServlet
@@ -9,8 +19,8 @@ class CTouchDaemon < WEBrick::HTTPServlet::AbstractServlet
 	def query(f_post,request,response)
 		if request.path!='/ctouch_external.cgi'
 			response.status = 200
-			response['Content-Type'] = 'text/plain'
-			response.body = 'Please access via ctouch_external.cgi'
+			response['Content-Type'] = 'text/html'
+			response.body = '<!DOCTYPE html><head><title>cTouch</title></head><body>Please access via <a href="ctouch_external.cgi">ctouch_external.cgi</body></html>'
 			return
 		end
 		response.status = 200
