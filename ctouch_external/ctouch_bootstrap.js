@@ -69,10 +69,10 @@ s.innerText += '\
 document.ondragstart = function(){return false;};\
 window.ondragstart = function(){return false;};\
 \
-document.createTouch = function(){};\
-document.documentElement.createTouch = function(){};\
-document.createTouchList = function(){};\
-document.documentElement.createTouchList = function(){};\
+document.createTouch = function createTouch(){};\
+document.documentElement.createTouch = function createTouch(){};\
+document.createTouchList = function createTouchList(){};\
+document.documentElement.createTouchList = function createTouchList(){};\
 document.ontouchstart = function(){};\
 document.documentElement.ontouchstart = function(){};\
 window.ontouchstart = function(){};\

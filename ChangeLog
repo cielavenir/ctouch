@@ -55,3 +55,4 @@
 1.7.7.20903 Fixed suppressing mouse events...
 1.7.7.20904 Re-released as stable.
 1.7.8.20904 Interrupt mouseup too.
+1.7.9.20912 Fixed createTouch(List) error (fix gree::3429).
