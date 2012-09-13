@@ -64,12 +64,15 @@ document.ontouchstart = function(){};\
 document.documentElement.ontouchstart = function(){};\
 window.ontouchstart = function(){};\
 \
-window.chrome = undefined;\
 window.orientation = 0;\
 window.ondeviceorientation = function(){};\
 window.ondevicemotion = function(){};\
 window.onorientationchange = function(){};\
 ';
+
+if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
+	s.innerText+='window.chrome = undefined;';
+}
 
 if(vendor == 'Apple Computer, Inc.'){
 	s.innerText+='document.ongesturestart = function(){return;};';
@@ -123,10 +126,21 @@ if(navigator.__defineGetter__){\
 	navigator.appCodeName = '"+appCodeName+"';\
 	navigator.appVersion = '"+appVersion+"';\
 }\
+";
+
+if(vendor == 'Apple Computer, Inc.'){ //hide flash
+s.innerText += "\
+if(navigator.__defineGetter__)navigator.__defineGetter__('plugins',function(){return undefined;});\
+else navigator.plugins=undefined;\
+";
+}
+
+s.innerText += "\
 var myself = document.getElementById('ctouch_imitation_js');\
-myself.parentNode.removeChild(myself);";
+myself.parentNode.removeChild(myself);\
+";
 		document.documentElement.appendChild(s);
-	//}
+	}
 };
 init();
 })();
