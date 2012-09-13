@@ -140,7 +140,7 @@ var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);\
 ";
 		document.documentElement.appendChild(s);
-	}
+	//}
 };
 init();
 })();
