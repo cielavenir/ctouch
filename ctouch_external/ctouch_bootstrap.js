@@ -76,6 +76,12 @@ document.documentElement.createTouchList = function createTouchList(){};\
 document.ontouchstart = null;\
 document.documentElement.ontouchstart = null;\
 window.ontouchstart = null;\
+document.ontouchmove = null;\
+document.documentElement.ontouchmove = null;\
+window.ontouchmove = null;\
+document.ontouchend = null;\
+document.documentElement.ontouchend = null;\
+window.ontouchend = null;\
 \
 window.orientation = 0;\
 window.ondeviceorientation = null;\
@@ -88,9 +94,14 @@ if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
 }
 
 if(vendor == 'Apple Computer, Inc.'){
-	s.innerText+='document.ongesturestart = function(){};';
-	s.innerText+='document.documentElement.ongesturestart = function(){};';
-	s.innerText+='window.ongesturestart = function(){};';
+s.innerText += '\
+document.ongesturestart = null;\
+document.documentElement.ongesturestart = null;\
+window.ongesturestart = null;\
+document.ongestureend = null;\
+document.documentElement.ongestureend = null;\
+window.ongestureend = null;\
+';
 }
 
 // http://jsdo.it/wakuworks/userAgent.test
