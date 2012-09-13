@@ -58,3 +58,4 @@
 1.7.9.20912 Fixed createTouch(List) error (fix gree::3429).
 1.8.0.20913 Fixed a few properties.
 1.8.1.20913 Fixed ontouchstart bypass again (fix gree::3429).
+1.8.2.20913 Fixed ontouchmove/end and ongestureend bypass.
