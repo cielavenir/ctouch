@@ -60,14 +60,14 @@ document.createTouch = function createTouch(){};\
 document.documentElement.createTouch = function createTouch(){};\
 document.createTouchList = function createTouchList(){};\
 document.documentElement.createTouchList = function createTouchList(){};\
-document.ontouchstart = function(){};\
-document.documentElement.ontouchstart = function(){};\
-window.ontouchstart = function(){};\
+document.ontouchstart = null;\
+document.documentElement.ontouchstart = null;\
+window.ontouchstart = null;\
 \
 window.orientation = 0;\
-window.ondeviceorientation = function(){};\
-window.ondevicemotion = function(){};\
-window.onorientationchange = function(){};\
+window.ondeviceorientation = null;\
+window.ondevicemotion = null;\
+window.onorientationchange = null;\
 ';
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
