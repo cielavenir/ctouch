@@ -32,7 +32,7 @@ print <<EOM
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
 EOM
 
-['ctouch_standard','ctouch_fixed','ctouch_external','ctouch_browserua'].each{|e|
+['ctouch_standard','ctouch_fixed','ctouch_external','ctouch_browserua','ctouch_filesystem'].each{|e|
 	puts "<app appid='#{pkey_to_id(e)}'><updatecheck codebase='https://ctouch.googlecode.com/files/#{e}-#{V}.crx' version='#{V}'/></app>"
 }
 

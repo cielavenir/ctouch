@@ -1,14 +1,18 @@
-var postFile=function(url, passData){
-	if(window.XMLHttpRequest){
-		AJAX=new XMLHttpRequest();
-	}else{
-		//AJAX=new ActiveXObject('Microsoft.XMLHTTP'); //ignore IE
-	}
-	if(!AJAX)return '';
-	AJAX.open('POST', url, false);
-	AJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	AJAX.send(passData);
-	return AJAX.responseText;
+var writeFile=function(file, data){
+	window.webkitStorageInfo.requestQuota(PERSISTENT,1024*1024,function(grantedBytes){
+		window.webkitRequestFileSystem(PERSISTENT,grantedBytes,function(fs){
+			fs.root.getFile(file, {create: true}, function(fileEntry){
+				fileEntry.createWriter(function(fileWriter){
+					fileWriter.onwriteend=function(e){
+						fileWriter.onwriteend=null;
+						var blob = new Blob([data], {type: 'application/json'});
+						fileWriter.write(blob);
+					}
+					fileWriter.truncate(0);
+				});
+			});
+		});
+	});
 };
 
 var config=JSON.parse(localStorage['config']);
@@ -26,7 +30,7 @@ var initialize=function(){
 			input.onclick=function(){
 				config.preferedUA=-1;
 				localStorage['config']=JSON.stringify(config,null,' ');
-				postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+				writeFile('ctouch_filesystem.json',localStorage['config']);
 			};
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -53,7 +57,7 @@ var initialize=function(){
 			with({i:i})input.onclick=function(){
 				config.preferedUA=i;
 				localStorage['config']=JSON.stringify(config,null,' ');
-				postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+				writeFile('ctouch_filesystem.json',localStorage['config']);
 			};
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -77,7 +81,7 @@ window.onload=function(){
 	document.getElementById('enable_imitation').onclick=function(){
 		config.enable_imitation=!config.enable_imitation;
 		localStorage['config']=JSON.stringify(config,null,' ');
-		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+		writeFile('ctouch_filesystem.json',localStorage['config']);
 	};
 
 	document.getElementById('option_page').onclick=function(){
