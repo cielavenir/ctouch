@@ -15,15 +15,16 @@ if(body&&body[0]){ //lol?\n\
 	body[0].style.zoom=1;\n\
 }\n\
 var opt=document.getElementsByTagName('option');\n\
-if(opt)for(i=0;i<opt.length;i++)opt[i].style.color='black';\n\
+if(opt)for(var i=0;i<opt.length;i++)opt[i].style.color='black';\n\
 //var meta=document.getElementsByTagName('meta');\n\
-//if(meta)for(i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}\n\
+//if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}\n\
+/*\n\
 var embed=document.getElementsByTagName('embed');\n\
 if(embed&&embed.length==1){\n\
 	//console.log(embed);\n\
 	var parent=embed[0].parentNode;\n\
 	if(parent.tagName=='DIV')parent.style.height='100%';\n\
-}\n\
+}*/\n\
 var myself = document.getElementById('ctouch_css_js');\n\
 myself.parentNode.removeChild(myself);\n\
 })();\n\
