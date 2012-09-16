@@ -64,3 +64,4 @@
 * Fixed a fatal bug that HTML's var i was tainted.
 * Reverted 1.6.0.20719 so that cTouch can be kept running.
 1.8.4.20916 Forces to load Reel-1.2.js (fix gree::3560).
+1.8.5.20917 Finally fixed Reel glitch properly. No need to load newer Reel anymore (fix gree::3560).
