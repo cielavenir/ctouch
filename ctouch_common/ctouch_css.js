@@ -16,6 +16,10 @@ if(body&&body[0]){ //lol?\n\
 }\n\
 var opt=document.getElementsByTagName('option');\n\
 if(opt)for(var i=0;i<opt.length;i++)opt[i].style.color='black';\n\
+var scr=document.getElementsByTagName('script');\n\
+if(scr&&body[0])for(var i=0;i<scr.length;i++)\n\
+	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel')\n\
+		{body[0].style.textAlign='left';break;} //actually I need to patch the container, not body.\n\
 //var meta=document.getElementsByTagName('meta');\n\
 //if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}\n\
 /*\n\
