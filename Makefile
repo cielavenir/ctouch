@@ -3,8 +3,8 @@ VERSION := $(shell ruby -Isupport -rgenversion -e getver)
 SAFARI := ctouch.safariextz
 CRX := ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx ctouch_filesystem.crx
 #ctouch_true.crx
-ZIP := ctouch_fixed.zip ctouch_browserua.zip ctouch_filesystem.zip
-#ZIP := ctouch_standard.zip ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip
+ZIP := ctouch_browserua.zip ctouch_filesystem.zip
+#ZIP := ctouch_standard.zip ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip ctouch_filesystem.zip
 #ctouch_true.zip
 
 .PHONY: all clean publish
