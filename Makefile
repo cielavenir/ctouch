@@ -43,6 +43,8 @@ ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
 	ruby support/crx.rb $@ ctouch_filesystem.pem ctouch_common ctouch_filesystem
 ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ ctouch_true.pem ctouch_common ctouch_true
+postize.crx: postize/*
+	ruby support/crx.rb $@ postize.pem postize
 
 ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -56,6 +58,8 @@ ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
 	ruby support/zip.rb $@ ctouch_filesystem.pem ctouch_common ctouch_filesystem
 ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/zip.rb $@ ctouch_true.pem ctouch_common ctouch_true
+postize.zip: postize/*
+	ruby support/zip.rb $@ postize.pem postize
 
 ctouch_common/ctouch_touch.js: ctouch_touch.js
 	ruby support/ctouch_inner.rb $< > $@
