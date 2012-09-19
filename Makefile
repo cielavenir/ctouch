@@ -30,6 +30,10 @@ ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
 	ln ctouch_browserua/ctouch_bootstrap.js ctouch.safariextension/
 	ruby support/safari.rb ctouch ctouch_safari.pem
 	rm -f ctouch.safariextension/*.js
+postize.safariextz: postize/* postize.safariextension/*
+	ln postize/postize_css.js postize.safariextension/
+	ruby support/safari.rb postize ctouch_safari.pem
+	rm -f postize.safariextension/*.js
 	
 ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ ctouch_browserua.pem ctouch_common ctouch_browserua
