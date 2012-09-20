@@ -63,16 +63,14 @@ var init=function(){
 		s = document.createElement('script');
 		s.type = 'text/javascript';
 		s.id = 'ctouch_imitation_js';
-		s.innerText = '';
+		s.innerText = '(function(){';
 
 s.innerText += '\
 document.ondragstart = function(){return false;};\
 window.ondragstart = function(){return false;};\
 \
 document.createTouch = function createTouch(){};\
-document.documentElement.createTouch = function createTouch(){};\
 document.createTouchList = function createTouchList(){};\
-document.documentElement.createTouchList = function createTouchList(){};\
 document.ontouchstart = null;\
 document.documentElement.ontouchstart = null;\
 window.ontouchstart = null;\
@@ -110,6 +108,12 @@ try {\
 	if (!Object.prototype.__defineGetter__ &&\
 		Object.defineProperty({}, 'x', { get: function(){ return true } }).x\
 	) {\
+		var navigator_original = navigator;\
+		navigator = {};\
+		navigator.__proto__ = navigator_original;\
+		var window_screen_original = window.screen;\
+		window.screen = {};\
+		window.screen.__proto__ = window_screen_original;\
 		Object.defineProperty(Object.prototype, '__defineGetter__', {\
 			enumerable: false,\
 			configurable: true,\
@@ -134,9 +138,6 @@ try {\
 		});\
 	}\
 }catch(defPropException){}\
-var __original = navigator;\
-var navigator = {};\
-navigator.__proto__ = __original;\
 if(navigator.__defineGetter__){\
 	navigator.__defineGetter__('userAgent',function(){return '"+useragent+"';});\
 	navigator.__defineGetter__('vendor',function(){return '"+vendor+"';});\
@@ -150,6 +151,17 @@ if(navigator.__defineGetter__){\
 	navigator.appCodeName = '"+appCodeName+"';\
 	navigator.appVersion = '"+appVersion+"';\
 }\
+if(window.screen.__defineGetter__){\
+	/*window.screen.__defineGetter__('availHeight',function(){return window.screen.height;});*/\
+	window.screen.__defineGetter__('availWidth',function(){return window.screen.width;});\
+	window.screen.__defineGetter__('availLeft',function(){return 0;});\
+	window.screen.__defineGetter__('availTop',function(){return 0;});\
+}else{\
+	/*window.screen.availHeight = window.screen.height;*/\
+	window.screen.availWidth = window.screen.width;\
+	window.screen.availLeft = 0;\
+	window.screen.availTop = 0;\
+}\
 ";
 
 if(vendor == 'Apple Computer, Inc.'){ //hide flash
@@ -162,7 +174,7 @@ else navigator.plugins=undefined;\
 s.innerText += "\
 var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);\
-";
+})();";
 		document.documentElement.appendChild(s);
 	}
 };

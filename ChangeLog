@@ -65,3 +65,6 @@
 * Reverted 1.6.0.20719 so that cTouch can be kept running.
 1.8.4.20916 Forces to load Reel-1.2.js (fix gree::3560).
 1.8.5.20917 Finally fixed Reel glitch properly. No need to load newer Reel anymore (fix gree::3560).
+1.8.6.20920
+* Fixed createTouch(List) and window.screen handling (fix gree::3429).
+* Modified __defineGetter__ handling.

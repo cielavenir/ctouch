@@ -1,15 +1,15 @@
 VERSION := $(shell ruby -Isupport -rgenversion -e getver)
 
 SAFARI := ctouch.safariextz
-CRX := ctouch_standard.crx ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx ctouch_filesystem.crx
+CRX := ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx ctouch_filesystem.crx
 #ctouch_true.crx
 ZIP := ctouch_browserua.zip ctouch_filesystem.zip
-#ZIP := ctouch_standard.zip ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip ctouch_filesystem.zip
+#ZIP := ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip ctouch_filesystem.zip
 #ctouch_true.zip
 
 .PHONY: all clean publish
-all: safari crx
-#zip
+all: safari crx zip
+#crx
 safari: $(SAFARI)
 crx: $(CRX)
 zip: $(ZIP)
@@ -90,25 +90,25 @@ release:
 
 publish:
 	ln -s ctouch.safariextz ctouch-$(VERSION).safariextz
-	ln -s ctouch_standard.crx ctouch_standard-$(VERSION).crx
-	ln -s ctouch_fixed.crx ctouch_fixed-$(VERSION).crx
-	ln -s ctouch_external.crx ctouch_external-$(VERSION).crx
-	ln -s ctouch_browserua.crx ctouch_browserua-$(VERSION).crx
-	ln -s ctouch_filesystem.crx ctouch_filesystem-$(VERSION).crx
+	#ln -s ctouch_standard.crx ctouch_standard-$(VERSION).crx
+	#ln -s ctouch_fixed.crx ctouch_fixed-$(VERSION).crx
+	#ln -s ctouch_external.crx ctouch_external-$(VERSION).crx
+	#ln -s ctouch_browserua.crx ctouch_browserua-$(VERSION).crx
+	#ln -s ctouch_filesystem.crx ctouch_filesystem-$(VERSION).crx
 	#ln -s ctouch_true.crx ctouch_true-$(VERSION).crx
 	python support/googlecode_upload.py -s ctouch_safari-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch-$(VERSION).safariextz
-	python support/googlecode_upload.py -s ctouch_standard-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_standard-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_fixed-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_external-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_external-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_browserua-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_browserua-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_filesystem-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_filesystem-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_standard-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_standard-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_fixed-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_external-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_external-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_browserua-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_browserua-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_filesystem-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_filesystem-$(VERSION).crx
 	#python support/googlecode_upload.py -s ctouch_true-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_true-$(VERSION).crx
 	rm -f ctouch-$(VERSION).safariextz
-	rm -f ctouch_standard-$(VERSION).crx
-	rm -f ctouch_fixed-$(VERSION).crx
-	rm -f ctouch_external-$(VERSION).crx
-	rm -f ctouch_browserua-$(VERSION).crx
-	rm -f ctouch_filesystem-$(VERSION).crx
+	#rm -f ctouch_standard-$(VERSION).crx
+	#rm -f ctouch_fixed-$(VERSION).crx
+	#rm -f ctouch_external-$(VERSION).crx
+	#rm -f ctouch_browserua-$(VERSION).crx
+	#rm -f ctouch_filesystem-$(VERSION).crx
 	#rm -f ctouch_true-$(VERSION).crx
 
 #setupwiki:
