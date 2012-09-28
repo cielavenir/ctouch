@@ -16,10 +16,28 @@ if(body&&body[0]){ //lol?\n\
 }\n\
 var opt=document.getElementsByTagName('option');\n\
 if(opt)for(var i=0;i<opt.length;i++)opt[i].style.color='black';\n\
+//monkey-patch Reel...\n\
+var swiff=document.getElementsByClassName('swiff');\n\
+if(swiff)for(var i=0;i<swiff.length;i++){\n\
+	if(swiff[i].tagName.toLowerCase()=='div'&&swiff[i].getAttribute('data-src'))swiff[i].style.textAlign='left';\n\
+}\n\
 var scr=document.getElementsByTagName('script');\n\
-if(scr&&body[0])for(var i=0;i<scr.length;i++)\n\
-	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel')\n\
-		{body[0].style.textAlign='left';break;} //actually I need to patch the container, not body.\n\
+if(scr)for(var i=0;i<scr.length;i++){\n\
+	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel'){\n\
+		for(var j=0;j<scr.length;j++){\n\
+			if(scr[j].innerText.match(/\\.setContainer\\((.+?),/)){\n\
+				var str=RegExp.$1;\n\
+				try{\n\
+					var elem=eval(str);\n\
+					elem.style.textAlign='left';\n\
+				}catch(e){\n\
+					console.log('failed to eval '+str);\n\
+				}\n\
+			}\n\
+		}\n\
+		break;\n\
+	}\n\
+}\n\
 //var meta=document.getElementsByTagName('meta');\n\
 //if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}\n\
 /*\n\

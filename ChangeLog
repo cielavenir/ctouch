@@ -68,3 +68,7 @@
 1.8.6.20920
 * Fixed createTouch(List) and window.screen handling (fix gree::3429).
 * Modified __defineGetter__ handling.
+1.8.7.20929
+* Fixed Reel behavior fully. (fix gree::95).
+* Remove sdch from Accept-Encoding if not Chrome (except browserUA edition).
+* Touch events aren't fired if the target is object/embed.

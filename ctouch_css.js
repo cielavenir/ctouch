@@ -11,10 +11,28 @@ if(body&&body[0]){ //lol?
 }
 var opt=document.getElementsByTagName('option');
 if(opt)for(var i=0;i<opt.length;i++)opt[i].style.color='black';
+//monkey-patch Reel...
+var swiff=document.getElementsByClassName('swiff');
+if(swiff)for(var i=0;i<swiff.length;i++){
+	if(swiff[i].tagName.toLowerCase()=='div'&&swiff[i].getAttribute('data-src'))swiff[i].style.textAlign='left';
+}
 var scr=document.getElementsByTagName('script');
-if(scr&&body[0])for(var i=0;i<scr.length;i++)
-	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel')
-		{body[0].style.textAlign='left';break;} //actually I need to patch the container, not body.
+if(scr)for(var i=0;i<scr.length;i++){
+	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel'){
+		for(var j=0;j<scr.length;j++){
+			if(scr[j].innerText.match(/\.setContainer\((.+?),/)){
+				var str=RegExp.$1;
+				try{
+					var elem=eval(str);
+					elem.style.textAlign='left';
+				}catch(e){
+					console.log('failed to eval '+str);
+				}
+			}
+		}
+		break;
+	}
+}
 //var meta=document.getElementsByTagName('meta');
 //if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}
 /*

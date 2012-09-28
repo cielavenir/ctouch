@@ -1,12 +1,16 @@
+/*
+//Seems not working... navigator.userAgent isn't changed.
+//	"background": {
+//		"scripts": ["ctouch_bg.js"]
+//	},
+//	"permissions": [
+//		"webRequest",
+//		"webRequestBlocking",
+//		"<all_urls>"
+//	],
 chrome.webRequest.onBeforeSendHeaders.addListener(
 	function(details){
-		//var headerDone = false;
-		for(var i = 0; i < details.requestHeaders.length; i++){
-			//if(headerDone)break;
-			if(details.requestHeaders[i].name == 'User-Agent'){
-				var config=JSON.parse(localStorage['config']);
-				details.requestHeaders[i].value = 'Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; SonyEricssonLT26i Build/6.0.A.3.73) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
-				if(details.requestHeaders[i].value.indexOf('Chrome')==-1&&details.requestHeaders[i].value.indexOf('CrMo')==-1){
+				if(navigator.userAgent.indexOf('Chrome')==-1&&navigator.userAgent.indexOf('CrMo')==-1)
 					for(var j = 0; j < details.requestHeaders.length; j++){
 						if(details.requestHeaders[j].name == 'Accept-Encoding'){
 							var a=details.requestHeaders[j].value.replace(/ /g,'').split(',');
@@ -15,11 +19,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 							break;
 						}
 					}
-				}
-				break;
-				//headerDone = true;
-			}
-		}
 		return {requestHeaders: details.requestHeaders};
 	},
 	{
@@ -28,3 +27,4 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	},
 	['blocking', 'requestHeaders']
 );
+*/

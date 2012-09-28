@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (config fixed)",
 	"description": "You can browse smartphone websites. No configuration screens; UserAgent is fixed.",
-	"version": "1.8.6.20920",
+	"version": "1.8.7.20929",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",

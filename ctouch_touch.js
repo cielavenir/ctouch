@@ -68,13 +68,13 @@ var touchevent=function(e,type){
 	ev.screenY=e.screenY;
 	ev.shiftKey=false;
 	ev.srcElement=e.srcElement;
-	//ev.target=e.target;
+	ev.target=e.target;
 	ev.timeStamp=e.timeStamp;
 	ev.view=e.view;
 
 	ev.rotation=0.0;
 	ev.scale=1.0;
-	
+
 	ev.touches=new Array();
 	ev.touches[0]={
 		clientX: e.clientX,
@@ -97,6 +97,10 @@ var touchevent=function(e,type){
 
 //Generate touchevent and fire it. And kills inside mouse events.
 var mouseevent=function(e){
+	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){
+		if(e.type=='mouseup'){isMouseDown=null;preventDefault=false;}
+		return true;
+	}
 	if(e.type=='mousedown'){
 		var ev=touchevent(e,'touchstart');
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){
