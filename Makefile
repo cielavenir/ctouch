@@ -34,6 +34,11 @@ postize.safariextz: postize/* postize.safariextension/*
 	ln postize/postize_css.js postize.safariextension/
 	ruby support/safari.rb postize ctouch_safari.pem
 	rm -f postize.safariextension/*.js
+#need to port chrome.browserAction API part.
+#unpassword.safariextz: unpassword/* unpassword.safariextension/*
+#	ln unpassword/unpassword_css.js unpassword.safariextension/
+#	ruby support/safari.rb unpassword ctouch_safari.pem
+#	rm -f unpassword.safariextension/*.js
 	
 ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -48,6 +53,8 @@ ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
 ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ ctouch_true.pem ctouch_common ctouch_true
 postize.crx: postize/*
+	ruby support/crx.rb $@ postize.pem postize
+unpassword.crx: unpassword/*
 	ruby support/crx.rb $@ postize.pem postize
 
 ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
@@ -64,6 +71,8 @@ ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/zip.rb $@ ctouch_true.pem ctouch_common ctouch_true
 postize.zip: postize/*
 	ruby support/zip.rb $@ postize.pem postize
+unpassword.zip: unpassword/*
+	ruby support/zip.rb $@ unpassword.pem unpassword
 
 ctouch_common/ctouch_touch.js: ctouch_touch.js
 	ruby support/ctouch_inner.rb $< > $@

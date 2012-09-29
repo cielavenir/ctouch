@@ -1,13 +1,4 @@
-/*
-//Seems not working... navigator.userAgent isn't changed.
-//	"background": {
-//		"scripts": ["ctouch_bg.js"]
-//	},
-//	"permissions": [
-//		"webRequest",
-//		"webRequestBlocking",
-//		"<all_urls>"
-//	],
+//will work only if --user-agent is used. changing from Developer Tool won't work.
 chrome.webRequest.onBeforeSendHeaders.addListener(
 	function(details){
 				if(navigator.userAgent.indexOf('Chrome')==-1&&navigator.userAgent.indexOf('CrMo')==-1)
@@ -27,4 +18,3 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	},
 	['blocking', 'requestHeaders']
 );
-*/
