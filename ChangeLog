@@ -75,3 +75,6 @@
 1.8.7.20930
 * Remove sdch from Accept-Encoding if not Chrome also in browserUA edition, if --user-agent is used.
 * Show browser action title.
+1.8.8.21030
+* Fixed "Don't modify (original)" label handling.
+* Interrupt click event too if preventDefault() is called.

@@ -103,7 +103,7 @@ var touchevent=function(e,type){\n\
 //Generate touchevent and fire it. And kills inside mouse events.\n\
 var mouseevent=function(e){\n\
 	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){\n\
-		if(e.type=='mouseup'){isMouseDown=null;preventDefault=false;}\n\
+		if(e.type=='mouseup'||e.type=='click'){isMouseDown=null;preventDefault=false;}\n\
 		return true;\n\
 	}\n\
 	if(e.type=='mousedown'){\n\
@@ -133,19 +133,27 @@ var mouseevent=function(e){\n\
 		}\n\
 	}else if(e.type=='mouseup'){\n\
 		var ev=touchevent(e,'touchend');\n\
-		if(window.click){window.click();return true;}\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
 			if(!b||preventDefault){\n\
+				preventDefault=true;\n\
+				e.stopPropagation();\n\
+			}\n\
+			return b;\n\
+		}else return true;\n\
+	}else if(e.type=='click'){\n\
+		if(window.click){window.click();preventDefault=false;return true;}\n\
+		//if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'on')){\n\
+			if(preventDefault){\n\
 				//preventDefault=true;\n\
 				e.stopPropagation();\n\
 			}\n\
 			preventDefault=false;\n\
-			return b;\n\
-		}else{\n\
-			preventDefault=false;\n\
 			return true;\n\
-		}\n\
+		//}else{\n\
+		//	preventDefault=false;\n\
+		//	return true;\n\
+		//}\n\
 	}\n\
 	return true;\n\
 };\n\
@@ -161,6 +169,7 @@ var mouseevent=function(e){\n\
 	document.addEventListener('mousedown',mouseevent,true);\n\
 	document.addEventListener('mousemove',mouseevent,true);\n\
 	document.addEventListener('mouseup',mouseevent,true);\n\
+	document.addEventListener('click',mouseevent,true);\n\
 //}\n\
 \n\
 var myself = document.getElementById('ctouch_touch_js');\n\

@@ -98,7 +98,7 @@ var touchevent=function(e,type){
 //Generate touchevent and fire it. And kills inside mouse events.
 var mouseevent=function(e){
 	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){
-		if(e.type=='mouseup'){isMouseDown=null;preventDefault=false;}
+		if(e.type=='mouseup'||e.type=='click'){isMouseDown=null;preventDefault=false;}
 		return true;
 	}
 	if(e.type=='mousedown'){
@@ -128,19 +128,27 @@ var mouseevent=function(e){
 		}
 	}else if(e.type=='mouseup'){
 		var ev=touchevent(e,'touchend');
-		if(window.click){window.click();return true;}
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){
 			var b=e.target.dispatchEvent(ev);
 			if(!b||preventDefault){
+				preventDefault=true;
+				e.stopPropagation();
+			}
+			return b;
+		}else return true;
+	}else if(e.type=='click'){
+		if(window.click){window.click();preventDefault=false;return true;}
+		//if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'on')){
+			if(preventDefault){
 				//preventDefault=true;
 				e.stopPropagation();
 			}
 			preventDefault=false;
-			return b;
-		}else{
-			preventDefault=false;
 			return true;
-		}
+		//}else{
+		//	preventDefault=false;
+		//	return true;
+		//}
 	}
 	return true;
 };
@@ -156,6 +164,7 @@ var mouseevent=function(e){
 	document.addEventListener('mousedown',mouseevent,true);
 	document.addEventListener('mousemove',mouseevent,true);
 	document.addEventListener('mouseup',mouseevent,true);
+	document.addEventListener('click',mouseevent,true);
 //}
 
 var myself = document.getElementById('ctouch_touch_js');

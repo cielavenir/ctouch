@@ -19,7 +19,7 @@ var initialize=function(){
 		td=document.createElement('td');
 		td.style.whiteSpace='nowrap';
 			label=document.createElement('label');
-			label.htmlFor='ctouch_ua_'+i;
+			label.htmlFor='ctouch_ua_-1';
 			label.innerHTML="Don't modify (original)";
 			td.appendChild(label);
 		tr.appendChild(td);
