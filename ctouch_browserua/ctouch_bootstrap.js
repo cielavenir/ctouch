@@ -75,7 +75,7 @@ window.onorientationchange = null;\
 ';
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
-	s.innerText+='window.chrome = undefined;';
+	s.innerText+="if('chrome' in window){window.chrome = undefined;delete window.chrome;}";
 }
 
 if(vendor == 'Apple Computer, Inc.'){
@@ -95,12 +95,6 @@ try {\
 	if (!Object.prototype.__defineGetter__ &&\
 		Object.defineProperty({}, 'x', { get: function(){ return true } }).x\
 	) {\
-		var navigator_original = navigator;\
-		navigator = {};\
-		navigator.__proto__ = navigator_original;\
-		var window_screen_original = window.screen;\
-		window.screen = {};\
-		window.screen.__proto__ = window_screen_original;\
 		Object.defineProperty(Object.prototype, '__defineGetter__', {\
 			enumerable: false,\
 			configurable: true,\
@@ -125,6 +119,19 @@ try {\
 		});\
 	}\
 }catch(defPropException){}\
+if(navigator.__defineGetter__){\
+	navigator.__defineGetter__('platform',function(){return '"+platform+"';});\
+}else{\
+	navigator.platform = '"+platform+"';\
+}\
+if(navigator.platform!='"+platform+"'){\
+	var navigator_original = navigator;\
+	navigator = {};\
+	navigator.__proto__ = navigator_original;\
+	var window_screen_original = window.screen;\
+	window.screen = {};\
+	window.screen.__proto__ = window_screen_original;\
+}\
 if(navigator.__defineGetter__){\
 	navigator.__defineGetter__('userAgent',function(){return '"+useragent+"';});\
 	navigator.__defineGetter__('vendor',function(){return '"+vendor+"';});\

@@ -98,13 +98,16 @@ var touchevent=function(e,type){
 //Generate touchevent and fire it. And kills inside mouse events.
 var mouseevent=function(e){
 	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){
-		if(e.type=='mouseup'||e.type=='click'){isMouseDown=null;preventDefault=false;}
+		//if(e.type=='mouseup'||e.type=='click')
+			{isMouseDown=null;preventDefault=false;}
 		return true;
 	}
 	if(e.type=='mousedown'){
+		preventDefault=false; //in case...
 		var ev=touchevent(e,'touchstart');
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){
 			var b=e.target.dispatchEvent(ev);
+			//console.log(b);
 			if(!b){
 				preventDefault=true;
 				//since mouse event is already issued,
@@ -112,7 +115,7 @@ var mouseevent=function(e){
 				//preventDefault() isn't OK.
 				e.stopPropagation();
 			}
-			return b;
+			return true;//b;
 		}else return true;
 	}else if(e.type=='mousemove'){
 		if(isMouseDown){
@@ -123,25 +126,26 @@ var mouseevent=function(e){
 					preventDefault=true;
 					e.stopPropagation();
 				}
-				return b;
+				return true;//b;
 			}else return true;
 		}
 	}else if(e.type=='mouseup'){
 		var ev=touchevent(e,'touchend');
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){
 			var b=e.target.dispatchEvent(ev);
+			//console.log(b);
 			if(!b||preventDefault){
 				preventDefault=true;
 				e.stopPropagation();
 			}
-			return b;
+			return true;//b;
 		}else return true;
 	}else if(e.type=='click'){
 		if(window.click){window.click();preventDefault=false;return true;}
 		//if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'on')){
 			if(preventDefault){
 				//preventDefault=true;
-				e.stopPropagation();
+				//e.stopPropagation();
 			}
 			preventDefault=false;
 			return true;

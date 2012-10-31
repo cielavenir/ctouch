@@ -74,7 +74,7 @@ window.onorientationchange = null;\
 ';
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
-	s.innerText+='window.chrome = undefined;';
+	s.innerText+="if('chrome' in window){window.chrome = undefined;delete window.chrome;}";
 }
 
 if(vendor == 'Apple Computer, Inc.'){

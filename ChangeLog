@@ -78,3 +78,7 @@
 1.8.8.21030
 * Fixed "Don't modify (original)" label handling.
 * Interrupt click event too if preventDefault() is called.
+1.8.9.21101
+* Fixed Safari degration from 1.8.6.20920.
+* Fixed window.chrome handling in Safari.
+* Reverted click event handling due to some lovely event listeners.
