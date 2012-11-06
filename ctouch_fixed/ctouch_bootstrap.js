@@ -139,11 +139,15 @@ if(navigator.__defineGetter__){\
 	navigator.appVersion = '"+appVersion+"';\
 }\
 if(window.screen.__defineGetter__){\
+	window.screen.__defineGetter__('width',function(){return document.documentElement.clientWidth;});\
+	window.screen.__defineGetter__('height',function(){return document.documentElement.clientHeight;});\
 	/*window.screen.__defineGetter__('availHeight',function(){return window.screen.height;});*/\
 	window.screen.__defineGetter__('availWidth',function(){return window.screen.width;});\
 	window.screen.__defineGetter__('availLeft',function(){return 0;});\
 	window.screen.__defineGetter__('availTop',function(){return 0;});\
 }else{\
+	window.screen.width=document.documentElement.clientWidth;\
+	window.screen.height=document.documentElement.clientHeight;\
 	/*window.screen.availHeight = window.screen.height;*/\
 	window.screen.availWidth = window.screen.width;\
 	window.screen.availLeft = 0;\

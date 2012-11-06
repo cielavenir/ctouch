@@ -82,3 +82,4 @@
 * Fixed Safari degration from 1.8.6.20920.
 * Fixed window.chrome handling in Safari.
 * Reverted click event handling due to some lovely event listeners.
+1.9.0.21106 Fixed displaying issue again.

@@ -1,5 +1,7 @@
 //ctouch_touch: execute anytime
 (function(){
+//Generating touch event will break Google Map. cTouch (true) will disable touch event if UA is unmodified. 
+
 //fix ExGame fillText issue by monkey patch.
 if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
 	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;

@@ -5,14 +5,15 @@ s.id='ctouch_css_js';
 s.innerHTML="\
 (function(){\n\
 //var ratio=1;\n\
-var ratio=window.devicePixelRatio;\n\
-document.documentElement.style.zoom=ratio;\n\
+//var ratio=window.devicePixelRatio;\n\
+//document.documentElement.style.zoom=ratio;\n\
 var body=document.getElementsByTagName('body');\n\
 if(body&&body[0]){ //lol?\n\
-	body[0].style.overflow='visible';\n\
+	if(document.defaultView.getComputedStyle(body[0],'').overflow=='hidden')\n\
+		body[0].style.overflow='scroll';\n\
 	//body[0].style.userSelect='auto';\n\
 	body[0].style.webkitUserSelect='auto';\n\
-	body[0].style.zoom=1;\n\
+	//body[0].style.zoom=1;\n\
 }\n\
 var opt=document.getElementsByTagName('option');\n\
 if(opt)for(var i=0;i<opt.length;i++)opt[i].style.color='black';\n\
