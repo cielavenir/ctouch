@@ -75,12 +75,12 @@ window.ondevicemotion = null;\
 window.onorientationchange = null;\
 ';
 
-if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
+if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){ //un-chrome-ize
 	//unfortunately "delete" will fail...
 	s.innerText+="if('chrome' in window){window.chrome = undefined;delete window.chrome;}";
 }
 
-if(vendor == 'Apple Computer, Inc.'){
+if(vendor=='Apple Computer, Inc.'){
 s.innerText += '\
 document.ongesturestart = null;\
 document.documentElement.ongesturestart = null;\
@@ -164,7 +164,7 @@ if(window.screen.__defineGetter__){\
 }\
 ";
 
-if(vendor == 'Apple Computer, Inc.'){ //hide flash
+if(vendor=='Apple Computer, Inc.' || useragent.indexOf('Chrome')!=-1 || useragent.indexOf('CrMo')!=-1){ //hide plugins(flash)
 s.innerText += "\
 if(navigator.__defineGetter__)navigator.__defineGetter__('plugins',function(){return undefined;});\
 else navigator.plugins=undefined;\
