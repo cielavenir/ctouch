@@ -22,7 +22,7 @@ var init=function(){
 	//if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
 //var useragent=ctouch_option.UA[ctouch_option.preferedUA];
 var useragent=navigator.userAgent;
-///__BOUNDERY__///
+///__BOUNDARY__///
 //cTouch bootstrap core: var useragent is defined.
 var platform='none';
 var vendor='';
@@ -178,7 +178,7 @@ myself.parentNode.removeChild(myself);\
 })();";
 
 document.documentElement.appendChild(s);
-///__BOUNDERY__///
+///__BOUNDARY__///
 	//}
 };
 init();
