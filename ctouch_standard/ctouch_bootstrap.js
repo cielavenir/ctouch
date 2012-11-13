@@ -22,35 +22,36 @@ var init=function(){
 	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
 var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
 ///__BOUNDERY__///
-		var platform='none';
-		var vendor='';
-		//var appName='Netscape'; //I believe WebKit always uses Netscape.
-		var appCodeName_idx=useragent.indexOf('/',0);
-		var appCodeName=useragent.substr(0,appCodeName_idx);
-		var appVersion=useragent.substr(appCodeName_idx+1);
-		if(useragent.indexOf('Android')!=-1){
-			vendor='Google, Inc.';
-			//platform='Linux i686'; //Android Atom machine :p
-			platform='Linux armv7l';
-		}
-		if(useragent.indexOf('iPhone')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPhone';
-		}
-		if(useragent.indexOf('iPod')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPod';
-		}
-		if(useragent.indexOf('iPad')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPad';
-		}
-		if(platform=='none')return;
+//cTouch bootstrap core: var useragent is defined.
+var platform='none';
+var vendor='';
+//var appName='Netscape'; //I believe WebKit always uses Netscape.
+var appCodeName_idx=useragent.indexOf('/',0);
+var appCodeName=useragent.substr(0,appCodeName_idx);
+var appVersion=useragent.substr(appCodeName_idx+1);
+if(useragent.indexOf('Android')!=-1){
+	vendor='Google, Inc.';
+	//platform='Linux i686'; //Android Atom machine :p
+	platform='Linux armv7l';
+}
+if(useragent.indexOf('iPhone')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPhone';
+}
+if(useragent.indexOf('iPod')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPod';
+}
+if(useragent.indexOf('iPad')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPad';
+}
+if(platform=='none')return;
 
-		s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.id = 'ctouch_imitation_js';
-		s.innerText = '(function(){';
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.id = 'ctouch_imitation_js';
+s.innerText = '(function(){';
 
 s.innerText += '\
 document.ondragstart = function(){return false;};\
@@ -75,6 +76,7 @@ window.onorientationchange = null;\
 ';
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
+	//unfortunately "delete" will fail...
 	s.innerText+="if('chrome' in window){window.chrome = undefined;delete window.chrome;}";
 }
 
@@ -95,12 +97,6 @@ try {\
 	if (!Object.prototype.__defineGetter__ &&\
 		Object.defineProperty({}, 'x', { get: function(){ return true } }).x\
 	) {\
-		var navigator_original = navigator;\
-		navigator = {};\
-		navigator.__proto__ = navigator_original;\
-		var window_screen_original = window.screen;\
-		window.screen = {};\
-		window.screen.__proto__ = window_screen_original;\
 		Object.defineProperty(Object.prototype, '__defineGetter__', {\
 			enumerable: false,\
 			configurable: true,\
@@ -125,6 +121,19 @@ try {\
 		});\
 	}\
 }catch(defPropException){}\
+if(navigator.__defineGetter__){\
+        navigator.__defineGetter__('platform',function(){return '"+platform+"';});\
+}else{\
+        navigator.platform = '"+platform+"';\
+}\
+if(navigator.platform!='"+platform+"'){\
+	var navigator_original = navigator;\
+	navigator = {};\
+	navigator.__proto__ = navigator_original;\
+	var window_screen_original = window.screen;\
+	window.screen = {};\
+	window.screen.__proto__ = window_screen_original;\
+}\
 if(navigator.__defineGetter__){\
 	navigator.__defineGetter__('userAgent',function(){return '"+useragent+"';});\
 	navigator.__defineGetter__('vendor',function(){return '"+vendor+"';});\
@@ -166,7 +175,8 @@ s.innerText += "\
 var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);\
 })();";
-		document.documentElement.appendChild(s);
+
+document.documentElement.appendChild(s);
 ///__BOUNDERY__///
 	}
 };
