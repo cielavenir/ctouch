@@ -165,7 +165,7 @@ if(window.screen.__defineGetter__){\
 }\
 ";
 
-if(vendor=='Apple Computer, Inc.' || useragent.indexOf('Chrome')!=-1 || useragent.indexOf('CrMo')!=-1)){ //hide plugins(flash)
+if(vendor=='Apple Computer, Inc.' || useragent.indexOf('Chrome')!=-1 || useragent.indexOf('CrMo')!=-1){ //hide plugins(flash)
 s.innerText += "\
 if(navigator.__defineGetter__)navigator.__defineGetter__('plugins',function(){return undefined;});\
 else navigator.plugins=undefined;\
