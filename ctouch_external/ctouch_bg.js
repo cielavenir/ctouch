@@ -15,7 +15,7 @@ window.onload=function(){
 				"Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus One Build/EPF21B) AppleWebkit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17"],
 			["Nexus One (Froyo/2.2.3)",
 				"Mozilla/5.0 (Linux; U; Android 2.2.3; en-us; Nexus One Build/FRK76C) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"],
-			["Nexus S (GingerBread/2.3.7)",
+			["Nexus S (Gingerbread/2.3.7)",
 				"Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus S Build/GWK74) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"],
 			["Xoom (Honeycomb/3.2.6)",
 				"Mozilla/5.0 (Linux; U; Android 3.2.6; en-us; Xoom Build/HLK75H) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13"],
