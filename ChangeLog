@@ -84,3 +84,4 @@
 * Reverted click event handling due to some lovely event listeners.
 1.9.0.21106 Fixed displaying issue again.
 1.9.0.21113 Updated UA list. Improved Makefile.
+1.9.0.21114 Tweaked UA list. Hide Flash in Android Chrome.
