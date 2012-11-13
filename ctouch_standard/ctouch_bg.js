@@ -1,5 +1,4 @@
 window.onload=function(){
-if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 	var config=
 /// JSON START ///
 	{
@@ -66,8 +65,11 @@ if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''
 	}
 /// JSON END ///
 	;
-	localStorage['config']=JSON.stringify(config,null,' ');
-}
+	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
+		localStorage['config']=JSON.stringify(config,null,' ');
+	}
+	localStorage['config_default']=JSON.stringify(config,null,' ');
+
 chrome.extension.onRequest.addListener(function(message,sender,sendResponse){
 	if(message.action=='getValues'){
 		sendResponse({data:localStorage});
