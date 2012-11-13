@@ -79,6 +79,19 @@ ctouch_common/ctouch_touch.js: ctouch_touch.js
 ctouch_common/ctouch_css.js: ctouch_css.js
 	ruby support/ctouch_inner.rb $< > $@
 
+ctouch_browserua/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+ctouch_standard/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+ctouch_fixed/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+ctouch_external/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+ctouch_filesystem/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+ctouch_true/ctouch_bootstrap.js: ctouch_bootstrap.js
+	ruby support/ctouch_insert.rb $@ $<
+
 clean:
 	rm -f $(SAFARI) $(CRX) $(ZIP)
 

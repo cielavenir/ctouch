@@ -12,7 +12,7 @@ if(typeof sessionStorage['config'] === 'undefined')document.location.href=docume
 var ctouch_option=JSON.parse(sessionStorage['config']);
 
 var init=function(){
-	var s;
+	//var s;
 	//s = document.createElement('script');
 	//s.type = 'text/javascript';
 	//s.id = 'ctouch_touch_js';
@@ -20,7 +20,8 @@ var init=function(){
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
 	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
-		var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
+var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
+///__BOUNDERY__///
 		var platform='none';
 		var vendor='';
 		//var appName='Netscape'; //I believe WebKit always uses Netscape.
@@ -166,6 +167,7 @@ var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);\
 })();";
 		document.documentElement.appendChild(s);
+///__BOUNDERY__///
 	}
 };
 init();

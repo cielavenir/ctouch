@@ -26,7 +26,7 @@ var getFile=function(url){ //I should use XHR rather than FileSystem API, to gua
 var ctouch_option=JSON.parse(getFile('filesystem:'+chrome.extension.getURL('persistent/ctouch_filesystem.json')));
 
 var init=function(){
-	var s;
+	//var s;
 	//s = document.createElement('script');
 	//s.type = 'text/javascript';
 	//s.id = 'ctouch_touch_js';
@@ -34,36 +34,38 @@ var init=function(){
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
 	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
-		var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
-		var platform='none';
-		var vendor='';
-		//var appName='Netscape'; //I believe WebKit always uses Netscape.
-		var appCodeName_idx=useragent.indexOf('/',0);
-		var appCodeName=useragent.substr(0,appCodeName_idx);
-		var appVersion=useragent.substr(appCodeName_idx+1);
-		if(useragent.indexOf('Android')!=-1){
-			vendor='Google, Inc.';
-			//platform='Linux i686'; //Android Atom machine :p
-			platform='Linux armv7l';
-		}
-		if(useragent.indexOf('iPhone')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPhone';
-		}
-		if(useragent.indexOf('iPod')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPod';
-		}
-		if(useragent.indexOf('iPad')!=-1){
-			vendor='Apple Computer, Inc.';
-			platform='iPad';
-		}
-		if(platform=='none')return;
+var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
+///__BOUNDERY__///
+//cTouch bootstrap core: var useragent is defined.
+var platform='none';
+var vendor='';
+//var appName='Netscape'; //I believe WebKit always uses Netscape.
+var appCodeName_idx=useragent.indexOf('/',0);
+var appCodeName=useragent.substr(0,appCodeName_idx);
+var appVersion=useragent.substr(appCodeName_idx+1);
+if(useragent.indexOf('Android')!=-1){
+	vendor='Google, Inc.';
+	//platform='Linux i686'; //Android Atom machine :p
+	platform='Linux armv7l';
+}
+if(useragent.indexOf('iPhone')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPhone';
+}
+if(useragent.indexOf('iPod')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPod';
+}
+if(useragent.indexOf('iPad')!=-1){
+	vendor='Apple Computer, Inc.';
+	platform='iPad';
+}
+if(platform=='none')return;
 
-		s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.id = 'ctouch_imitation_js';
-		s.innerText = '(function(){';
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.id = 'ctouch_imitation_js';
+s.innerText = '(function(){';
 
 s.innerText += '\
 document.ondragstart = function(){return false;};\
@@ -88,6 +90,7 @@ window.onorientationchange = null;\
 ';
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){
+	//unfortunately "delete" will fail...
 	s.innerText+="if('chrome' in window){window.chrome = undefined;delete window.chrome;}";
 }
 
@@ -179,7 +182,9 @@ s.innerText += "\
 var myself = document.getElementById('ctouch_imitation_js');\
 myself.parentNode.removeChild(myself);\
 })();";
-		document.documentElement.appendChild(s);
+
+document.documentElement.appendChild(s);
+///__BOUNDERY__///
 	}
 };
 init();

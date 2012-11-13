@@ -1,41 +1,3 @@
-/*
- * cTouch (to mimic smartphone) [external] by ciel.
- * javascript imitation / touch event / modifying UserAgent -> all in one.
- * 
- * [Potion Notice]
- * ctouch_touch.js is rewritten based on mouse2touch (@jkumo).
- * navigator.* writer (C) wakuworks under MIT license.
- * Synchronous AJAX by Patrick Hunlock (public domain).
-*/
-
-(function(){
-// http://www.hunlock.com/blogs/Snippets:_Synchronous_AJAX
-var getFile=function(url){
-	var AJAX=null;
-	if(window.XMLHttpRequest){
-		AJAX=new XMLHttpRequest();
-	}else{
-		console.log("run_at: document_start isn't suitable");
-		//AJAX=new ActiveXObject('Microsoft.XMLHTTP'); //ignore IE
-	}
-	if(!AJAX)return '';
-	AJAX.open('GET', url, false);
-	AJAX.send(null);
-	return AJAX.responseText;
-};
-var ctouch_option=JSON.parse(getFile('http://localhost:12380/ctouch_external.cgi'));
-
-var init=function(){
-	//var s;
-	//s = document.createElement('script');
-	//s.type = 'text/javascript';
-	//s.id = 'ctouch_touch_js';
-	//s.src = chrome.extension.getURL('ctouch_touch.js'); // need to embed to DOM to access x.ontouchstart().
-	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
-
-	if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
-var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
-///__BOUNDERY__///
 //cTouch bootstrap core: var useragent is defined.
 var platform='none';
 var vendor='';
@@ -184,8 +146,3 @@ myself.parentNode.removeChild(myself);\
 })();";
 
 document.documentElement.appendChild(s);
-///__BOUNDERY__///
-	}
-};
-init();
-})();

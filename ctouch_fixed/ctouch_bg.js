@@ -5,7 +5,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 			//if(headerDone)break;
 			if(details.requestHeaders[i].name == 'User-Agent'){
 				var config=JSON.parse(localStorage['config']);
-				details.requestHeaders[i].value = 'Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; SonyEricssonLT26i Build/6.0.A.3.73) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
+				details.requestHeaders[i].value = 'Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus S Build/GWK74) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
 				if(details.requestHeaders[i].value.indexOf('Chrome')==-1&&details.requestHeaders[i].value.indexOf('CrMo')==-1){
 					for(var j = 0; j < details.requestHeaders.length; j++){
 						if(details.requestHeaders[j].name == 'Accept-Encoding'){
