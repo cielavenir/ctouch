@@ -14,7 +14,10 @@ var writeFile=function(file, data){
 		});
 	});
 };
+var saveConfig=function(){writeFile('ctouch_filesystem.json',localStorage['config']);}
 
+///__BOUNDARY__///
+//cTouch option core: var saveConfig is defined.
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -146,21 +149,21 @@ window.onload=function(){
 		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
 		localStorage['config']=JSON.stringify(config,null,' ');
 		initialize();
-		writeFile('ctouch_filesystem.json',localStorage['config']);
+		saveConfig();
 	};
 
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
 		localStorage['config']=localStorage['config_default'];
 		initialize();
-		writeFile('ctouch_filesystem.json',localStorage['config']);
+		saveConfig();
 	};
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
-		writeFile('ctouch_filesystem.json',localStorage['config']);
+		saveConfig();
 	};
 
 	//easter for debug
@@ -171,3 +174,5 @@ window.onload=function(){
 		window.open('chrome://extensions');
 	};
 };
+///__BOUNDARY__///
+;

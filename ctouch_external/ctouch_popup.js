@@ -10,9 +10,11 @@ var postFile=function(url, passData){
 	AJAX.send(passData);
 	return AJAX.responseText;
 };
+var saveConfig=function(){postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));}
 
+///__BOUNDARY__///
+//cTouch popup core: var saveConfig is defined.
 var config=JSON.parse(localStorage['config']);
-
 var initialize=function(){
 	var table=document.getElementById('UA');
 
@@ -26,7 +28,7 @@ var initialize=function(){
 			input.onclick=function(){
 				config.preferedUA=-1;
 				localStorage['config']=JSON.stringify(config,null,' ');
-				postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+				saveConfig();
 			};
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -53,7 +55,7 @@ var initialize=function(){
 			with({i:i})input.onclick=function(){
 				config.preferedUA=i;
 				localStorage['config']=JSON.stringify(config,null,' ');
-				postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+				saveConfig();
 			};
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -77,7 +79,7 @@ window.onload=function(){
 	document.getElementById('enable_imitation').onclick=function(){
 		config.enable_imitation=!config.enable_imitation;
 		localStorage['config']=JSON.stringify(config,null,' ');
-		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+		saveConfig();
 	};
 
 	document.getElementById('option_page').onclick=function(){
@@ -91,3 +93,5 @@ window.onload=function(){
 		window.open('chrome://extensions');
 	};
 };
+///__BOUNDARY__///
+;

@@ -10,7 +10,10 @@ var postFile=function(url, passData){
 	AJAX.send(passData);
 	return AJAX.responseText;
 };
+var saveConfig=function(){postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));}
 
+///__BOUNDARY__///
+//cTouch option core: var saveConfig is defined.
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -142,21 +145,21 @@ window.onload=function(){
 		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
 		localStorage['config']=JSON.stringify(config,null,' ');
 		initialize();
-		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+		saveConfig();
 	};
 
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
 		localStorage['config']=localStorage['config_default'];
 		initialize();
-		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+		saveConfig();
 	};
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
-		postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));
+		saveConfig();
 	};
 
 	//easter for debug
@@ -167,3 +170,5 @@ window.onload=function(){
 		window.open('chrome://extensions');
 	};
 };
+///__BOUNDARY__///
+;

@@ -23,6 +23,7 @@ KEY = %w(30 21 30 09 06 05 2B 0E 03 02 1A 05 00 04 14).map{|s| s.hex}.pack('C*')
 def run(argv)
 	name=argv.shift
 	pkey=argv.shift
+	pder=argv.shift
 	key=''
 	open(pkey,'rb'){|f|
 		key=OpenSSL::PKey::RSA.new(f)
@@ -33,7 +34,7 @@ def run(argv)
 
 	#I'd like perform this kind of signature handling without using exe...
 	sha1=''
-	Open3.popen3(%Q("#{XAR}" --sign -f "#{name}.safariextz" --data-to-sign /dev/stderr --sig-size #{siglen} --cert-loc ctouch_safari.der --cert-loc certs/appleca --cert-loc certs/rootca)){|stdin,stdout,stderr|
+	Open3.popen3(%Q("#{XAR}" --sign -f "#{name}.safariextz" --data-to-sign /dev/stderr --sig-size #{siglen} --cert-loc #{pder} --cert-loc certs/appleca --cert-loc certs/rootca)){|stdin,stdout,stderr|
 		sha1=stderr.read
 	}
 	signature=key.private_encrypt(KEY+sha1)

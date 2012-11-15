@@ -1,6 +1,6 @@
 window.onload=function(){
 	var config=
-/// JSON START ///
+///__BOUNDARY__///
 	{
 		"UA": [
 			["Android Astro/1.0",
@@ -63,7 +63,7 @@ window.onload=function(){
 		"preferedUA": -1,
 		"enable_imitation": true
 	}
-/// JSON END ///
+///__BOUNDARY__///
 	;
 	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 		localStorage['config']=JSON.stringify(config,null,' ');

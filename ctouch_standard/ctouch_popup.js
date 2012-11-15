@@ -1,4 +1,5 @@
-var config=JSON.parse(localStorage['config']);
+var saveConfig=function(){}
+///__BOUNDARY__///
 
 var initialize=function(){
 	var table=document.getElementById('UA');
@@ -76,3 +77,5 @@ window.onload=function(){
 		window.open('chrome://extensions');
 	};
 };
+///__BOUNDARY__///
+;
