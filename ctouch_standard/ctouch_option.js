@@ -1,6 +1,6 @@
 var saveConfig=function(){}
 ///__BOUNDARY__///
-
+//cTouch option core: var saveConfig is defined.
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -89,7 +89,7 @@ window.onload=function(){
 		//td.style.borderRight='0px';
 			input=document.createElement('input');
 			input.type='text';
-			input.style.width='95%';
+			input.style.width='100%';
 			input.value='';
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -102,7 +102,7 @@ window.onload=function(){
 		//td.style.borderRight='0px';
 			input=document.createElement('input');
 			input.type='text';
-			input.style.width='95%';
+			input.style.width='100%';
 			input.value='';
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -132,18 +132,21 @@ window.onload=function(){
 		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
 		localStorage['config']=JSON.stringify(config,null,' ');
 		initialize();
+		saveConfig();
 	};
 
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
 		localStorage['config']=localStorage['config_default'];
 		initialize();
+		saveConfig();
 	};
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
+		saveConfig();
 	};
 
 	//easter for debug

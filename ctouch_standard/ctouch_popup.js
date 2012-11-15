@@ -1,6 +1,7 @@
 var saveConfig=function(){}
 ///__BOUNDARY__///
-
+//cTouch popup core: var saveConfig is defined.
+var config=JSON.parse(localStorage['config']);
 var initialize=function(){
 	var table=document.getElementById('UA');
 
@@ -14,6 +15,7 @@ var initialize=function(){
 			input.onclick=function(){
 				config.preferedUA=-1;
 				localStorage['config']=JSON.stringify(config,null,' ');
+				saveConfig();
 			};
 			td.appendChild(input);
 		tr.appendChild(td);
@@ -40,9 +42,9 @@ var initialize=function(){
 			with({i:i})input.onclick=function(){
 				config.preferedUA=i;
 				localStorage['config']=JSON.stringify(config,null,' ');
+				saveConfig();
 			};
 			td.appendChild(input);
-			console.log(i);
 		tr.appendChild(td);
 		td=document.createElement('td');
 		td.style.whiteSpace='nowrap';
@@ -64,6 +66,7 @@ window.onload=function(){
 	document.getElementById('enable_imitation').onclick=function(){
 		config.enable_imitation=!config.enable_imitation;
 		localStorage['config']=JSON.stringify(config,null,' ');
+		saveConfig();
 	};
 
 	document.getElementById('option_page').onclick=function(){
