@@ -15,7 +15,7 @@ KEY = %w(30 81 9F 30 0D 06 09 2A 86 48 86 F7 0D 01 01 01 05 00 03 81 8D 00).map{
 # http://supercollider.dk/2010/01/calculating-chrome-extension-id-from-your-private-key-233
 def pkey_to_id(pkey)
 	key=''
-	open(pkey+'.pem','rb'){|f|
+	open('pem/'+pkey+'.pem','rb'){|f|
 		key=OpenSSL::PKey::RSA.new(f)
 	}
 	key = key.public_key.to_der

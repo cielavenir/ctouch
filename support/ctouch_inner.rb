@@ -2,8 +2,8 @@
 #coding:utf-8
 if RUBY_VERSION < '1.9.0' then $KCODE='u' end
 
-#usage: ctouch_inner.rb ctouch_touch.js > ctouch/ctouch_touch.js
-id=ARGV[0].sub('.','_')
+#usage: ctouch_inner.rb src/ctouch_touch.js > ctouch/ctouch_touch.js
+id=ARGV[0].split('/')[1].sub('.','_')
 
 #I need to use innerHTML to handle linebreak.
 print <<EOM

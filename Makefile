@@ -1,11 +1,11 @@
 VERSION := $(shell ruby -Isupport -rgenversion -e getver)
 
-SAFARI := ctouch.safariextz
-CRX := ctouch_fixed.crx ctouch_external.crx ctouch_browserua.crx ctouch_filesystem.crx
-#ctouch_true.crx
-ZIP := ctouch_browserua.zip ctouch_filesystem.zip
-#ZIP := ctouch_fixed.zip ctouch_external.zip ctouch_browserua.zip ctouch_filesystem.zip
-#ctouch_true.zip
+SAFARI := bin/ctouch.safariextz
+CRX := bin/ctouch_standard.crx bin/ctouch_fixed.crx bin/ctouch_external.crx bin/ctouch_browserua.crx bin/ctouch_filesystem.crx
+#bin/ctouch_true.crx
+ZIP := bin/ctouch_browserua.zip bin/ctouch_filesystem.zip
+#ZIP := bin/ctouch_fixed.zip bin/ctouch_external.zip bin/ctouch_browserua.zip bin/ctouch_filesystem.zip
+#bin/ctouch_true.zip
 
 .PHONY: all clean publish
 all: safari crx zip
@@ -24,54 +24,54 @@ CTOUCH_FILESYSTEM_FILES := ctouch_filesystem/*
 CTOUCH_TRUE_FILES := ctouch_true/*
 
 #this needs to be hard link.
-ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
+bin/ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
 	ln -f ctouch_common/ctouch_css.js ctouch.safariextension/
 	ln -f ctouch_common/ctouch_touch.js ctouch.safariextension/
 	ln -f ctouch_browserua/ctouch_bootstrap.js ctouch.safariextension/
 	ruby support/safari.rb ctouch pem/ctouch_safari.pem pem/ctouch_safari.der
 	rm -f ctouch.safariextension/*.js
-postize.safariextz: postize/* postize.safariextension/*
+bin/postize.safariextz: postize/* postize.safariextension/*
 	ln -f postize/postize_css.js postize.safariextension/
 	ruby support/safari.rb postize pem/ctouch_safari.pem pem/ctouch_safari.der
 	rm -f postize.safariextension/*.js
 #need to port chrome.browserAction API part.
-#unpassword.safariextz: unpassword/* unpassword.safariextension/*
+#bin/unpassword.safariextz: unpassword/* unpassword.safariextension/*
 #	ln -f unpassword/unpassword_css.js unpassword.safariextension/
 #	ruby support/safari.rb unpassword ctouch_safari.pem
 #	rm -f unpassword.safariextension/*.js
 	
-ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
+bin/ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
-ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
+bin/ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
 	ruby support/crx.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_standard
-ctouch_fixed.crx: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
+bin/ctouch_fixed.crx: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
 	ruby support/crx.rb $@ pem/ctouch_fixed.pem ctouch_common ctouch_fixed
-ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
+bin/ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
 	ruby support/crx.rb $@ pem/ctouch_external.pem ctouch_common ctouch_external
-ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
+bin/ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
 	ruby support/crx.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_filesystem
-ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
+bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ pem/ctouch_true.pem ctouch_common ctouch_true
-postize.crx: postize/*
+bin/postize.crx: postize/*
 	ruby support/crx.rb $@ pem/postize.pem postize
-unpassword.crx: unpassword/*
+bin/unpassword.crx: unpassword/*
 	ruby support/crx.rb $@ pem/postize.pem postize
 
-ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
+bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
-ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
+bin/ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
 	ruby support/zip.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_standard
-ctouch_fixed.zip: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
+bin/ctouch_fixed.zip: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
 	ruby support/zip.rb $@ pem/ctouch_fixed.pem ctouch_common ctouch_fixed
-ctouch_external.zip: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
+bin/ctouch_external.zip: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
 	ruby support/zip.rb $@ pem/ctouch_external.pem ctouch_common ctouch_external
-ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
+bin/ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
 	ruby support/zip.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_filesystem
-ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
+bin/ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
 	ruby support/zip.rb $@ pem/ctouch_true.pem ctouch_common ctouch_true
-postize.zip: postize/*
+bin/postize.zip: postize/*
 	ruby support/zip.rb $@ pem/postize.pem postize
-unpassword.zip: unpassword/*
+bin/unpassword.zip: unpassword/*
 	ruby support/zip.rb $@ pem/unpassword.pem unpassword
 
 ctouch_common/ctouch_touch.js: src/ctouch_touch.js
@@ -138,27 +138,27 @@ release:
 	make all
 
 publish:
-	ln -f ctouch.safariextz ctouch-$(VERSION).safariextz
-	#ln -f ctouch_standard.crx ctouch_standard-$(VERSION).crx
-	#ln -f ctouch_fixed.crx ctouch_fixed-$(VERSION).crx
-	#ln -f ctouch_external.crx ctouch_external-$(VERSION).crx
-	ln -f ctouch_browserua.crx ctouch_browserua-$(VERSION).crx
-	ln -f ctouch_filesystem.crx ctouch_filesystem-$(VERSION).crx
-	#ln -f ctouch_true.crx ctouch_true-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_safari-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch-$(VERSION).safariextz
-	#python support/googlecode_upload.py -s ctouch_standard-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_standard-$(VERSION).crx
-	#python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_fixed-$(VERSION).crx
-	#python support/googlecode_upload.py -s ctouch_external-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_external-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_browserua-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_browserua-$(VERSION).crx
-	python support/googlecode_upload.py -s ctouch_filesystem-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_filesystem-$(VERSION).crx
-	#python support/googlecode_upload.py -s ctouch_true-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) ctouch_true-$(VERSION).crx
-	rm -f ctouch-$(VERSION).safariextz
-	#rm -f ctouch_standard-$(VERSION).crx
-	#rm -f ctouch_fixed-$(VERSION).crx
-	#rm -f ctouch_external-$(VERSION).crx
-	rm -f ctouch_browserua-$(VERSION).crx
-	rm -f ctouch_filesystem-$(VERSION).crx
-	#rm -f ctouch_true-$(VERSION).crx
+	ln -f bin/ctouch.safariextz bin/ctouch-$(VERSION).safariextz
+	#ln -f bin/ctouch_standard.crx bin/ctouch_standard-$(VERSION).crx
+	#ln -f bin/ctouch_fixed.crx bin/ctouch_fixed-$(VERSION).crx
+	#ln -f bin/ctouch_external.crx bin/ctouch_external-$(VERSION).crx
+	ln -f bin/ctouch_browserua.crx bin/ctouch_browserua-$(VERSION).crx
+	ln -f bin/ctouch_filesystem.crx bin/ctouch_filesystem-$(VERSION).crx
+	#ln -f bin/ctouch_true.crx bin/ctouch_true-$(VERSION).crx
+	python support/googlecode_upload.py -s ctouch_safari-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch-$(VERSION).safariextz
+	#python support/googlecode_upload.py -s ctouch_standard-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_standard-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_fixed-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_external-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_external-$(VERSION).crx
+	python support/googlecode_upload.py -s ctouch_browserua-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_browserua-$(VERSION).crx
+	python support/googlecode_upload.py -s ctouch_filesystem-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_filesystem-$(VERSION).crx
+	#python support/googlecode_upload.py -s ctouch_true-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_true-$(VERSION).crx
+	rm -f bin/ctouch-$(VERSION).safariextz
+	#rm -f bin/ctouch_standard-$(VERSION).crx
+	#rm -f bin/ctouch_fixed-$(VERSION).crx
+	#rm -f bin/ctouch_external-$(VERSION).crx
+	rm -f bin/ctouch_browserua-$(VERSION).crx
+	rm -f bin/ctouch_filesystem-$(VERSION).crx
+	#rm -f bin/ctouch_true-$(VERSION).crx
 
 #setupwiki:
 #	hg clone http://wiki.ctouch.googlecode.com/hg/ wiki

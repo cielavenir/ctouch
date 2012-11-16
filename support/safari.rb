@@ -30,11 +30,11 @@ def run(argv)
 	}
 	siglen=key.sign(OpenSSL::Digest::SHA1.new,'').size
 
-	system(%Q("#{XAR}" -cf "#{name}.safariextz" "#{name}.safariextension/"))
+	system(%Q("#{XAR}" -cf "bin/#{name}.safariextz" "#{name}.safariextension/"))
 
 	#I'd like perform this kind of signature handling without using exe...
 	sha1=''
-	Open3.popen3(%Q("#{XAR}" --sign -f "#{name}.safariextz" --data-to-sign /dev/stderr --sig-size #{siglen} --cert-loc #{pder} --cert-loc certs/appleca --cert-loc certs/rootca)){|stdin,stdout,stderr|
+	Open3.popen3(%Q("#{XAR}" --sign -f "bin/#{name}.safariextz" --data-to-sign /dev/stderr --sig-size #{siglen} --cert-loc #{pder} --cert-loc certs/appleca --cert-loc certs/rootca)){|stdin,stdout,stderr|
 		sha1=stderr.read
 	}
 	signature=key.private_encrypt(KEY+sha1)
@@ -43,7 +43,7 @@ def run(argv)
 	begin
 		file.write(signature)
 		file.close
-		system(%Q("#{XAR}" --inject-sig "#{file.path}" -f "#{name}.safariextz"))
+		system(%Q("#{XAR}" --inject-sig "#{file.path}" -f "bin/#{name}.safariextz"))
 	ensure
 		file.close!
 	end
