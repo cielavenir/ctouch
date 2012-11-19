@@ -86,3 +86,8 @@
 1.9.0.21113 Updated UA list. Improved Makefile.
 1.9.0.21114 Tweaked UA list. Hide Flash in Android Chrome.
 1.9.0.21117 Updated UA list. Fixed support programs.
+1.9.1.21119
+* Now ctouch_touch.js is embedded into ctouch_bootstrap.js.
+* Touch Event is generated only in Mobile mode.
+* Fixed Google Map compatibility (PC mode).
+* Slightly smaller binary.

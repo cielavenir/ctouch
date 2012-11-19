@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (filesystem)",
 	"description": "You can browse smartphone websites. Configuration is saved to HTML5 filesystem.",
-	"version": "1.9.0.21117",
+	"version": "1.9.1.21119",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",
@@ -23,7 +23,7 @@
 	"content_scripts": [
 	{
 		"all_frames": true,
-		"js": ["ctouch_bootstrap.js","ctouch_touch.js"],
+		"js": ["ctouch_bootstrap.js"],
 		"matches": ["<all_urls>"],
 		"run_at": "document_start"
 	},

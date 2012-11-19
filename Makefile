@@ -26,7 +26,6 @@ CTOUCH_TRUE_FILES := ctouch_true/*
 #this needs to be hard link.
 bin/ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
 	ln -f ctouch_common/ctouch_css.js ctouch.safariextension/
-	ln -f ctouch_common/ctouch_touch.js ctouch.safariextension/
 	ln -f ctouch_browserua/ctouch_bootstrap.js ctouch.safariextension/
 	ruby support/safari.rb ctouch pem/ctouch_safari.pem pem/ctouch_safari.der
 	rm -f ctouch.safariextension/*.js
@@ -74,8 +73,10 @@ bin/postize.zip: postize/*
 bin/unpassword.zip: unpassword/*
 	ruby support/zip.rb $@ pem/unpassword.pem unpassword
 
-ctouch_common/ctouch_touch.js: src/ctouch_touch.js
+src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
+src/ctouch_bootstrap.js: src/ctouch_touch_inner.js
+	@ruby support/ctouch_insert.rb $@ $<
 ctouch_common/ctouch_css.js: src/ctouch_css.js
 	@ruby support/ctouch_inner.rb $< > $@
 

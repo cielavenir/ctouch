@@ -3,11 +3,8 @@ var s=document.createElement('script');
 s.type='text/javascript';
 s.id='ctouch_touch_js';
 s.innerHTML="\
-//ctouch_touch: execute anytime\n\
 (function(){\n\
-//Generating touch event will break Google Map. cTouch (true) will disable touch event if UA is unmodified. \n\
 \n\
-//fix ExGame fillText issue by monkey patch.\n\
 if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){\n\
 	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;\n\
 	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){\n\
@@ -17,7 +14,6 @@ if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){\n\
 	};\n\
 }\n\
 \n\
-//Let's fire element.ontouchstart.\n\
 var rec1=function(o,n,d,e,z){\n\
 	var sent=false;\n\
 	if(n==o||!n)return false;\n\
@@ -27,23 +23,16 @@ var rec1=function(o,n,d,e,z){\n\
 };\n\
 var rec2=function(o,x,y,d,e,z){\n\
 	var sent=false;\n\
-	var n = d.elementFromPoint(x,y); //\n\
 	if(n==o||!n)return false;\n\
 	if(n[z]){n[z](e);sent=true;}\n\
-	var v = n.style.visibility; //\n\
-	n.style.visibility = 'hidden'; //\n\
 	if(rec2(n,x,y,d,e,z)){sent=true;}\n\
-	n.style.visibility=v; //\n\
 	return sent;\n\
 };\n\
 var rec=function(x,y,d,e,z){\n\
 	if(rec1(null,d.elementFromPoint(x,y),d,e,z))return true;\n\
-	//if(rec2(null,x,y,d,e,z))return true;\n\
 	return false;\n\
 };\n\
 \n\
-//Compile touch event.\n\
-//http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html\n\
 var isMouseDown=null;\n\
 var preventDefault=false;\n\
 var touchevent=function(e,type){\n\
@@ -56,20 +45,14 @@ var touchevent=function(e,type){\n\
 	ev.charCode=0;\n\
 	ev.clientX=e.clientX;\n\
 	ev.clientY=e.clientY;\n\
-	//ev.clipboardData\n\
 	ev.ctrlKey=false;\n\
 	ev.currentTarget=ev.currentTarget;\n\
-	//ev.detail\n\
-	//ev.eventPhase\n\
 	ev.keyCode=0;\n\
-	//ev.layerX=e.layerX;\n\
-	//ev.layerY=e.layerY;\n\
 	ev.metaKey=false;\n\
 	ev.offsetX=e.offsetX;\n\
 	ev.offsetY=e.offsetY;\n\
 	ev.pageX=e.pageX;\n\
 	ev.pageY=e.pageY;\n\
-	//ev.preventDefault=e.preventDefault; //function shouldn't be copied.\n\
 	ev.returnValue=e.returnValue;\n\
 	ev.screenX=e.screenX;\n\
 	ev.screenY=e.screenY;\n\
@@ -87,11 +70,8 @@ var touchevent=function(e,type){\n\
 		clientX: e.clientX,\n\
 		clientY: e.clientY,\n\
 		force: 1.0,\n\
-		//identifier:\n\
 		pageX: e.pageX,\n\
 		pageY: e.pageY,\n\
-		//radiusX:\n\
-		//radiusY:\n\
 		screenX: e.screenX,\n\
 		screenY: e.screenY,\n\
 		target: e.target,\n\
@@ -102,27 +82,19 @@ var touchevent=function(e,type){\n\
 	return ev;\n\
 };\n\
 \n\
-//Generate touchevent and fire it. And kills inside mouse events.\n\
 var mouseevent=function(e){\n\
 	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){\n\
-		//if(e.type=='mouseup'||e.type=='click')\n\
 			{isMouseDown=null;preventDefault=false;}\n\
 		return true;\n\
 	}\n\
 	if(e.type=='mousedown'){\n\
-		preventDefault=false; //in case...\n\
 		var ev=touchevent(e,'touchstart');\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
-			//console.log(b);\n\
 			if(!b){\n\
 				preventDefault=true;\n\
-				//since mouse event is already issued,\n\
-				//I need to kill rest events using stopPropagation().\n\
-				//preventDefault() isn't OK.\n\
 				e.stopPropagation();\n\
 			}\n\
-			return true;//b;\n\
 		}else return true;\n\
 	}else if(e.type=='mousemove'){\n\
 		if(isMouseDown){\n\
@@ -133,50 +105,31 @@ var mouseevent=function(e){\n\
 					preventDefault=true;\n\
 					e.stopPropagation();\n\
 				}\n\
-				return true;//b;\n\
 			}else return true;\n\
 		}\n\
 	}else if(e.type=='mouseup'){\n\
 		var ev=touchevent(e,'touchend');\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchend')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
-			//console.log(b);\n\
 			if(!b||preventDefault){\n\
 				preventDefault=true;\n\
 				e.stopPropagation();\n\
 			}\n\
-			return true;//b;\n\
 		}else return true;\n\
 	}else if(e.type=='click'){\n\
 		if(window.click){window.click();preventDefault=false;return true;}\n\
-		//if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'on')){\n\
 			if(preventDefault){\n\
-				//preventDefault=true;\n\
-				//e.stopPropagation();\n\
 			}\n\
 			preventDefault=false;\n\
 			return true;\n\
-		//}else{\n\
-		//	preventDefault=false;\n\
-		//	return true;\n\
-		//}\n\
 	}\n\
 	return true;\n\
 };\n\
 \n\
-//Finally set the event.\n\
-//var useragent=''; //meh, I'll fix after releasing ctouch_true. When? I never know.\n\
-//var platform='none';\n\
-//if(useragent.indexOf('Android')!=-1)platform='Linux armv7l';\n\
-//if(useragent.indexOf('iPhone')!=-1)platform='iPhone';\n\
-//if(useragent.indexOf('iPod')!=-1)platform='iPod';\n\
-//if(useragent.indexOf('iPad')!=-1)platform='iPad';\n\
-//if(platform!='none'){\n\
 	document.addEventListener('mousedown',mouseevent,true);\n\
 	document.addEventListener('mousemove',mouseevent,true);\n\
 	document.addEventListener('mouseup',mouseevent,true);\n\
 	document.addEventListener('click',mouseevent,true);\n\
-//}\n\
 \n\
 var myself = document.getElementById('ctouch_touch_js');\n\
 if(myself)myself.parentNode.removeChild(myself);\n\
