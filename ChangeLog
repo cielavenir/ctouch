@@ -92,3 +92,4 @@
 * Fixed Google Map compatibility (PC mode).
 * Slightly smaller binary.
 1.9.2.21119 Fixed ctouch_inner.rb optimization.
+1.9.3.21120 Fixed hiding Flash.

@@ -171,17 +171,18 @@ if(window.screen.__defineGetter__){\
 }else{\
 	window.screen.width=document.documentElement.clientWidth;\
 	window.screen.height=document.documentElement.clientHeight;\
-	/*window.screen.availHeight = window.screen.height;*/\
-	window.screen.availWidth = window.screen.width;\
-	window.screen.availLeft = 0;\
-	window.screen.availTop = 0;\
+	/*window.screen.availHeight=window.screen.height;*/\
+	window.screen.availWidth=window.screen.width;\
+	window.screen.availLeft=0;\
+	window.screen.availTop=0;\
 }\
 ";
 
 if(vendor=='Apple Computer, Inc.' || useragent.indexOf('Chrome')!=-1 || useragent.indexOf('CrMo')!=-1){ //hide plugins(flash)
 s.innerText += "\
-if(navigator.__defineGetter__)navigator.__defineGetter__('plugins',function(){return undefined;});\
-else navigator.plugins=undefined;\
+PluginArray.prototype.length=0;\
+if(navigator.__defineGetter__)navigator.__defineGetter__('plugins',function(){return PluginArray.prototype;});\
+else navigator.plugins=PluginArray.prototype;\
 ";
 }
 
