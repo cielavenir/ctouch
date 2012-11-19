@@ -17,7 +17,7 @@ while s=gets
 	s.chomp!
 	s.gsub!("\"","'")
 	s.gsub!("\\","\\\\\\") #umm... wtf?
-	unless s=~/\s*\/\// then puts s+"\\n\\" end
+	unless s=~/^\s*(\/\/.*)?$/ then puts s+"\\n\\" end
 end
 
 print <<EOM

@@ -91,3 +91,4 @@
 * Touch Event is generated only in Mobile mode.
 * Fixed Google Map compatibility (PC mode).
 * Slightly smaller binary.
+1.9.2.21119 Fixed ctouch_inner.rb optimization.

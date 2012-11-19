@@ -185,7 +185,6 @@ s.type='text/javascript';
 s.id='ctouch_touch_js';
 s.innerHTML="\
 (function(){\n\
-\n\
 if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){\n\
 	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;\n\
 	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){\n\
@@ -194,7 +193,6 @@ if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){\n\
 		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);\n\
 	};\n\
 }\n\
-\n\
 var rec1=function(o,n,d,e,z){\n\
 	var sent=false;\n\
 	if(n==o||!n)return false;\n\
@@ -204,16 +202,19 @@ var rec1=function(o,n,d,e,z){\n\
 };\n\
 var rec2=function(o,x,y,d,e,z){\n\
 	var sent=false;\n\
+	var n = d.elementFromPoint(x,y); //\n\
 	if(n==o||!n)return false;\n\
 	if(n[z]){n[z](e);sent=true;}\n\
+	var v = n.style.visibility; //\n\
+	n.style.visibility = 'hidden'; //\n\
 	if(rec2(n,x,y,d,e,z)){sent=true;}\n\
+	n.style.visibility=v; //\n\
 	return sent;\n\
 };\n\
 var rec=function(x,y,d,e,z){\n\
 	if(rec1(null,d.elementFromPoint(x,y),d,e,z))return true;\n\
 	return false;\n\
 };\n\
-\n\
 var isMouseDown=null;\n\
 var preventDefault=false;\n\
 var touchevent=function(e,type){\n\
@@ -242,10 +243,8 @@ var touchevent=function(e,type){\n\
 	ev.target=e.target;\n\
 	ev.timeStamp=e.timeStamp;\n\
 	ev.view=e.view;\n\
-\n\
 	ev.rotation=0.0;\n\
 	ev.scale=1.0;\n\
-\n\
 	ev.touches=new Array();\n\
 	ev.touches[0]={\n\
 		clientX: e.clientX,\n\
@@ -262,13 +261,13 @@ var touchevent=function(e,type){\n\
 	if(type=='touchend')isMouseDown=null;\n\
 	return ev;\n\
 };\n\
-\n\
 var mouseevent=function(e){\n\
 	if(e.target.nodeName.toLowerCase()=='object'||e.target.nodeName.toLowerCase()=='embed'){\n\
 			{isMouseDown=null;preventDefault=false;}\n\
 		return true;\n\
 	}\n\
 	if(e.type=='mousedown'){\n\
+		preventDefault=false; //in case...\n\
 		var ev=touchevent(e,'touchstart');\n\
 		if(!e.shiftKey || !rec(e.clientX,e.clientY,e.target.ownerDocument,ev,'ontouchstart')){\n\
 			var b=e.target.dispatchEvent(ev);\n\
@@ -276,6 +275,7 @@ var mouseevent=function(e){\n\
 				preventDefault=true;\n\
 				e.stopPropagation();\n\
 			}\n\
+			return true;//b;\n\
 		}else return true;\n\
 	}else if(e.type=='mousemove'){\n\
 		if(isMouseDown){\n\
@@ -286,6 +286,7 @@ var mouseevent=function(e){\n\
 					preventDefault=true;\n\
 					e.stopPropagation();\n\
 				}\n\
+				return true;//b;\n\
 			}else return true;\n\
 		}\n\
 	}else if(e.type=='mouseup'){\n\
@@ -296,6 +297,7 @@ var mouseevent=function(e){\n\
 				preventDefault=true;\n\
 				e.stopPropagation();\n\
 			}\n\
+			return true;//b;\n\
 		}else return true;\n\
 	}else if(e.type=='click'){\n\
 		if(window.click){window.click();preventDefault=false;return true;}\n\
@@ -306,12 +308,10 @@ var mouseevent=function(e){\n\
 	}\n\
 	return true;\n\
 };\n\
-\n\
 	document.addEventListener('mousedown',mouseevent,true);\n\
 	document.addEventListener('mousemove',mouseevent,true);\n\
 	document.addEventListener('mouseup',mouseevent,true);\n\
 	document.addEventListener('click',mouseevent,true);\n\
-\n\
 var myself = document.getElementById('ctouch_touch_js');\n\
 if(myself)myself.parentNode.removeChild(myself);\n\
 })();\n\

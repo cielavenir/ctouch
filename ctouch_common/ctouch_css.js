@@ -5,6 +5,7 @@ s.id='ctouch_css_js';
 s.innerHTML="\
 (function(){\n\
 var body=document.getElementsByTagName('body');\n\
+if(body&&body[0]){ //lol?\n\
 	if(document.defaultView.getComputedStyle(body[0],'').overflow=='hidden')\n\
 		body[0].style.overflow='scroll';\n\
 	body[0].style.webkitUserSelect='auto';\n\
@@ -17,6 +18,7 @@ if(swiff)for(var i=0;i<swiff.length;i++){\n\
 }\n\
 var scr=document.getElementsByTagName('script');\n\
 if(scr)for(var i=0;i<scr.length;i++){\n\
+	if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel'){\n\
 		for(var j=0;j<scr.length;j++){\n\
 			if(scr[j].innerText.match(/\\.setContainer\\((.+?),/)){\n\
 				var str=RegExp.$1;\n\
