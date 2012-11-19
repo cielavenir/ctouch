@@ -21,7 +21,6 @@
 			<key>Start</key>
 			<array>
 				<string>ctouch_bootstrap.js</string>
-				<string>ctouch_touch.js</string>
 			</array>
 			<key>End</key>
 			<array>
