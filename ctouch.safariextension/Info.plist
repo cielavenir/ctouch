@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>ciel</string>
+	<key>CFBundleDisplayName</key>
+	<string>cTouch (Safari/browserUA)</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.cielavenir.ctouch</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key><string>1.9.3.21121</string>
+	<key>CFBundleVersion</key><string>1.9.3.21121</string>
+	<key>Chrome</key>
+	<dict/>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>ctouch_bootstrap.js</string>
+			</array>
+			<key>End</key>
+			<array>
+				<string>ctouch_css.js</string>
+			</array>
+		</dict>
+		<key>Global Page</key>
+		<string>ctouch_bg.html</string>
+	</dict>
+	<key>Description</key>
+	<string>You can browse smartphone websites. No configuration screens; it depends on Safari's UserAgent.</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://ctouch.googlecode.com/hg/updates.plist</string>
+	<key>Website</key>
+	<string>https://code.google.com/p/ctouch/</string>
+</dict>
+</plist>

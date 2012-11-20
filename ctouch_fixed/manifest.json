@@ -1,0 +1,36 @@
+{
+	"name": "cTouch r2 (config fixed)",
+	"description": "You can browse smartphone websites. No configuration screens; UserAgent is fixed.",
+	"version": "1.9.3.21121",
+	"manifest_version": 2,
+	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["ctouch_bg.js"]
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"content_scripts": [
+	{
+		"all_frames": true,
+		"js": ["ctouch_bootstrap.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_start"
+	},
+	{
+		"all_frames": true,
+		"js": ["ctouch_css.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_end"
+	}
+	],
+	"icons": {
+		"128": "icon128.png",
+		"16": "icon16.png",
+		"32": "icon32.png",
+		"48": "icon48.png"
+	}
+}
