@@ -11,13 +11,20 @@ print <<EOM
 var s=document.createElement('script');
 s.type='text/javascript';
 s.id='#{id}';
-s.innerHTML="\\
+s.innerText="\\
 EOM
 while s=gets
 	s.chomp!
-	s.gsub!("\"","'")
+	#s.gsub!("\"","'")
 	s.gsub!("\\","\\\\\\") #umm... wtf?
-	unless s=~/^\s*(\/\/.*)?$/ then puts s+"\\n\\" end
+	str=s.strip.gsub('://',':@@').split('//')[0]
+	if str
+		str=str.strip.gsub(':@@','://') #fixme
+		if str!='' #put before //
+			#puts str+"\\n\\" #innerHTML
+			puts str+"\\" #innerText
+		end 
+	end
 end
 
 print <<EOM

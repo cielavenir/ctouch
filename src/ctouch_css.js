@@ -36,13 +36,12 @@ if(scr)for(var i=0;i<scr.length;i++){
 }
 //var meta=document.getElementsByTagName('meta');
 //if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}
-/*
-var embed=document.getElementsByTagName('embed');
-if(embed&&embed.length==1){
-	//console.log(embed);
-	var parent=embed[0].parentNode;
-	if(parent.tagName=='DIV')parent.style.height='100%';
-}*/
+//var embed=document.getElementsByTagName('embed'); //removed: interfers with YouTube (PC)
+//if(embed&&embed.length==1){
+//	//console.log(embed);
+//	var parent=embed[0].parentNode;
+//	if(parent.tagName=='DIV')parent.style.height='100%';
+//}
 var myself = document.getElementById('ctouch_css_js');
 myself.parentNode.removeChild(myself);
 })();
