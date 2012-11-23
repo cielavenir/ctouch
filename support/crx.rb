@@ -66,4 +66,4 @@ def run(argv)
 	}
 end
 
-run(ARGV)
+run(ARGV) if __FILE__==$0

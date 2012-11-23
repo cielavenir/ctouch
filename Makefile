@@ -1,4 +1,5 @@
-VERSION := $(shell ruby -Isupport -rgenversion -e getver)
+#VERSION := $(shell ruby -Isupport -rgenversion -e getver)
+VERSION := $(shell ruby support/genversion.rb)
 
 SAFARI := bin/ctouch.safariextz
 CRX := bin/ctouch_standard.crx bin/ctouch_fixed.crx bin/ctouch_external.crx bin/ctouch_browserua.crx bin/ctouch_filesystem.crx
@@ -55,6 +56,8 @@ bin/postize.crx: postize/*
 	ruby support/crx.rb $@ pem/postize.pem postize
 bin/unpassword.crx: unpassword/*
 	ruby support/crx.rb $@ pem/postize.pem postize
+bin/linksource.crx: linksource/*
+	ruby support/crx.rb $@ pem/linksource.pem linksource
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -72,6 +75,8 @@ bin/postize.zip: postize/*
 	ruby support/zip.rb $@ pem/postize.pem postize
 bin/unpassword.zip: unpassword/*
 	ruby support/zip.rb $@ pem/unpassword.pem unpassword
+bin/linksource.zip: linksource/*
+	ruby support/zip.rb $@ pem/linksource.pem linksource
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
