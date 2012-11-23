@@ -25,9 +25,16 @@ def run(argv)
 	pkey=argv.shift
 	pder=argv.shift
 	key=''
-	open(pkey,'rb'){|f|
-		key=OpenSSL::PKey::RSA.new(f)
-	}
+	begin
+		open(pkey,'rb'){|f|
+			key=OpenSSL::PKey::RSA.new(f)
+		}
+	rescue
+		STDERR.puts pkey+' not found.'
+		STDERR.puts 'Generated key will not be accepted by Safari.'
+		STDERR.puts 'If you have not, you need to register Safari Development Program, which is free.'
+		exit 1
+	end
 	siglen=key.sign(OpenSSL::Digest::SHA1.new,'').size
 
 	system(%Q("#{XAR}" -cf "bin/#{name}.safariextz" "#{name}.safariextension/"))
@@ -60,4 +67,4 @@ def run(argv)
 
 end
 
-run(ARGV)
+run(ARGV) if __FILE__==$0
