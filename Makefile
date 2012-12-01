@@ -17,6 +17,7 @@ zip: $(ZIP)
 
 CTOUCH_SAFARI := ctouch.safariextension/Info.plist
 CTOUCH_COMMON := ctouch_common/*
+CTOUCH_COMMON2 := ctouch_common2/*
 CTOUCH_STANDARD_FILES := ctouch_standard/*
 CTOUCH_FIXED_FILES := ctouch_fixed/*
 CTOUCH_EXTERNAL_FILES := ctouch_external/*
@@ -42,16 +43,16 @@ bin/postize.safariextz: postize/* postize.safariextension/*
 	
 bin/ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
-bin/ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
-	ruby support/crx.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_standard
+bin/ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_STANDARD_FILES)
+	ruby support/crx.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_common2 ctouch_standard
 bin/ctouch_fixed.crx: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
 	ruby support/crx.rb $@ pem/ctouch_fixed.pem ctouch_common ctouch_fixed
-bin/ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
-	ruby support/crx.rb $@ pem/ctouch_external.pem ctouch_common ctouch_external
-bin/ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
-	ruby support/crx.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_filesystem
-bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
-	ruby support/crx.rb $@ pem/ctouch_true.pem ctouch_common ctouch_true
+bin/ctouch_external.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_EXTERNAL_FILES)
+	ruby support/crx.rb $@ pem/ctouch_external.pem ctouch_common ctouch_common2 ctouch_external
+bin/ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTEM_FILES)
+	ruby support/crx.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
+bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
+	ruby support/crx.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
 bin/postize.crx: postize/*
 	ruby support/crx.rb $@ pem/postize.pem postize
 bin/unpassword.crx: unpassword/*
@@ -61,16 +62,16 @@ bin/linksource.crx: linksource/*
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
-bin/ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_STANDARD_FILES)
-	ruby support/zip.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_standard
+bin/ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_STANDARD_FILES)
+	ruby support/zip.rb $@ pem/ctouch_standard.pem ctouch_common ctouch_common2 ctouch_standard
 bin/ctouch_fixed.zip: $(CTOUCH_COMMON) $(CTOUCH_FIXED_FILES)
 	ruby support/zip.rb $@ pem/ctouch_fixed.pem ctouch_common ctouch_fixed
-bin/ctouch_external.zip: $(CTOUCH_COMMON) $(CTOUCH_EXTERNAL_FILES)
-	ruby support/zip.rb $@ pem/ctouch_external.pem ctouch_common ctouch_external
-bin/ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_FILESYSTEM_FILES)
-	ruby support/zip.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_filesystem
-bin/ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_TRUE_FILES)
-	ruby support/zip.rb $@ pem/ctouch_true.pem ctouch_common ctouch_true
+bin/ctouch_external.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_EXTERNAL_FILES)
+	ruby support/zip.rb $@ pem/ctouch_external.pem ctouch_common ctouch_common2 ctouch_external
+bin/ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTEM_FILES)
+	ruby support/zip.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
+bin/ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
+	ruby support/zip.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
 bin/postize.zip: postize/*
 	ruby support/zip.rb $@ pem/postize.pem postize
 bin/unpassword.zip: unpassword/*
@@ -98,13 +99,7 @@ ctouch_filesystem/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 ctouch_true/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 
-ctouch_standard/ctouch_bg.js: src/ctouch_ualist.json
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_external/ctouch_bg.js: src/ctouch_ualist.json
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_filesystem/ctouch_bg.js: src/ctouch_ualist.json
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_true/ctouch_bg.js: src/ctouch_ualist.json
+ctouch_common2/ctouch_bg.js: src/ctouch_ualist.json
 	@ruby support/ctouch_insert.rb $@ $<
 
 ctouch_standard/ctouch_option.js: src/ctouch_option.js

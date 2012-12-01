@@ -1,4 +1,4 @@
-//cTouch popup core: var saveConfig is defined.
+//cTouch popup core: var saveConfig/title is defined.
 var config=JSON.parse(localStorage['config']);
 var initialize=function(){
 	var table=document.getElementById('UA');
@@ -56,6 +56,14 @@ var initialize=function(){
 };
 
 window.onload=function(){
+	document.getElementById('title').innerText=title;
+	document.getElementById('extensions_page').innerText=title;
+	var flash_plugin=null;
+	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
+	if(flash)flash_plugin=flash.enabledPlugin;
+	if(!flash_plugin)document.getElementById('flash_state').innerText='Flash is not installed.';
+	if(flash_plugin)document.getElementById('flash_state').innerText=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
+
 	initialize();
 
 	if(config.enable_imitation){document.getElementById('enable_imitation').checked=true;}
@@ -69,6 +77,9 @@ window.onload=function(){
 
 	document.getElementById('option_page').onclick=function(){
 		window.open(chrome.extension.getURL('ctouch_option.html'));
+	};
+	document.getElementById('plugins_page').onclick=function(){
+		window.open('chrome://plugins');
 	};
 	//easter for debug
 	document.getElementById('popup_page').onclick=function(){
