@@ -15,9 +15,10 @@ var writeFile=function(file, data){
 	});
 };
 var saveConfig=function(){writeFile('ctouch_filesystem.json',localStorage['config']);}
+var title='cTouch r2 (filesystem)';
 
 ///__BOUNDARY__///
-//cTouch option core: var saveConfig is defined.
+//cTouch option core: var saveConfig/title is defined.
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -82,6 +83,13 @@ window.onload=function(){
 		$("tbody").sortable();
 		//$("tbody").disableSelection();
 	});
+	document.getElementById('title').innerText=title;
+	document.getElementById('extensions_page').innerText=title;
+	var flash_plugin=null;
+	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
+	if(flash)flash_plugin=flash.enabledPlugin;
+	if(!flash_plugin)document.getElementById('flash_state').innerText='Flash is not installed.';
+	if(flash_plugin)document.getElementById('flash_state').innerText=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
 
 	initialize();
 
@@ -164,6 +172,10 @@ window.onload=function(){
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
 		saveConfig();
+	};
+
+	document.getElementById('plugins_page').onclick=function(){
+		window.open('chrome://plugins');
 	};
 
 	//easter for debug
