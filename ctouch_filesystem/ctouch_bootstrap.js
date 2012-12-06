@@ -205,14 +205,6 @@ s.type='text/javascript';
 s.id='ctouch_touch_js';
 s.innerText="\
 (function(){\
-if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){\
-CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;\
-CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){\
-l = l || 0;\
-if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);\
-else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);\
-};\
-}\
 var rec1=function(o,n,d,e,z){\
 var sent=false;\
 if(n==o||!n)return false;\

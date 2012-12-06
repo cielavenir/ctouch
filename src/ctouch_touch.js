@@ -3,14 +3,15 @@
 //Generating touch event will break Google Map. cTouch (true) will disable touch event if UA is unmodified. 
 
 //fix ExGame fillText issue by monkey patch.
-if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
-	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;
-	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
-		l = l || 0;
-		if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);
-		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);
-	};
-}
+//This code is not required anymore. I thank @__gfx__ to have accepted my bug report (as Android Chrome).
+//if(!CanvasRenderingContext2D.prototype.__ctouch_fillText){
+//	CanvasRenderingContext2D.prototype.__ctouch_fillText=CanvasRenderingContext2D.prototype.fillText;
+//	CanvasRenderingContext2D.prototype.fillText=function(s,x,y,l){
+//		l = l || 0;
+//		if(l<10)CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y);
+//		else CanvasRenderingContext2D.prototype.__ctouch_fillText.call(this,s,x,y,l);
+//	};
+//}
 
 //Let's fire element.ontouchstart.
 var rec1=function(o,n,d,e,z){
