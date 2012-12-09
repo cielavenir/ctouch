@@ -1,20 +1,3 @@
-var postFile=function(url, passData){
-	if(window.XMLHttpRequest){
-		AJAX=new XMLHttpRequest();
-	}else{
-		//AJAX=new ActiveXObject('Microsoft.XMLHTTP'); //ignore IE
-	}
-	if(!AJAX)return '';
-	AJAX.open('POST', url, false);
-	AJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	AJAX.send(passData);
-	return AJAX.responseText;
-};
-var saveConfig=function(){postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));}
-var title='cTouch r2 (external)';
-
-///__BOUNDARY__///
-//cTouch popup core: var saveConfig/title is defined.
 var config=JSON.parse(localStorage['config']);
 var initialize=function(){
 	var table=document.getElementById('UA');
@@ -72,8 +55,8 @@ var initialize=function(){
 };
 
 window.onload=function(){
-	document.getElementById('title').innerText=title;
-	document.getElementById('extensions_page').innerText=title;
+	document.getElementById('title').innerText=chrome.app.getDetails().name;
+	document.getElementById('extensions_page').innerText=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
@@ -92,18 +75,16 @@ window.onload=function(){
 	};
 
 	document.getElementById('option_page').onclick=function(){
-		window.open(chrome.extension.getURL('ctouch_option.html'));
+		window.open(chrome.extension.getURL(chrome.app.getDetails().options_page));
 	};
 	document.getElementById('plugins_page').onclick=function(){
 		window.open('chrome://plugins');
 	};
 	//easter for debug
 	document.getElementById('popup_page').onclick=function(){
-		window.open(chrome.extension.getURL('ctouch_popup.html'));
+		window.open(chrome.extension.getURL(chrome.app.getDetails().browser_action.default_popup));
 	};
 	document.getElementById('extensions_page').onclick=function(){
 		window.open('chrome://extensions');
 	};
 };
-///__BOUNDARY__///
-;

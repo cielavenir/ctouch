@@ -1,24 +1,3 @@
-var writeFile=function(file, data){
-	window.webkitStorageInfo.requestQuota(PERSISTENT,1024*1024,function(grantedBytes){
-		window.webkitRequestFileSystem(PERSISTENT,grantedBytes,function(fs){
-			fs.root.getFile(file, {create: true}, function(fileEntry){
-				fileEntry.createWriter(function(fileWriter){
-					fileWriter.onwriteend=function(e){
-						fileWriter.onwriteend=null;
-						var blob = new Blob([data], {type: 'application/json'});
-						fileWriter.write(blob);
-					}
-					fileWriter.truncate(0);
-				});
-			});
-		});
-	});
-};
-var saveConfig=function(){writeFile('ctouch_filesystem.json',localStorage['config']);}
-var title='cTouch r2 (filesystem)';
-
-///__BOUNDARY__///
-//cTouch option core: var saveConfig/title is defined.
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -83,8 +62,8 @@ window.onload=function(){
 		$("tbody").sortable();
 		//$("tbody").disableSelection();
 	});
-	document.getElementById('title').innerText=title;
-	document.getElementById('extensions_page').innerText=title;
+	document.getElementById('title').innerText=chrome.app.getDetails().name;
+	document.getElementById('extensions_page').innerText=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
@@ -180,11 +159,9 @@ window.onload=function(){
 
 	//easter for debug
 	document.getElementById('popup_page').onclick=function(){
-		window.open(chrome.extension.getURL('ctouch_popup.html'));
+		window.open(chrome.extension.getURL(chrome.app.getDetails().browser_action.default_popup));
 	};
 	document.getElementById('extensions_page').onclick=function(){
 		window.open('chrome://extensions');
 	};
 };
-///__BOUNDARY__///
-;
