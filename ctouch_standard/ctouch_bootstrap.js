@@ -146,6 +146,7 @@ if(navigator.__defineGetter__){\
 	navigator.__defineGetter__('platform',function(){return '"+platform+"';});\
 	navigator.__defineGetter__('appCodeName',function(){return '"+appCodeName+"';});\
 	navigator.__defineGetter__('appVersion',function(){return '"+appVersion+"';});\
+	if(navigator.__lookupGetter__)navigator.__proto__.__lookupGetter__=function __lookupGetter__(){return undefined;};\
 }else{\
 	navigator.userAgent = '"+useragent+"';\
 	navigator.vendor = '"+vendor+"';\
@@ -160,6 +161,7 @@ if(window.screen.__defineGetter__){\
 	window.screen.__defineGetter__('availWidth',function(){return window.screen.width;});\
 	window.screen.__defineGetter__('availLeft',function(){return 0;});\
 	window.screen.__defineGetter__('availTop',function(){return 0;});\
+	if(window.screen.__lookupGetter__)window.screen.__proto__.__lookupGetter__=function __lookupGetter__(){return undefined;};\
 }else{\
 	window.screen.width=document.documentElement.clientWidth;\
 	window.screen.height=document.documentElement.clientHeight;\

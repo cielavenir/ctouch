@@ -95,5 +95,7 @@
 1.9.3.21120 Fixed hiding Flash.
 1.9.3.21121 Optimized ctouch_inner.rb.
 1.9.4.21201 Added easy Flash detection (for versions with GUI).
-1.9.5.212xx
+2.0.0.21209
+* Optimized Makefile.
 * Eliminated fillText workaround (ExGame bug).
+* Fixed __lookupGetter__ handling.

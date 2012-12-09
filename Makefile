@@ -102,24 +102,6 @@ ctouch_true/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 ctouch_common2/ctouch_bg.js: src/ctouch_ualist.json
 	@ruby support/ctouch_insert.rb $@ $<
 
-ctouch_standard/ctouch_option.js: src/ctouch_option.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_external/ctouch_option.js: src/ctouch_option.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_filesystem/ctouch_option.js: src/ctouch_option.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_true/ctouch_option.js: src/ctouch_option.js
-	@ruby support/ctouch_insert.rb $@ $<
-
-ctouch_standard/ctouch_popup.js: src/ctouch_popup.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_external/ctouch_popup.js: src/ctouch_popup.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_filesystem/ctouch_popup.js: src/ctouch_popup.js
-	@ruby support/ctouch_insert.rb $@ $<
-ctouch_true/ctouch_popup.js: src/ctouch_popup.js
-	@ruby support/ctouch_insert.rb $@ $<
-
 clean:
 	rm -f $(SAFARI) $(CRX) $(ZIP)
 
@@ -161,5 +143,5 @@ publish:
 	rm -f bin/ctouch_filesystem-$(VERSION).crx
 	#rm -f bin/ctouch_true-$(VERSION).crx
 
-#setupwiki:
-#	hg clone http://wiki.ctouch.googlecode.com/hg/ wiki
+setupwiki:
+	hg clone --insecure https://wiki.ctouch.googlecode.com/hg/ wiki
