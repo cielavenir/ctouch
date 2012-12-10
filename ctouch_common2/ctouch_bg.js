@@ -73,27 +73,24 @@ window.onload=function(){
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
 	function(details){
-		//var headerDone = false;
-		for(var i = 0; i < details.requestHeaders.length; i++){
-			//if(headerDone)break;
-			if(details.requestHeaders[i].name == 'User-Agent'){
+		var headers=details.requestHeaders;
+		for(var i=0;i<headers.length;i++){
+			if(headers[i].name=='User-Agent'){
 				var config=JSON.parse(localStorage['config']);
-				details.requestHeaders[i].value = (config.preferedUA==-1)?navigator.userAgent:config.UA[config.preferedUA][1];
-				if(details.requestHeaders[i].value.indexOf('Chrome')==-1&&details.requestHeaders[i].value.indexOf('CrMo')==-1){
-					for(var j = 0; j < details.requestHeaders.length; j++){
-						if(details.requestHeaders[j].name == 'Accept-Encoding'){
-							var a=details.requestHeaders[j].value.replace(/ /g,'').split(',');
-							for(var k = a.length-1; k >= 0; k--)if(a[k].substr(0,4) == 'sdch')a.splice(k,1);
-							details.requestHeaders[j].value = a.join(',');
+				if(config.preferedUA!=-1)headers[i].value=config.UA[config.preferedUA][1];
+				if(headers[i].value.indexOf('Chrome')==-1&&headers[i].value.indexOf('CrMo')==-1){
+					for(var j=0;j<headers.length;j++){
+						if(headers[j].name == 'Accept-Encoding'){
+							var a=headers[j].value.replace(/ /g,'').split(',');
+							for(var k=a.length-1;k>=0;k--)if(a[k].substr(0,4)=='sdch')a.splice(k,1);
+							headers[j].value = a.join(',');
 							break;
 						}
 					}
 				}
-				break;
-				//headerDone = true;
+				return {requestHeaders: headers}; //should return always
 			}
 		}
-		return {requestHeaders: details.requestHeaders};
 	},
 	{
 		urls: ['<all_urls>'],

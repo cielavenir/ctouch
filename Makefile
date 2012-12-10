@@ -56,9 +56,11 @@ bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
 bin/postize.crx: postize/*
 	ruby support/crx.rb $@ pem/postize.pem postize
 bin/unpassword.crx: unpassword/*
-	ruby support/crx.rb $@ pem/postize.pem postize
+	ruby support/crx.rb $@ pem/postize.pem unpassword
 bin/linksource.crx: linksource/*
 	ruby support/crx.rb $@ pem/linksource.pem linksource
+bin/undisposition.crx: undisposition/*
+	ruby support/crx.rb $@ pem/undisposition.pem undisposition
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -78,6 +80,8 @@ bin/unpassword.zip: unpassword/*
 	ruby support/zip.rb $@ pem/unpassword.pem unpassword
 bin/linksource.zip: linksource/*
 	ruby support/zip.rb $@ pem/linksource.pem linksource
+bin/undisposition.zip: undisposition/*
+	ruby support/zip.rb $@ pem/undisposition.pem undisposition
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
