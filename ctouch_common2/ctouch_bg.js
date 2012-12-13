@@ -66,6 +66,7 @@ window.onload=function(){
 	"generate_touch": true
 }
 ///__BOUNDARY__///
+	;
 	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 		localStorage['config']=JSON.stringify(config,null,' ');
 	}
