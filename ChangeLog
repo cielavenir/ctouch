@@ -104,3 +104,4 @@
 * Added a new option to disable generating touch events.
 * Introduced new cTouch external daemon, which works as Chrome application.
 2.0.3.21213 Introduced config_version mechanism.
+2.0.4.21214 Introduced config migration.
