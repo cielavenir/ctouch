@@ -69,9 +69,14 @@ window.onload=function(){
 	;
 	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 		localStorage['config']=JSON.stringify(config,null,' ');
+		saveConfig();
 	}
-	if((JSON.parse(localStorage['config']).config_version||0) < config.config_version){
-		localStorage['config']=JSON.stringify(config,null,' ');
+	var current_config=JSON.parse(localStorage['config']);
+	if((current_config.config_version||0) < config.config_version){
+		current_config.config_version=config.config_version;
+		if(typeof current_config.generate_touch === 'undefined')current_config.generate_touch=true;
+		localStorage['config']=JSON.stringify(current_config,null,' ');
+		saveConfig();
 	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
 };

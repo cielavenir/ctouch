@@ -67,6 +67,6 @@ chrome.socket.create('tcp', {}, function(e){
 
 window.onload=function(){
 	chrome.storage.local.get('config',function(e){
-		if(typeof(e)=='undefined')chrome.storage.local.set({'config':'{}'});
+		if(typeof e === 'undefined')chrome.storage.local.set({'config':'{}'});
 	});
 };
