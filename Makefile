@@ -53,6 +53,9 @@ bin/ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTE
 	ruby support/crx.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
 bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
+
+bin/ctouch_chromesocket.crx: ctouch_chromesocket/*
+	ruby support/crx.rb $@ pem/ctouch_chromesocket.pem ctouch_chromesocket
 bin/postize.crx: postize/*
 	ruby support/crx.rb $@ pem/postize.pem postize
 bin/unpassword.crx: unpassword/*
@@ -61,6 +64,7 @@ bin/linksource.crx: linksource/*
 	ruby support/crx.rb $@ pem/linksource.pem linksource
 bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
+
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -74,6 +78,9 @@ bin/ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTE
 	ruby support/zip.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
 bin/ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
 	ruby support/zip.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
+
+bin/ctouch_chromesocket.zip: ctouch_chromesocket/*
+	ruby support/zip.rb $@ pem/ctouch_chromesocket.pem ctouch_chromesocket
 bin/postize.zip: postize/*
 	ruby support/zip.rb $@ pem/postize.pem postize
 bin/unpassword.zip: unpassword/*

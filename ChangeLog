@@ -99,3 +99,7 @@
 * Optimized Makefile.
 * Eliminated fillText workaround (ExGame bug).
 * Fixed __lookupGetter__ handling.
+2.0.1.21213
+* Optimized Background page.
+* Added a new option to disable generating touch events.
+* Introduced new cTouch external daemon, which works as Chrome application.

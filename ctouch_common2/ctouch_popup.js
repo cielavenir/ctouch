@@ -65,11 +65,17 @@ window.onload=function(){
 
 	initialize();
 
-	if(config.enable_imitation){document.getElementById('enable_imitation').checked=true;}
 	document.getElementById('ctouch_ua_'+config.preferedUA).checked=true;
 
+	if(config.enable_imitation){document.getElementById('enable_imitation').checked=true;}
 	document.getElementById('enable_imitation').onclick=function(){
 		config.enable_imitation=!config.enable_imitation;
+		localStorage['config']=JSON.stringify(config,null,' ');
+		saveConfig();
+	};
+	if(config.generate_touch){document.getElementById('generate_touch').checked=true;}
+	document.getElementById('generate_touch').onclick=function(){
+		config.generate_touch=!config.generate_touch;
 		localStorage['config']=JSON.stringify(config,null,' ');
 		saveConfig();
 	};
