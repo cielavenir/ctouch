@@ -60,7 +60,7 @@ window.onload=function(){
 		["iPad (iOS 6.0.1)",
 			"Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25"]
 	],
-	"config_version": 2,
+	"config_version": 1,
 	"preferedUA": -1,
 	"enable_imitation": true,
 	"generate_touch": true
@@ -70,7 +70,7 @@ window.onload=function(){
 	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 		localStorage['config']=JSON.stringify(config,null,' ');
 	}
-	if(JSON.parse(localStorage['config']).config_version < config.config_version){
+	if((JSON.parse(localStorage['config']).config_version||0) < config.config_version){
 		localStorage['config']=JSON.stringify(config,null,' ');
 	}	
 	localStorage['config_default']=JSON.stringify(config,null,' ');
