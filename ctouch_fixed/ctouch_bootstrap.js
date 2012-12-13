@@ -22,6 +22,8 @@ var init=function(){
 	//if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
 //var useragent=ctouch_option.UA[ctouch_option.preferedUA];
 var useragent='Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus S Build/GWK74) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
+var enable_imitation=true;
+var generate_touch=true;
 ///__BOUNDARY__///
 //cTouch bootstrap core: var useragent/enable_imitation/generate_touch is defined.
 if(enable_imitation){

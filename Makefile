@@ -65,7 +65,6 @@ bin/linksource.crx: linksource/*
 bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
 
-
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
 bin/ctouch_standard.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_STANDARD_FILES)
