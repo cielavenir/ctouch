@@ -1,0 +1,16 @@
+{
+	"manifest_version": 2,
+	"name": "cTouch external daemon",
+	"description": "required for cTouch (external)",
+	"version": "0.0.1",
+	"app": {
+		"background": {
+			"scripts": ["ctouch_chromesocket.js"]
+		}
+	},
+	"permissions": [
+		"storage",
+		"experimental",
+		{ "socket": [ "tcp-listen" ] }
+	]
+}
