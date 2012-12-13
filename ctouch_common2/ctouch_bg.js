@@ -72,7 +72,7 @@ window.onload=function(){
 	}
 	if((JSON.parse(localStorage['config']).config_version||0) < config.config_version){
 		localStorage['config']=JSON.stringify(config,null,' ');
-	}	
+	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
 };
 
