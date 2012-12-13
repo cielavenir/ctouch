@@ -1,0 +1,14 @@
+{
+	"name": "SGFaker",
+	"description": "SGFaker",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"content_scripts": [
+	{
+		"all_frames": true,
+		"js": ["sgfaker_bootstrap.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_start"
+	}
+	]
+}

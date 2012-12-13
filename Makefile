@@ -64,6 +64,8 @@ bin/linksource.crx: linksource/*
 	ruby support/crx.rb $@ pem/linksource.pem linksource
 bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
+bin/sgfaker.crx: sgfaker/*
+	ruby support/crx.rb $@ pem/sgfaker.pem sgfaker
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
