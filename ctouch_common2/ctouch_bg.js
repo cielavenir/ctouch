@@ -89,9 +89,10 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 						}
 					}
 				}
-				return {requestHeaders: headers}; //should return always
+				break;
 			}
 		}
+		return {requestHeaders: headers};
 	},
 	{
 		urls: ['<all_urls>'],
