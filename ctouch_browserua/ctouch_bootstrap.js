@@ -52,9 +52,10 @@ if(useragent.indexOf('iPad')!=-1){
 }
 if(platform=='none')return; //not smartphone
 
+var tag = 'ctouch_imitation_js';
 var s = document.createElement('script');
 s.type = 'text/javascript';
-s.id = 'ctouch_imitation_js';
+s.id = tag;
 s.innerText = '(function(){';
 
 s.innerText += '\
@@ -185,10 +186,61 @@ else navigator.plugins=PluginArray.prototype;\
 }
 
 s.innerText += "\
-var myself = document.getElementById('ctouch_imitation_js');\
+var myself = document.getElementById('"+tag+"');\
 myself.parentNode.removeChild(myself);\
 })();";
 
+document.documentElement.appendChild(s);
+
+//OK. Now let's inject generated iframe.
+var script=s.innerText;
+var randomname='1234_iframe_patch'
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.id = 'ctouch_element_js';
+s.innerText = "(function(){\
+if(!HTMLDocument.prototype.createElement_"+randomname+"){\
+HTMLDocument.prototype.createElement_"+randomname+"=HTMLDocument.prototype.createElement;\
+HTMLDocument.prototype.createElement=function(tag){\
+	var d=this.createElement_"+randomname+"(tag);\
+	if(tag.toLowerCase()=='iframe'){\
+		var s = this.createElement('script');\
+		s.type = 'text/javascript';\
+		s.id = '"+tag+"';\
+		s.innerText=\""+script+"\";\
+		d.appendChild(s);\
+	}\
+	return d;\
+};\
+HTMLElement.prototype.appendChild_"+randomname+"=HTMLElement.prototype.appendChild;\
+HTMLElement.prototype.appendChild=function(child){\
+	this.appendChild_"+randomname+"(child);\
+	if(child.contentDocument){\
+		var s = child.contentDocument.createElement('script');\
+		s.type = 'text/javascript';\
+		s.id = '"+tag+"';\
+		s.innerText=\""+script+"\";\
+		child.contentDocument.documentElement.appendChild(s);\
+	}\
+	return child;\
+};\
+HTMLElement.prototype.insertBefore_"+randomname+"=HTMLElement.prototype.insertBefore;\
+HTMLElement.prototype.insertBefore=function(child,ref){\
+	this.insertBefore_"+randomname+"(child,ref);\
+	if(child.contentDocument){\
+		var s = child.contentDocument.createElement('script');\
+		s.type = 'text/javascript';\
+		s.id = '"+tag+"';\
+		s.innerText=\""+script+"\";\
+		child.contentDocument.documentElement.appendChild(s);\
+	}\
+	return child;\
+};\
+}\
+var myself = document.getElementById('ctouch_element_js');\
+if(myself)myself.parentNode.removeChild(myself);\
+})();\
+";
 document.documentElement.appendChild(s);
 }
 
