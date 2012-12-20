@@ -160,8 +160,8 @@ if(navigator.__defineGetter__){\
 	navigator.appVersion = '"+appVersion+"';\
 }\
 if(window.screen.__defineGetter__){\
-	window.screen.__defineGetter__('width',function(){return document.documentElement.clientWidth;});\
-	window.screen.__defineGetter__('height',function(){return document.documentElement.clientHeight;});\
+	window.screen.__defineGetter__('width',function(){return window.outerWidth;});\
+	window.screen.__defineGetter__('height',function(){return window.outerHeight;});\
 	/*window.screen.__defineGetter__('availHeight',function(){return window.screen.height;});*/\
 	window.screen.__defineGetter__('availWidth',function(){return window.screen.width;});\
 	window.screen.__defineGetter__('availLeft',function(){return 0;});\
