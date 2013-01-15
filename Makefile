@@ -4,7 +4,7 @@ VERSION := $(shell ruby support/genversion.rb)
 SAFARI := bin/ctouch.safariextz
 CRX := bin/ctouch_standard.crx bin/ctouch_fixed.crx bin/ctouch_external.crx bin/ctouch_browserua.crx bin/ctouch_filesystem.crx
 #bin/ctouch_true.crx
-ZIP := bin/ctouch_browserua.zip bin/ctouch_filesystem.zip
+ZIP := bin/ctouch_browserua.zip bin/ctouch_filesystem.zip bin/ctouch_external.zip
 #ZIP := bin/ctouch_fixed.zip bin/ctouch_external.zip bin/ctouch_browserua.zip bin/ctouch_filesystem.zip
 #bin/ctouch_true.zip
 
