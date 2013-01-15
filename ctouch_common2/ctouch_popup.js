@@ -63,6 +63,9 @@ window.onload=function(){
 	if(!flash_plugin)document.getElementById('flash_state').innerText='Flash is not installed.';
 	if(flash_plugin)document.getElementById('flash_state').innerText=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
 
+	if(chrome.app.getDetails().permissions.indexOf('management')>=0)
+		document.getElementById('external_daemon').innerHTML='<input type="checkbox" id="external_daemon_chrome"><label for="external_daemon_chrome">Use External Daemon Chrome</label><br><input type="text" id="external_daemon_id" size="40" value="'+config.external_daemon_id+'"><br>';
+
 	initialize();
 
 	document.getElementById('ctouch_ua_'+config.preferedUA).checked=true;
@@ -76,6 +79,14 @@ window.onload=function(){
 	if(config.generate_touch){document.getElementById('generate_touch').checked=true;}
 	document.getElementById('generate_touch').onclick=function(){
 		config.generate_touch=!config.generate_touch;
+		localStorage['config']=JSON.stringify(config,null,' ');
+		saveConfig();
+	};
+	if(config.external_daemon_chrome){document.getElementById('external_daemon_chrome').checked=true;}
+	document.getElementById('external_daemon_chrome').onclick=function(){
+		config.external_daemon_chrome=!config.external_daemon_chrome;
+		config.external_daemon_id=document.getElementById('external_daemon_id').value;
+		if(config.external_daemon_chrome)chrome.management.launchApp(config.external_daemon_id);
 		localStorage['config']=JSON.stringify(config,null,' ');
 		saveConfig();
 	};

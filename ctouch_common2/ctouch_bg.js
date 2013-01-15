@@ -58,12 +58,18 @@ window.onload=function(){
 		["iPod Touch (iOS 6.0.1)",
 			"Mozilla/5.0 (iPod; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25"],
 		["iPad (iOS 6.0.1)",
-			"Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25"]
+			"Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25"],
+		["Android Firefox Mobile 19.0",
+			"Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0"],
+		["Android Firefox Tablet 19.0",
+			"Mozilla/5.0 (Android; Tablet; rv:19.0) Gecko/19.0 Firefox/19.0"]
 	],
-	"config_version": 1,
+	"config_version": 2,
 	"preferedUA": -1,
 	"enable_imitation": true,
-	"generate_touch": true
+	"generate_touch": true,
+	"external_daemon_chrome": false,
+	"external_daemon_id": "abmbnealdnngelmgbiiblpcpbapmmlkd"
 }
 ///__BOUNDARY__///
 	;
@@ -75,10 +81,14 @@ window.onload=function(){
 	if((current_config.config_version||0) < config.config_version){
 		current_config.config_version=config.config_version;
 		if(typeof current_config.generate_touch === 'undefined')current_config.generate_touch=true;
+		if(typeof current_config.external_daemon_chrome === 'undefined')current_config.external_daemon_chrome=false;
+		if(typeof current_config.external_daemon_id === 'undefined')current_config.external_daemon_id='abmbnealdnngelmgbiiblpcpbapmmlkd';
+
 		localStorage['config']=JSON.stringify(current_config,null,' ');
 		saveConfig();
 	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
+	if(chrome.app.getDetails().permissions.indexOf('management')>=0 && current_config.external_daemon_chrome)chrome.management.launchApp(current_config.external_daemon_id.trim());
 };
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
