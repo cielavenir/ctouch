@@ -82,6 +82,7 @@ window.onload=function(){
 		localStorage['config']=JSON.stringify(config,null,' ');
 		saveConfig();
 	};
+	if(chrome.app.getDetails().permissions.indexOf('management')>=0){
 	if(config.external_daemon_chrome){document.getElementById('external_daemon_chrome').checked=true;}
 	document.getElementById('external_daemon_chrome').onclick=function(){
 		config.external_daemon_chrome=!config.external_daemon_chrome;
@@ -90,6 +91,7 @@ window.onload=function(){
 		localStorage['config']=JSON.stringify(config,null,' ');
 		saveConfig();
 	};
+	}
 
 	document.getElementById('option_page').onclick=function(){
 		window.open(chrome.extension.getURL(chrome.app.getDetails().options_page));

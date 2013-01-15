@@ -11,5 +11,9 @@
 	"permissions": [
 		"storage",
 		{ "socket": [ "tcp-listen" ] }
-	]
+	],
+	"icons": {
+		"128": "icon128.png",
+		"16": "icon16.png"
+	}
 }
