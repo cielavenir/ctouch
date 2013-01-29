@@ -148,9 +148,28 @@ window.onload=function(){
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
+		if(!window.confirm('Are you sure to cast resurrection spell?'))return;
 		localStorage['config']=document.getElementById('BACKUP').value;
 		initialize();
 		saveConfig();
+	};
+
+	document.getElementById('DLUALIST').onclick=function(){
+		var AJAX=null;
+		if(window.XMLHttpRequest){
+			AJAX=new XMLHttpRequest();
+		}else{
+			console.log("run_at: document_start isn't suitable");
+			//AJAX=new ActiveXObject('Microsoft.XMLHTTP'); //ignore IE
+		}
+		if(!AJAX)return;
+		AJAX.open('GET', 'http://ctouch.googlecode.com/hg/src/ctouch_ualist.json', true);
+		AJAX.onreadystatechange=function(){
+			if(AJAX.readyState==4&&AJAX.status==200){
+				document.getElementById('BACKUP').value=AJAX.responseText;
+			}
+		};
+		AJAX.send(null);
 	};
 
 	document.getElementById('plugins_page').onclick=function(){
