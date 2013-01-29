@@ -1,3 +1,5 @@
+var ctouch_ualist_url='http://ctouch.googlecode.com/hg/src/ctouch_ualist.json';
+
 var initialize=function(){
 	var config=JSON.parse(localStorage['config']);
 	var table=document.getElementById('UA');
@@ -163,7 +165,7 @@ window.onload=function(){
 			//AJAX=new ActiveXObject('Microsoft.XMLHTTP'); //ignore IE
 		}
 		if(!AJAX)return;
-		AJAX.open('GET', 'http://ctouch.googlecode.com/hg/src/ctouch_ualist.json', true);
+		AJAX.open('GET', ctouch_ualist_url, true);
 		AJAX.onreadystatechange=function(){
 			if(AJAX.readyState==4&&AJAX.status==200){
 				document.getElementById('BACKUP').value=AJAX.responseText;
