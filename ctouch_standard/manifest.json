@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r2 (standard)",
 	"description": "You can browse smartphone websites. Configuration is saved to background localStorage; loading is asynchronous.",
-	"version": "2.0.7.30115",
+	"version": "2.0.8.30129",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",
