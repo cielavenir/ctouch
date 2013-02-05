@@ -3,6 +3,7 @@
 	"description": "Patch HTML form to use POST if it uses GET and has password.",
 	"version": "0.0.3.2",
 	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
 	"content_scripts": [
 	{
 		"all_frames": true,

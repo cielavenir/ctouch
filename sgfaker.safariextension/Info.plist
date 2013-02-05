@@ -5,27 +5,27 @@
 	<key>Author</key>
 	<string>ciel</string>
 	<key>CFBundleDisplayName</key>
-	<string>POSTize</string>
+	<string>SGFaker</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.cielavenir.postize</string>
+	<string>com.cielavenir.sgfaker</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleShortVersionString</key><string>0.0.3.1</string>
-	<key>CFBundleVersion</key><string>0.0.3.1</string>
+	<key>CFBundleShortVersionString</key><string>0.0.1.1</string>
+	<key>CFBundleVersion</key><string>0.0.1.1</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
 		<dict>
-			<key>End</key>
+			<key>Start</key>
 			<array>
-				<string>css.js</string>
+				<string>sgfaker_bootstrap.js</string>
 			</array>
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>Patch HTML form to use POST if it uses GET and has password.</string>
+	<string>SGFaker: allows sgviewer.com (use with cTouch)</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

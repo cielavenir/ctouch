@@ -40,7 +40,11 @@ bin/postize.safariextz: postize/* postize.safariextension/*
 #	ln -f unpassword/unpassword_css.js unpassword.safariextension/
 #	ruby support/safari.rb unpassword ctouch_safari.pem
 #	rm -f unpassword.safariextension/*.js
-	
+bin/sgfaker.safariextz: sgfaker/* sgfaker.safariextension/*
+	ln -f sgfaker/sgfaker_bootstrap.js sgfaker.safariextension/
+	ruby support/safari.rb sgfaker pem/ctouch_safari.pem pem/ctouch_safari.der
+	rm -f sgfaker.safariextension/*.js
+
 bin/ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
 bin/ctouch_standard.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_STANDARD_FILES)
