@@ -3,6 +3,7 @@
 	"name": "cTouch external daemon",
 	"description": "required for cTouch (external)",
 	"version": "0.0.1.2",
+	"homepage_url": "https://code.google.com/p/ctouch/",
 	"app": {
 		"background": {
 			"scripts": ["ctouch_chromesocket.js"]
