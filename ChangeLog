@@ -110,3 +110,4 @@
 2.0.6.30115 External Daemon Chrome is supported officially and uploaded to webstore.
 2.0.7.30115 Fix regression in filesystem version.
 2.0.8.30129 Added downloading ctouch_ualist.json.
+2.0.9.30208 Added "install createTouch?" option. Disabling it will fix gree::1.
