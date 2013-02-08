@@ -23,6 +23,7 @@ var init=function(){
 var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
 var enable_imitation=ctouch_option.enable_imitation;
 var generate_touch=ctouch_option.generate_touch;
+var install_createtouch=ctouch_option.install_createtouch;
 ///__BOUNDARY__///
 //cTouch bootstrap core: var useragent/enable_imitation/generate_touch is defined.
 if(enable_imitation){
@@ -57,12 +58,17 @@ s.type = 'text/javascript';
 s.id = tag;
 s.innerText = '(function(){';
 
-s.innerText += '\
+if(install_createtouch){
+s.innerText += "\
+document.createTouch = function createTouch(){'[native code]';};\
+document.createTouchList = function createTouchList(){'[native code]';};\
+";
+}
+
+s.innerText += "\
 document.ondragstart = function(){return false;};\
 window.ondragstart = function(){return false;};\
 \
-document.createTouch = function createTouch(){};\
-document.createTouchList = function createTouchList(){};\
 document.ontouchstart = null;\
 document.documentElement.ontouchstart = null;\
 window.ontouchstart = null;\
@@ -77,7 +83,7 @@ window.orientation = 0;\
 window.ondeviceorientation = null;\
 window.ondevicemotion = null;\
 window.onorientationchange = null;\
-';
+";
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){ //un-chrome-ize
 	//unfortunately "delete" will fail...
@@ -200,7 +206,7 @@ s.id = 'ctouch_element_js';
 s.innerText = "(function(){\
 if(!HTMLDocument.prototype.createElement_"+randomname+"){\
 HTMLDocument.prototype.createElement_"+randomname+"=HTMLDocument.prototype.createElement;\
-HTMLDocument.prototype.createElement=function(tag){\
+HTMLDocument.prototype.createElement=function createElement(tag){\
 	var d=this.createElement_"+randomname+"(tag);\
 	if(tag.toLowerCase()=='iframe'){\
 		var s = this.createElement('script');\
@@ -212,7 +218,7 @@ HTMLDocument.prototype.createElement=function(tag){\
 	return d;\
 };\
 HTMLElement.prototype.appendChild_"+randomname+"=HTMLElement.prototype.appendChild;\
-HTMLElement.prototype.appendChild=function(child){\
+HTMLElement.prototype.appendChild=function appendChild(child){\
 	this.appendChild_"+randomname+"(child);\
 	if(child.contentDocument){\
 		var s = child.contentDocument.createElement('script');\
@@ -224,7 +230,7 @@ HTMLElement.prototype.appendChild=function(child){\
 	return child;\
 };\
 HTMLElement.prototype.insertBefore_"+randomname+"=HTMLElement.prototype.insertBefore;\
-HTMLElement.prototype.insertBefore=function(child,ref){\
+HTMLElement.prototype.insertBefore=function insertBefore(child,ref){\
 	this.insertBefore_"+randomname+"(child,ref);\
 	if(child.contentDocument){\
 		var s = child.contentDocument.createElement('script');\

@@ -82,6 +82,12 @@ window.onload=function(){
 		localStorage['config']=JSON.stringify(config,null,' ');
 		saveConfig();
 	};
+	if(config.install_createtouch){document.getElementById('install_createtouch').checked=true;}
+	document.getElementById('install_createtouch').onclick=function(){
+		config.install_createtouch=!config.install_createtouch;
+		localStorage['config']=JSON.stringify(config,null,' ');
+		saveConfig();
+	};
 	if(chrome.app.getDetails().permissions.indexOf('management')>=0){
 	if(config.external_daemon_chrome){document.getElementById('external_daemon_chrome').checked=true;}
 	document.getElementById('external_daemon_chrome').onclick=function(){
