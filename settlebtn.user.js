@@ -15,6 +15,6 @@
 		}
 	}
 	['a','h1'].map(function(e){
-		patchBackgroundSize(document.getElementsByTagName(e);
+		patchBackgroundSize(document.getElementsByTagName(e));
 	});
 })();
