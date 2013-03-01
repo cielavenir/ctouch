@@ -33,6 +33,11 @@ console.log('failed to eval '+str);\
 break;\
 }\
 }\
+if('FastClick' in window){\
+if(FastClick.prototype.onTouchStart)FastClick.prototype.onTouchStart=function(event){return true;};\
+if(FastClick.prototype.onTouchEnd)FastClick.prototype.onTouchEnd=function(event){return true;};\
+if(FastClick.prototype.onTouchCancel)FastClick.prototype.onTouchCancel=function(event){return true;};\
+}\
 var myself = document.getElementById('ctouch_css_js');\
 myself.parentNode.removeChild(myself);\
 })();\

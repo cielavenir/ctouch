@@ -34,6 +34,11 @@ if(scr)for(var i=0;i<scr.length;i++){
 		break;
 	}
 }
+if('FastClick' in window){ //shutdown FastClick
+	if(FastClick.prototype.onTouchStart)FastClick.prototype.onTouchStart=function(event){return true;};
+	if(FastClick.prototype.onTouchEnd)FastClick.prototype.onTouchEnd=function(event){return true;};
+	if(FastClick.prototype.onTouchCancel)FastClick.prototype.onTouchCancel=function(event){return true;};
+}
 //var meta=document.getElementsByTagName('meta');
 //if(meta)for(var i=0;i<meta.length;i++)if(meta[i].name=='viewport'){meta[i].parentNode.removeChild(meta[i]);break;}
 //var embed=document.getElementsByTagName('embed'); //removed: interfers with YouTube (PC)
