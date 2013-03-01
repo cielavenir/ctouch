@@ -198,17 +198,19 @@ myself.parentNode.removeChild(myself);\
 document.documentElement.appendChild(s);
 
 //OK. Now let's inject generated iframe.
+//2.1.1.30301: much better code was provided by @sgviewer. Thank you so much!
 var script=s.innerText;
-var randomname='1234_iframe_patch'
+var randomname=String.fromCharCode((Math.random()*26+97)^0)+(Math.random()*99999^0)
+var randomelem=String.fromCharCode((Math.random()*26+97)^0)+(Math.random()*99999^0)
 var s = document.createElement('script');
 s.type = 'text/javascript';
 s.id = 'ctouch_element_js';
 s.innerText = "(function(){\
-if(!HTMLDocument.prototype.createElement_"+randomname+"){\
-HTMLDocument.prototype.createElement_"+randomname+"=HTMLDocument.prototype.createElement;\
-HTMLDocument.prototype.createElement=function createElement(tag){\
-	var d=this.createElement_"+randomname+"(tag);\
-	if(tag.toLowerCase()=='iframe'){\
+if(!HTMLDocument.prototype.createElement"+randomname+"){\
+HTMLDocument.prototype.createElement"+randomname+"=HTMLDocument.prototype.createElement;\
+HTMLDocument.prototype.createElement=function createElement("+randomelem+"){\
+	var d=this.createElement"+randomname+"("+randomelem+");\
+	if("+randomelem+".toLowerCase()=='iframe'){\
 		var s = this.createElement('script');\
 		s.type = 'text/javascript';\
 		s.id = '"+tag+"';\
@@ -217,31 +219,37 @@ HTMLDocument.prototype.createElement=function createElement(tag){\
 	}\
 	return d;\
 };\
-HTMLElement.prototype.appendChild_"+randomname+"=HTMLElement.prototype.appendChild;\
-HTMLElement.prototype.appendChild=function appendChild(child){\
-	this.appendChild_"+randomname+"(child);\
-	if(child.contentDocument){\
-		var s = child.contentDocument.createElement('script');\
+HTMLDocument.prototype.createElement"+randomname+".toString=function(){return 'function createElement"+randomname+"() { [native code] }';};\
+HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};\
+HTMLElement.prototype.appendChild"+randomname+"=HTMLElement.prototype.appendChild;\
+HTMLElement.prototype.appendChild=function appendChild("+randomelem+"){\
+	this.appendChild"+randomname+"("+randomelem+");\
+	if("+randomelem+".contentDocument){\
+		var s = "+randomelem+".contentDocument.createElement('script');\
 		s.type = 'text/javascript';\
 		s.id = '"+tag+"';\
 		s.innerText=\""+script+"\";\
-		child.contentDocument.documentElement.appendChild(s);\
+		"+randomelem+".contentDocument.documentElement.appendChild(s);\
 	}\
-	return child;\
+	return "+randomelem+";\
 };\
-HTMLElement.prototype.insertBefore_"+randomname+"=HTMLElement.prototype.insertBefore;\
-HTMLElement.prototype.insertBefore=function insertBefore(child,ref){\
-	this.insertBefore_"+randomname+"(child,ref);\
-	if(child.contentDocument){\
-		var s = child.contentDocument.createElement('script');\
+HTMLElement.prototype.appendChild"+randomname+".toString=function(){return 'function appendChild"+randomname+"() { [native code] }';};\
+HTMLElement.prototype.appendChild.toString=function(){return 'function appendChild() { [native code] }';};\
+HTMLElement.prototype.insertBefore"+randomname+"=HTMLElement.prototype.insertBefore;\
+HTMLElement.prototype.insertBefore=function insertBefore("+randomelem+",ref){\
+	this.insertBefore"+randomname+"("+randomelem+",ref);\
+	if("+randomelem+".contentDocument){\
+		var s = "+randomelem+".contentDocument.createElement('script');\
 		s.type = 'text/javascript';\
 		s.id = '"+tag+"';\
 		s.innerText=\""+script+"\";\
-		child.contentDocument.documentElement.appendChild(s);\
+		"+randomelem+".contentDocument.documentElement.appendChild(s);\
 	}\
-	return child;\
+	return "+randomelem+";\
 };\
 }\
+HTMLElement.prototype.insertBefore"+randomname+".toString=function(){return 'function insertBefore"+randomname+"() { [native code] }';};\
+HTMLElement.prototype.insertBefore.toString=function(){return 'function insertBefore() { [native code] }';};\
 var myself = document.getElementById('ctouch_element_js');\
 if(myself)myself.parentNode.removeChild(myself);\
 })();\
