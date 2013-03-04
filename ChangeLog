@@ -116,6 +116,7 @@
 2.0.9.30208 Added "install createTouch?" option. Disabling it will fix gree::1.
 2.1.0.30301 Shutdown FastClick (fix gree::58737).
 2.1.1.30301 Workaround for patching iframe (3rd try).
+2.1.2.30304 Integrated sgfaker (activated only on sgviewer.com).
 
 [Private branch: not public release]
 2.5.x.xxxxx [TBA] cTouch r3: revert iframe handling [todo]

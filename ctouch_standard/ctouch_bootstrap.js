@@ -255,6 +255,17 @@ if(myself)myself.parentNode.removeChild(myself);\
 })();\
 ";
 document.documentElement.appendChild(s);
+
+var s=document.createElement('script');
+s.type='text/javascript';
+s.id='sgviewer_bootstrap_js';
+s.innerText="(function(){\
+	if(document.location.href.indexOf('sgviewer.com')>=0)window.sgviewer=1;\
+	var myself = document.getElementById('sgviewer_bootstrap_js');\
+	myself.parentNode.removeChild(myself);\
+})();\
+";
+document.documentElement.appendChild(s);
 }
 
 if(generate_touch){
