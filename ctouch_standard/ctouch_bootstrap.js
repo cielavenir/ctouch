@@ -207,20 +207,6 @@ s.type = 'text/javascript';
 s.id = 'ctouch_element_js';
 s.innerText = "(function(){\
 if(!HTMLDocument.prototype.createElement"+randomname+"){\
-HTMLDocument.prototype.createElement"+randomname+"=HTMLDocument.prototype.createElement;\
-HTMLDocument.prototype.createElement=function createElement("+randomelem+"){\
-	var d=this.createElement"+randomname+"("+randomelem+");\
-	if("+randomelem+".toLowerCase()=='iframe'){\
-		var s = this.createElement('script');\
-		s.type = 'text/javascript';\
-		s.id = '"+tag+"';\
-		s.innerText=\""+script+"\";\
-		d.appendChild(s);\
-	}\
-	return d;\
-};\
-HTMLDocument.prototype.createElement"+randomname+".toString=function(){return 'function createElement"+randomname+"() { [native code] }';};\
-HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};\
 HTMLElement.prototype.appendChild"+randomname+"=HTMLElement.prototype.appendChild;\
 HTMLElement.prototype.appendChild=function appendChild("+randomelem+"){\
 	this.appendChild"+randomname+"("+randomelem+");\
@@ -250,6 +236,22 @@ HTMLElement.prototype.insertBefore=function insertBefore("+randomelem+",ref){\
 }\
 HTMLElement.prototype.insertBefore"+randomname+".toString=function(){return 'function insertBefore"+randomname+"() { [native code] }';};\
 HTMLElement.prototype.insertBefore.toString=function(){return 'function insertBefore() { [native code] }';};\
+HTMLDocument.prototype.createElement"+randomname+"=HTMLDocument.prototype.createElement;\
+HTMLDocument.prototype.createElement=function createElement("+randomelem+"){\
+	var d=this.createElement"+randomname+"("+randomelem+");\
+	if("+randomelem+".toLowerCase()=='iframe'){\
+		var s = this.createElement('script');\
+		s.type = 'text/javascript';\
+		s.id = '"+tag+"';\
+		s.innerText=\""+script+"\";\
+		d.appendChild(s);\
+	}\
+	return d;\
+};\
+HTMLDocument.prototype.createElement"+randomname+".toString=function(){return 'function createElement"+randomname+"() { [native code] }';};\
+HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};\
+HTMLDocument.prototype.appendChild.toString=function(){return 'function appendChild() { [native code] }';};\
+HTMLDocument.prototype.insertBefore.toString=function(){return 'function insertBefore() { [native code] }';};\
 var myself = document.getElementById('ctouch_element_js');\
 if(myself)myself.parentNode.removeChild(myself);\
 })();\
