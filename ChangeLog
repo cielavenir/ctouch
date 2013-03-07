@@ -119,7 +119,7 @@
 2.1.0.30301 Shutdown FastClick (fix gree::58737).
 2.1.1.30301 Workaround for patching iframe (3rd try).
 2.1.2.30304 Integrated sgfaker (activated only on sgviewer.com).
-2.1.3.30305 Fixed document.appendChild() handling.
+2.1.3.30305 Fixed document.appendChild() handling (fix gree::1).
 
 [Private branch: not public release]
 2.5.x.xxxxx [TBA] cTouch r3: revert iframe handling [todo]
