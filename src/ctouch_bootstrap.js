@@ -34,7 +34,9 @@ s.innerText = '(function(){';
 if(install_createtouch){
 s.innerText += "\
 document.createTouch = function createTouch(){'[native code]';};\
+document.createTouch.toString=function(){return 'function createTouch() { [native code] }';};\
 document.createTouchList = function createTouchList(){'[native code]';};\
+document.createTouchList.toString=function(){return 'function createTouchList() { [native code] }';};\
 ";
 }
 
@@ -222,7 +224,8 @@ HTMLDocument.prototype.createElement=function createElement("+randomelem+"){\
 	return d;\
 };\
 HTMLDocument.prototype.createElement"+randomname+".toString=function(){return 'function createElement"+randomname+"() { [native code] }';};\
-HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};\
+/*HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};*/\
+document.createElement.toString=function(){return 'function createElement() { [native code] }';};\
 HTMLDocument.prototype.appendChild.toString=function(){return 'function appendChild() { [native code] }';};\
 HTMLDocument.prototype.insertBefore.toString=function(){return 'function insertBefore() { [native code] }';};\
 var myself = document.getElementById('ctouch_element_js');\
