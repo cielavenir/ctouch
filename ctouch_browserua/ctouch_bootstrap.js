@@ -272,6 +272,28 @@ s.innerText="(function(){\
 })();\
 ";
 document.documentElement.appendChild(s);
+
+//sgviewer 0.37: this code is broken; must be removed.
+if(document.location.href.indexOf("initializecheck")!=-1){
+	var s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.id = 'dddddddddd';
+			s.innerText = "\
+(function(){\
+var myself = document.getElementById('dddddddddd');\
+if(myself)myself.parentNode.removeChild(myself);\
+var tmp = document.addEventListener;\
+document.addEventListener = function(mode,func){\
+if(func.indexOf('error')){\
+tmp('DOMContentLoaded',function(){document.form.submit();});\
+}else{\
+tmp(mode,func);\
+}\
+};\
+})();\
+";
+	document.documentElement.appendChild(s);				
+}
 }
 
 if(generate_touch){
