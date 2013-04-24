@@ -56,10 +56,10 @@
 			"Mozilla/5.0 (iPod; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25"],
 		["iPad (iOS 6.1.3)",
 			"Mozilla/5.0 (iPad; CPU OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25"],
-		["Android Firefox Mobile 19.0",
-			"Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0"],
-		["Android Firefox Tablet 19.0",
-			"Mozilla/5.0 (Android; Tablet; rv:19.0) Gecko/19.0 Firefox/19.0"]
+		["Android Firefox Mobile 20.0",
+			"Mozilla/5.0 (Android; Mobile; rv:20.0) Gecko/19.0 Firefox/20.0"],
+		["Android Firefox Tablet 20.0",
+			"Mozilla/5.0 (Android; Tablet; rv:20.0) Gecko/19.0 Firefox/20.0"]
 	],
 	"config_version": 3,
 	"preferedUA": -1,
