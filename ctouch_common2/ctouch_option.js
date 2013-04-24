@@ -175,7 +175,8 @@ window.onload=function(){
 	};
 
 	document.getElementById('plugins_page').onclick=function(){
-		window.open('chrome://plugins');
+		//window.open('chrome://plugins');
+		chrome.tabs.create({url:'chrome://plugins'});
 	};
 
 	//easter for debug
@@ -183,6 +184,7 @@ window.onload=function(){
 		window.open(chrome.extension.getURL(chrome.app.getDetails().browser_action.default_popup));
 	};
 	document.getElementById('extensions_page').onclick=function(){
-		window.open('chrome://extensions');
+		//window.open('chrome://extensions');
+		chrome.tabs.create({url:'chrome://extensions'});
 	};
 };
