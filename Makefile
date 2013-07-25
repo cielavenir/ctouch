@@ -68,9 +68,12 @@ bin/linksource.crx: linksource/*
 	ruby support/crx.rb $@ pem/linksource.pem linksource
 bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
+bin/codeiqdiswriter.crx: codeiqdiswriter/*
+	ruby support/crx.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
 
-bin/sgfaker.crx: sgfaker/*
-	ruby support/crx.rb $@ pem/sgfaker.pem sgfaker
+#SGFaker has been merged to cTouch.
+#bin/sgfaker.crx: sgfaker/*
+#	ruby support/crx.rb $@ pem/sgfaker.pem sgfaker
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
 
@@ -97,6 +100,8 @@ bin/linksource.zip: linksource/*
 	ruby support/zip.rb $@ pem/linksource.pem linksource
 bin/undisposition.zip: undisposition/*
 	ruby support/zip.rb $@ pem/undisposition.pem undisposition
+bin/codeiqdiswriter.zip: codeiqdiswriter/*
+	ruby support/zip.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
