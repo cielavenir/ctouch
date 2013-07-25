@@ -1,6 +1,6 @@
 {
 	"name": "CodeIQ Diswriter",
-      "description": "Relax CodeIQ permission from scope=user to scope=user:email.",
+      "description": "Relax CodeIQ's GitHub OAuth2 permission from scope=user to scope=user:email.",
 	"version": "0.0.0.1",
 	"manifest_version": 2,
 	"homepage_url": "https://code.google.com/p/ctouch/",
