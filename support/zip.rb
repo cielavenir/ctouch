@@ -41,6 +41,7 @@ def run(argv)
 			f<<key.to_pem
 		}
 	end
+
 =begin
 	zip_buffer = ''
 	Zip::Archive.open_buffer(zip_buffer, Zip::CREATE, Zip::BEST_COMPRESSION){|zipb|
@@ -91,6 +92,7 @@ def run(argv)
 		zipb.put_next_entry('key.pem',nil,nil,Zip::ZipEntry::DEFLATED,Zlib::BEST_COMPRESSION)
 		zipb.write(keybody)
 	}).string
+
 	File.open(crx,'wb'){|f|
         f << zip_buffer
 	}
