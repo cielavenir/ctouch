@@ -91,7 +91,7 @@ def run(argv)
 		f << [sig.size].pack('V')
 		f << key
 		f << sig
-        f << zip_buffer
+		f << zip_buffer
 	}
 end
 

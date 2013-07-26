@@ -94,7 +94,7 @@ def run(argv)
 	}).string
 
 	File.open(crx,'wb'){|f|
-        f << zip_buffer
+		f << zip_buffer
 	}
 end
 
