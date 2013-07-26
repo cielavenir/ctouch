@@ -7,6 +7,15 @@ require 'openssl'
 require 'find'
 require 'pathname'
 
+begin
+	require 'openssl_pkcs8'
+	class OpenSSL::PKey::RSA
+		alias_method :to_pem, :to_pem_pkcs8
+	end
+rescue LoadError
+	$pkcs8_warning=1
+end
+
 def get_relative base, target
 	Pathname.new(target.to_s).relative_path_from(Pathname.new(base.to_s)).to_s
 end
@@ -20,10 +29,13 @@ def run(argv)
 			keybody=f.read
 		}
 	rescue
+		if defined?($pkcs8_warning)
+			$stderr.puts 'Warn: generated pem must be converted into PKCS8 in order to upload to Chrome WebStore.'
+			$stderr.puts 'To suppress this message, do: gem install openssl_pkcs8'
+		end
 		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
 		open(pkey,'wb'){|f|
-			keybody=key.export()
-			f<<keybody
+			f<<key.to_pem
 		}
 	end
 
