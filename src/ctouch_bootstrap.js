@@ -179,15 +179,44 @@ s.innerText += "\
 document.ondragstart = function(){return false;};\
 window.ondragstart = function(){return false;};\
 \
-document.ontouchstart = null;\
-document.documentElement.ontouchstart = null;\
-window.ontouchstart = null;\
-document.ontouchmove = null;\
-document.documentElement.ontouchmove = null;\
-window.ontouchmove = null;\
-document.ontouchend = null;\
-document.documentElement.ontouchend = null;\
-window.ontouchend = null;\
+Object.defineProperty(document,'ontouchstart',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(document.documentElement,'ontouchstart',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(window,'ontouchstart',{\
+	writable: false,\
+	value: null,\
+});\
+\
+Object.defineProperty(document,'ontouchmove',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(document.documentElement,'ontouchmove',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(window,'ontouchmove',{\
+	writable: false,\
+	value: null,\
+});\
+\
+Object.defineProperty(document,'ontouchend',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(document.documentElement,'ontouchend',{\
+	writable: false,\
+	value: null,\
+});\
+Object.defineProperty(window,'ontouchend',{\
+	writable: false,\
+	value: null,\
+});\
 \
 window.orientation = 0;\
 window.ondeviceorientation = null;\
@@ -307,6 +336,9 @@ myself.parentNode.removeChild(myself);\
 
 document.documentElement.appendChild(s);
 
+if(navigator.userAgent.match(/Chrome\/(\d+)/)&&(RegExp.$1^0)<28){ // This "if" is very nasty ^^
+// Chrome 27 or less (no Safari)
+
 //OK. Now let's inject generated iframe.
 //2.1.1.30301: much better code was provided by @sgviewer. Thank you so much!
 var script=s.innerText;
@@ -368,6 +400,8 @@ if(myself)myself.parentNode.removeChild(myself);\
 })();\
 ";
 document.documentElement.appendChild(s);
+
+}
 
 var s=document.createElement('script');
 s.type='text/javascript';

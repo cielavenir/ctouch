@@ -1,7 +1,7 @@
 {
-	"name": "cTouch r2 (filesystem)",
+	"name": "cTouch r3 (filesystem)",
 	"description": "You can browse smartphone websites. Configuration is saved to HTML5 filesystem.",
-	"version": "2.1.4.30425",
+	"version": "2.5.0.30727",
 	"manifest_version": 2,
 	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
 	"homepage_url": "https://code.google.com/p/ctouch/",
@@ -18,7 +18,7 @@
 	"options_page": "ctouch_option.html",
 	"browser_action": {
 		"default_icon": "icon16.png",
-		"default_title": "cTouch r2 (filesystem)",
+		"default_title": "cTouch r3 (filesystem)",
 		"default_popup": "ctouch_popup.html"
 	},
 	"content_scripts": [
