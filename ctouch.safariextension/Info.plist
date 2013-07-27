@@ -4,31 +4,35 @@
 <dict>
 	<key>Author</key>
 	<string>ciel</string>
+	<key>Builder Version</key>
+	<string>8536.30.1</string>
 	<key>CFBundleDisplayName</key>
-	<string>cTouch (Safari/browserUA)</string>
+	<string>cTouch r3 (Safari/browserUA)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.cielavenir.ctouch</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleShortVersionString</key><string>2.1.4.30425</string>
-	<key>CFBundleVersion</key><string>2.1.4.30425</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.5.0.30727</string>
+	<key>CFBundleVersion</key>
+	<string>2.5.0.30727</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
 	<dict>
+		<key>Global Page</key>
+		<string>ctouch_bg.html</string>
 		<key>Scripts</key>
 		<dict>
-			<key>Start</key>
-			<array>
-				<string>ctouch_bootstrap.js</string>
-			</array>
 			<key>End</key>
 			<array>
 				<string>ctouch_css.js</string>
 			</array>
+			<key>Start</key>
+			<array>
+				<string>ctouch_bootstrap.js</string>
+			</array>
 		</dict>
-		<key>Global Page</key>
-		<string>ctouch_bg.html</string>
 	</dict>
 	<key>Description</key>
 	<string>You can browse smartphone websites. No configuration screens; it depends on Safari's UserAgent.</string>
