@@ -126,3 +126,4 @@
 * cTouch r3: iframe hijacking patch isn't applied on Safari or Chrome>=28.
 * Still alright on Chromium X2, since it is based on version 28.
 * Fixed build system to generate PKCS8 pem.
+2.5.1.30805 Modified window.ontouchstart handling. Chromium X2 can play gree::1 at least.

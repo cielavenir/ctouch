@@ -187,10 +187,7 @@ Object.defineProperty(document.documentElement,'ontouchstart',{\
 	writable: false,\
 	value: null,\
 });\
-Object.defineProperty(window,'ontouchstart',{\
-	writable: false,\
-	value: null,\
-});\
+window.ontouchstart = null;\
 \
 Object.defineProperty(document,'ontouchmove',{\
 	writable: false,\
@@ -204,6 +201,7 @@ Object.defineProperty(window,'ontouchmove',{\
 	writable: false,\
 	value: null,\
 });\
+window.ontouchmove = null;\
 \
 Object.defineProperty(document,'ontouchend',{\
 	writable: false,\
@@ -217,6 +215,7 @@ Object.defineProperty(window,'ontouchend',{\
 	writable: false,\
 	value: null,\
 });\
+window.ontouchend = null;\
 \
 window.orientation = 0;\
 window.ondeviceorientation = null;\
