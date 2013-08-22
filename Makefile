@@ -76,6 +76,8 @@ bin/codeiqdiswriter.crx: codeiqdiswriter/*
 #	ruby support/crx.rb $@ pem/sgfaker.pem sgfaker
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
+bin/dragonleaguexhtmlize.crx: dragonleaguexhtmlize/*
+	ruby support/crx.rb $@ pem/dragonleaguexhtmlize.pem dragonleaguexhtmlize
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
