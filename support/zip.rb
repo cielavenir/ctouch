@@ -2,8 +2,8 @@
 #target.crx target.pem dir...
 
 require 'rubygems'
-#require 'zipruby'
-require 'zip/zip'
+require 'zipruby'
+#require 'zip/zip'
 require 'openssl'
 require 'find'
 require 'pathname'
@@ -42,7 +42,7 @@ def run(argv)
 		}
 	end
 
-=begin
+#=begin
 	zip_buffer = ''
 	Zip::Archive.open_buffer(zip_buffer, Zip::CREATE, Zip::BEST_COMPRESSION){|zipb|
 		argv.each{|e|
@@ -66,7 +66,8 @@ def run(argv)
 		}
 		zipb.add_buffer('key.pem',keybody)
 	}
-=end
+#=end
+=begin
 	zip_buffer = (Zip::ZipOutputStream.write_buffer{|zipb|
 		argv.each{|e|
 			Find.find(e){|path|
@@ -92,7 +93,7 @@ def run(argv)
 		zipb.put_next_entry('key.pem',nil,nil,Zip::ZipEntry::DEFLATED,Zlib::BEST_COMPRESSION)
 		zipb.write(keybody)
 	}).string
-
+=end
 	File.open(crx,'wb'){|f|
 		f << zip_buffer
 	}

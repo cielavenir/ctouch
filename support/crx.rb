@@ -5,8 +5,8 @@
 #https://github.com/Constellation/crxmake
 
 require 'rubygems'
-#require 'zipruby'
-require 'zip/zip'
+require 'zipruby'
+#require 'zip/zip'
 require 'openssl'
 require 'digest/sha1'
 require 'find'
@@ -51,7 +51,7 @@ def run(argv)
 		}
 	end
 
-=begin
+#=begin
 	zip_buffer = ''
 	Zip::Archive.open_buffer(zip_buffer, Zip::CREATE, Zip::BEST_COMPRESSION){|zipb|
 		argv.each{|e|
@@ -65,7 +65,8 @@ def run(argv)
 			}
 		}
 	}
-=end
+#=end
+=begin
 	zip_buffer = (Zip::ZipOutputStream.write_buffer{|zipb|
 		argv.each{|e|
 			Find.find(e){|path|
@@ -79,7 +80,7 @@ def run(argv)
 			}
 		}
 	}).string
-
+=end
 	sig=key.sign(OpenSSL::Digest::SHA1.new,zip_buffer)
 
 	key = key.public_key.to_der
