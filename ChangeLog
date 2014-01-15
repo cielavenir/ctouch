@@ -127,3 +127,4 @@
 * Still alright on Chromium X2, since it is based on version 28.
 * Fixed build system to generate PKCS8 pem.
 2.5.1.30805 Modified window.ontouchstart handling. Chromium X2 can play gree::1 at least.
+2.5.2.40115 Updated UA list. Final release on GoogleCode.
