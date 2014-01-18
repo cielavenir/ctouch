@@ -223,10 +223,6 @@ Object.defineProperty(document.documentElement,'ontouchmove',{\
 	writable: false,\
 	value: null,\
 });\
-Object.defineProperty(window,'ontouchmove',{\
-	writable: false,\
-	value: null,\
-});\
 window.ontouchmove = null;\
 \
 Object.defineProperty(document,'ontouchend',{\
@@ -234,10 +230,6 @@ Object.defineProperty(document,'ontouchend',{\
 	value: null,\
 });\
 Object.defineProperty(document.documentElement,'ontouchend',{\
-	writable: false,\
-	value: null,\
-});\
-Object.defineProperty(window,'ontouchend',{\
 	writable: false,\
 	value: null,\
 });\
