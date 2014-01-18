@@ -149,21 +149,21 @@ release:
 publish:
 	ln -f bin/ctouch.safariextz bin/ctouch-$(VERSION).safariextz
 	#ln -f bin/ctouch_standard.crx bin/ctouch_standard-$(VERSION).crx
-	#ln -f bin/ctouch_fixed.crx bin/ctouch_fixed-$(VERSION).crx
+	ln -f bin/ctouch_fixed.crx bin/ctouch_fixed-$(VERSION).crx
 	ln -f bin/ctouch_external.crx bin/ctouch_external-$(VERSION).crx
 	ln -f bin/ctouch_browserua.crx bin/ctouch_browserua-$(VERSION).crx
 	ln -f bin/ctouch_filesystem.crx bin/ctouch_filesystem-$(VERSION).crx
 	#ln -f bin/ctouch_true.crx bin/ctouch_true-$(VERSION).crx
 	python support/googlecode_upload.py -s ctouch_safari-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch-$(VERSION).safariextz
 	#python support/googlecode_upload.py -s ctouch_standard-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_standard-$(VERSION).crx
-	#python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_fixed-$(VERSION).crx
+	python support/googlecode_upload.py -s ctouch_fixed-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_fixed-$(VERSION).crx
 	python support/googlecode_upload.py -s ctouch_external-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_external-$(VERSION).crx
 	python support/googlecode_upload.py -s ctouch_browserua-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_browserua-$(VERSION).crx
 	python support/googlecode_upload.py -s ctouch_filesystem-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_filesystem-$(VERSION).crx
 	#python support/googlecode_upload.py -s ctouch_true-$(VERSION) -p ctouch $(shell ruby support/getcredential.rb -googlecode) bin/ctouch_true-$(VERSION).crx
 	rm -f bin/ctouch-$(VERSION).safariextz
 	#rm -f bin/ctouch_standard-$(VERSION).crx
-	#rm -f bin/ctouch_fixed-$(VERSION).crx
+	rm -f bin/ctouch_fixed-$(VERSION).crx
 	rm -f bin/ctouch_external-$(VERSION).crx
 	rm -f bin/ctouch_browserua-$(VERSION).crx
 	rm -f bin/ctouch_filesystem-$(VERSION).crx
