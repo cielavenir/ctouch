@@ -128,3 +128,6 @@
 * Fixed build system to generate PKCS8 pem.
 2.5.1.30805 Modified window.ontouchstart handling. Chromium X2 can play gree::1 at least.
 2.5.2.40115 Updated UA list. Final release on GoogleCode.
+2.5.3.40119
+* Modified window.ontouchmove/window.ontouchend handling (fix ameba::kamefarm etc).
+* This change might have some issues with some games. Tell me if you find some.
