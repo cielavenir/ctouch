@@ -1,0 +1,15 @@
+{
+	"name": "SGFaker",
+	"description": "SGFaker: allows sgviewer.com (use with cTouch)",
+	"version": "0.0.1.1",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"content_scripts": [
+	{
+		"all_frames": true,
+		"js": ["sgfaker_bootstrap.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_start"
+	}
+	]
+}

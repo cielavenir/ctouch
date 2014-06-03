@@ -1,0 +1,15 @@
+{
+	"name": "Undisposition",
+	"description": "Remove Content-Disposition: attachment HTTP header.",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["undisposition_bg.js"]
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	]
+}

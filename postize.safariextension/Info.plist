@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>ciel</string>
+	<key>CFBundleDisplayName</key>
+	<string>POSTize</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.cielavenir.postize</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key><string>0.0.3.1</string>
+	<key>CFBundleVersion</key><string>0.0.3.1</string>
+	<key>Chrome</key>
+	<dict/>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>css.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Patch HTML form to use POST if it uses GET and has password.</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>https://code.google.com/p/ctouch/</string>
+</dict>
+</plist>

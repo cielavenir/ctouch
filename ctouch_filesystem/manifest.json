@@ -1,0 +1,44 @@
+{
+	"name": "cTouch r3 (filesystem)",
+	"description": "You can browse smartphone websites. Configuration is saved to HTML5 filesystem.",
+	"version": "2.5.3.40119",
+	"manifest_version": 2,
+	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js"]
+	},
+	"permissions": [
+		"tabs",
+		"webRequest",
+		"webRequestBlocking",
+		"unlimitedStorage",
+		"<all_urls>"
+	],
+	"options_page": "ctouch_option.html",
+	"browser_action": {
+		"default_icon": "icon16.png",
+		"default_title": "cTouch r3 (filesystem)",
+		"default_popup": "ctouch_popup.html"
+	},
+	"content_scripts": [
+	{
+		"all_frames": true,
+		"js": ["ctouch_bootstrap.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_start"
+	},
+	{
+		"all_frames": true,
+		"js": ["ctouch_css.js"],
+		"matches": ["<all_urls>"],
+		"run_at": "document_end"
+	}
+	],
+	"icons": {
+		"128": "icon128.png",
+		"16": "icon16.png",
+		"32": "icon32.png",
+		"48": "icon48.png"
+	}
+}

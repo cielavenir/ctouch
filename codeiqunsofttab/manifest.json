@@ -1,0 +1,15 @@
+{
+	"name": "CodeIQ UnSoftTab",
+      "description": "Disable SoftTab in CodeIQ",
+	"version": "0.0.0.1",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["codeiq_redirect.js"]
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://codeiq.jp/*"
+	]
+}

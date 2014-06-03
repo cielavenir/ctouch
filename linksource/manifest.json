@@ -1,0 +1,13 @@
+{
+	"name": "LinkSource",
+	"description": "Add Open link with view-source to context menu.",
+	"version": "0.0.2",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["linksource_bg.js"]
+	},
+	"permissions": [
+		"contextMenus"
+	]
+}

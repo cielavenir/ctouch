@@ -1,0 +1,15 @@
+{
+	"name": "CodeIQ Diswriter",
+      "description": "Relax CodeIQ's GitHub OAuth2 permission from scope=user to scope=user:email.",
+	"version": "0.0.0.1",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["codeiq_redirect.js"]
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://github.com/login/oauth/authorize?client_id=9f04cf6862b4a8cfe07e*"
+	]
+}
