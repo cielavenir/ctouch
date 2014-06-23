@@ -4,7 +4,7 @@
 	"id": "unpassword@com.cielavenir",
 	"description": "Patch input password to text.",
 	"homepage": "https://code.google.com/p/ctouch/",
-	"author": "ciel",
+	"author": "ciel <cielartisan@gmail.com>",
 	"lib": "lib",
 	"main": "main.js",
 	"license": "MIT",
