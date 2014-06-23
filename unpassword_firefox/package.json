@@ -1,0 +1,16 @@
+{
+	"name": "unpassword",
+	"title": "Unpassword",
+	"id": "unpassword@com.cielavenir",
+	"description": "Patch input password to text.",
+	"homepage": "https://code.google.com/p/ctouch/",
+	"author": "ciel",
+	"lib": "lib",
+	"main": "main.js",
+	"license": "MIT",
+	"version": "0.0.1",
+	"permissions": {
+		"private-browsing": true
+	},
+	"dependencies": ["menuitems", "addon-sdk"]
+}
