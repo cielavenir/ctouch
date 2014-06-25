@@ -65,6 +65,11 @@ self.port.on('cTouch_selfToOption',function(_self){
 	document.getElementById('extensions_page')[innerText]=title+' '+_self.version;
 });
 
+var default_config;
+self.port.on('cTouch_defaultConfigToOption',function(config){
+	default_config=config;
+});
+
 self.port.on('cTouch_configToOption',function(config){
 	var innerText=('innerText' in document.documentElement) ? 'innerText' : 'textContent';
 	$(function(){
@@ -144,14 +149,14 @@ self.port.on('cTouch_configToOption',function(config){
 		initialize(config);
 		self.port.emit('cTouch_configFromOption',config);
 	};
-/*
+
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
-		localStorage['config']=localStorage['config_default'];
-		initialize();
-		saveConfig();
+		config=default_config;
+		initialize(config);
+		self.port.emit('cTouch_configFromOption',config);
 	};
-*/
+
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		if(!window.confirm('Are you sure to cast resurrection spell?'))return;
