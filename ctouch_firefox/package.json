@@ -1,0 +1,16 @@
+{
+	"name": "ctouch_r3",
+	"title": "cTouch r3",
+	"id": "ctouch@com.cielavenir",
+	"description": "You can browse smartphone websites.",
+	"homepage": "https://code.google.com/p/ctouch/",
+	"author": "ciel <cielartisan@gmail.com>",
+	"lib": "lib",
+	"main": "main.js",
+	"license": "2-clause BSDL",
+	"version": "2.5.3.40625",
+	"permissions": {
+		"private-browsing": true
+	},
+	"dependencies": ["addon-sdk"]
+}
