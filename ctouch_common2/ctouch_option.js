@@ -60,17 +60,18 @@ var initialize=function(){
 };
 
 window.onload=function(){
+	var innerText=('innerText' in document.documentElement) ? 'innerText' : 'textContent';
 	$(function(){
 		$("tbody").sortable();
 		//$("tbody").disableSelection();
 	});
-	document.getElementById('title').innerText=chrome.app.getDetails().name;
-	document.getElementById('extensions_page').innerText=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
+	document.getElementById('title')[innerText]=chrome.app.getDetails().name;
+	document.getElementById('extensions_page')[innerText]=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
-	if(!flash_plugin)document.getElementById('flash_state').innerText='Flash is not installed.';
-	if(flash_plugin)document.getElementById('flash_state').innerText=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
+	if(!flash_plugin)document.getElementById('flash_state')[innerText]='Flash is not installed.';
+	if(flash_plugin)document.getElementById('flash_state')[innerText]=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
 
 	initialize();
 

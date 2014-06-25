@@ -10,20 +10,24 @@ test("[cTouch 1.7.3] navigator.appCodeName+'/'+navigator.appVersion==navigator.u
 	deepEqual(navigator.appCodeName+'/'+navigator.appVersion,navigator.userAgent);
 });
 
+try{
 if(typeof(navigator.__proto__.userAgent)=='string')
 test("navigator.userAgent==navigator.__proto__.userAgent",function(){
 	deepEqual(navigator.userAgent,navigator.__proto__.userAgent);
 });
+}catch(e){}
 
 test("[cTouch 1.0.1] navigator.platform is mobile",function(){
 	ok(/Linux arm|iPhone|iPod|iPhone/.test(navigator.platform));
 	deepEqual(navigator.userAgent.indexOf('Simulator'),-1);
 });
 
+//try{
 //if(typeof(navigator.__proto__.platform)=='string')
 //test("navigator.platform==navigator.__proto__.platform",function(){
 //	equal(navigator.platform,navigator.__proto__.platform);
 //});
+//}catch(e){}
 
 test("[cTouch 1.4.1] 'ontouchstart' in document",function(){
 	ok('ontouchstart' in document);
@@ -164,8 +168,9 @@ test("[cTouch 2.0.5] generated iframe is patched lv2",function(){
 	var d=document.createElement('iframe');
 	d.height=d.width=0;
 	var s=document.createElement('script');
+	var innerText=('innerText' in s) ? 'innerText' : 'textContent';
 	s.type='text/javascript';
-	s.innerText='parent.test("generated iframe is patched lv1",function(){parent.ok(/Linux arm|iPhone|iPod|iPhone/.test(navigator.platform));});';
+	s[innerText]='parent.test("generated iframe is patched lv1",function(){parent.ok(/Linux arm|iPhone|iPod|iPhone/.test(navigator.platform));});';
 	d.appendChild(s);
 	document.documentElement.appendChild(d);
 	ok(/Linux arm|iPhone|iPod|iPhone/.test(d.contentWindow.navigator.platform));
