@@ -166,6 +166,7 @@ self.port.on('cTouch_configToOption',function(config){
 	};
 
 	document.getElementById('DLUALIST').onclick=function(){
+/*
 		var AJAX=null;
 		if(window.XMLHttpRequest){
 			AJAX=new XMLHttpRequest();
@@ -181,6 +182,8 @@ self.port.on('cTouch_configToOption',function(config){
 			}
 		};
 		AJAX.send(null);
+*/
+		self.port.emit('cTouch_openFromOption',ctouch_ualist_url);
 	};
 
 	document.getElementById('plugins_page').onclick=function(){
