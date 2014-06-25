@@ -55,13 +55,14 @@ var initialize=function(){
 };
 
 window.onload=function(){
-	document.getElementById('title').innerText=chrome.app.getDetails().name;
-	document.getElementById('extensions_page').innerText=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
+	var innerText=('innerText' in document.documentElement) ? 'innerText' : 'textContent';
+	document.getElementById('title')[innerText]=chrome.app.getDetails().name;
+	document.getElementById('extensions_page')[innerText]=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
-	if(!flash_plugin)document.getElementById('flash_state').innerText='Flash is not installed.';
-	if(flash_plugin)document.getElementById('flash_state').innerText=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
+	if(!flash_plugin)document.getElementById('flash_state')[innerText]='Flash is not installed.';
+	if(flash_plugin)document.getElementById('flash_state')[innerText]=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
 
 	if(chrome.app.getDetails().permissions.indexOf('management')>=0)
 		document.getElementById('external_daemon').innerHTML='<input type="checkbox" id="external_daemon_chrome"><label for="external_daemon_chrome">Use External Daemon Chrome</label><br><input type="text" id="external_daemon_id" size="40" value="'+config.external_daemon_id+'"><br>';
