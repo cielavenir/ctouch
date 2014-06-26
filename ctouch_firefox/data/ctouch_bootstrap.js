@@ -1,5 +1,5 @@
 /*
- * cTouch (to mimic smartphone) [config fixed] by ciel.
+ * cTouch (to mimic smartphone) [non-free] by ciel.
  * javascript imitation / touch event / modifying UserAgent -> all in one.
  * 
  * [Potion Notice]
@@ -8,23 +8,21 @@
 */
 
 (function(){
-//if(typeof sessionStorage['config'] === 'undefined')document.location.href=document.location.href; //reload...
-//var ctouch_option=JSON.parse(sessionStorage['config']);
+var ctouch_option=self.options;
 
 var init=function(){
-	var s;
+	//var s;
 	//s = document.createElement('script');
 	//s.type = 'text/javascript';
 	//s.id = 'ctouch_touch_js';
 	//s.src = chrome.extension.getURL('ctouch_touch.js'); // need to embed to DOM to access x.ontouchstart().
 	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
-	//if(ctouch_option.enable_imitation && ctouch_option.preferedUA!=-1){
-//var useragent=ctouch_option.UA[ctouch_option.preferedUA];
-var useragent='Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus S Build/GWK74) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
-var enable_imitation=true;
-var generate_touch=true;
-var install_createtouch=false;
+	if(ctouch_option.preferedUA!=-1){
+var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
+var enable_imitation=ctouch_option.enable_imitation;
+var generate_touch=ctouch_option.generate_touch;
+var install_createtouch=ctouch_option.install_createtouch;
 ///__BOUNDARY__///
 //cTouch bootstrap core: var useragent/enable_imitation/generate_touch is defined.
 if(generate_touch){
@@ -438,7 +436,7 @@ document.documentElement.appendChild(s);
 
 }
 ///__BOUNDARY__///
-	//}
+	}
 };
 init();
 })();

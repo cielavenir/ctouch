@@ -18,11 +18,10 @@ if(swiff)for(var i=0;i<swiff.length;i++){\
 if(swiff[i].tagName.toLowerCase()=='div'&&swiff[i].getAttribute('data-src'))swiff[i].style.textAlign='left';\
 }\
 var scr=document.getElementsByTagName('script');\
-var innerText=('innerText' in scr) ? 'innerText' : 'textContent';\
 if(scr)for(var i=0;i<scr.length;i++){\
 if(scr[i].src&&scr[i].src.substr(0,32)=='http://aimg.gree.jp/js/reel/Reel'){\
 for(var j=0;j<scr.length;j++){\
-if(scr[j][innerText].match(/\\.setContainer\\((.+?),/)){\
+if(scr[j].innerText.match(/\\.setContainer\\((.+?),/)){\
 var str=RegExp.$1;\
 try{\
 var elem=eval(str);\
