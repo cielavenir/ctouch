@@ -1,7 +1,6 @@
 var ctouch_ualist_url='http://ctouch.googlecode.com/hg/src/ctouch_ualist.json';
 
-var initialize=function(){
-	var config=JSON.parse(localStorage['config']);
+var initialize=function(config){
 	var table=document.getElementById('UA');
 	var i;
 	while(document.getElementById('UA').children.length>0)document.getElementById('UA').removeChild(document.getElementById('UA').children[0]);
@@ -56,24 +55,34 @@ var initialize=function(){
 		tr.appendChild(td);
 		table.appendChild(tr);
 	}
-	document.getElementById('BACKUP').value=localStorage['config'];
+	document.getElementById('BACKUP').value=JSON.stringify(config,null,' ');
 };
 
-window.onload=function(){
+self.port.on('cTouch_selfToOption',function(_self){
+	var innerText=('innerText' in document.documentElement) ? 'innerText' : 'textContent';
+	var title=_self.name[0]+_self.name[1].toUpperCase()+_self.name.substring(2).replace('_',' ');
+	document.getElementById('title')[innerText]=title;
+	document.getElementById('extensions_page')[innerText]=title+' '+_self.version;
+});
+
+var default_config;
+self.port.on('cTouch_defaultConfigToOption',function(config){
+	default_config=config;
+});
+
+self.port.on('cTouch_configToOption',function(config){
 	var innerText=('innerText' in document.documentElement) ? 'innerText' : 'textContent';
 	$(function(){
 		$("tbody").sortable();
 		//$("tbody").disableSelection();
 	});
-	document.getElementById('title')[innerText]=chrome.app.getDetails().name;
-	document.getElementById('extensions_page')[innerText]=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
 	if(!flash_plugin)document.getElementById('flash_state')[innerText]='Flash is not installed.';
 	if(flash_plugin)document.getElementById('flash_state')[innerText]=flash_plugin.filename+' should be '+(flash_plugin.filename.toLowerCase().indexOf('pep')==-1?'NPAPI.':'PPAPI.');
 
-	initialize();
+	initialize(config);
 
 	document.getElementById('ADD').onclick=function(){
 		var table=document.getElementById('UA');
@@ -137,27 +146,27 @@ window.onload=function(){
 			if(table.children[i].children[0].children[0].checked)config.preferedUA=i;
 		}
 		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
-		localStorage['config']=JSON.stringify(config,null,' ');
-		initialize();
-		saveConfig();
+		initialize(config);
+		self.port.emit('cTouch_configFromOption',config);
 	};
 
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
-		localStorage['config']=localStorage['config_default'];
-		initialize();
-		saveConfig();
+		config=default_config;
+		initialize(config);
+		self.port.emit('cTouch_configFromOption',config);
 	};
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		if(!window.confirm('Are you sure to cast resurrection spell?'))return;
-		localStorage['config']=document.getElementById('BACKUP').value;
-		initialize();
-		saveConfig();
+		config=JSON.parse(document.getElementById('BACKUP').value);
+		initialize(config);
+		self.port.emit('cTouch_configFromOption',config);
 	};
 
 	document.getElementById('DLUALIST').onclick=function(){
+/*
 		var AJAX=null;
 		if(window.XMLHttpRequest){
 			AJAX=new XMLHttpRequest();
@@ -173,19 +182,19 @@ window.onload=function(){
 			}
 		};
 		AJAX.send(null);
+*/
+		self.port.emit('cTouch_openFromOption',ctouch_ualist_url);
 	};
 
 	document.getElementById('plugins_page').onclick=function(){
-		//window.open('chrome://plugins');
-		chrome.tabs.create({url:'chrome://plugins'});
+		self.port.emit('cTouch_openFromOption','about:plugins');
 	};
 
 	//easter for debug
 	document.getElementById('popup_page').onclick=function(){
-		window.open(chrome.extension.getURL(chrome.app.getDetails().browser_action.default_popup));
+		self.port.emit('cTouch_openFromOption','rs:ctouch_popup.html');
 	};
 	document.getElementById('extensions_page').onclick=function(){
-		//window.open('chrome://extensions');
-		chrome.tabs.create({url:'chrome://extensions'});
+		self.port.emit('cTouch_openFromOption','about:addons');
 	};
-};
+});

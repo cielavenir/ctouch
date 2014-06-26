@@ -1,3 +1,14 @@
+var { Ci } = require('chrome');
+var { ToggleButton } = require('sdk/ui/button/toggle');
+var panels = require('sdk/panel');
+var pageMod = require('sdk/page-mod');
+var self = require('sdk/self');
+var tabs = require('sdk/tabs');
+var ss = require('sdk/simple-storage');
+var events = require('sdk/system/events');
+
+var default_config=
+///__BOUNDARY__///
 {
 	"UA": [
 		["Android Astro/1.0",
@@ -82,4 +93,120 @@
 	"external_daemon_chrome": false,
 	"external_daemon_id": "abmbnealdnngelmgbiiblpcpbapmmlkd",
 	"install_createtouch": false
+}
+///__BOUNDARY__///
+;
+if(!ss.storage.config)ss.storage.config=default_config;
+
+///pagemod
+function override(event){
+	var channel = event.subject.QueryInterface(Ci.nsIHttpChannel);
+	channel.setRequestHeader('User-Agent', ss.storage.config.UA[ss.storage.config.preferedUA][1], false);
+};
+
+var first_loadPageMod=true;
+var pagemod;
+function loadPageMod(){
+	if(!first_loadPageMod)pagemod.destroy();
+	pagemod=pageMod.PageMod({
+		include: '*',
+		contentScriptFile: self.data.url('ctouch_bootstrap.js'),
+		contentScriptOptions: ss.storage.config,
+		contentScriptWhen: 'start',
+	});
+	if(!first_loadPageMod)events.off('http-on-modify-request', override);
+	if(ss.storage.config.preferedUA!=-1){
+		events.on('http-on-modify-request', override);
+	}
+	first_loadPageMod=false;
+};
+loadPageMod();
+
+pageMod.PageMod({
+	include: '*',
+	contentScriptFile: self.data.url('ctouch_css.js'),
+	//contentScriptOptions: ss.storage.config,
+	contentScriptWhen: 'ready',
+});
+
+///option page
+pageMod.PageMod({
+	include: self.data.url('ctouch_option.html'),
+	contentScriptFile: [
+		self.data.url('jqueryui-sortable.js'),
+		self.data.url('ctouch_option.js'),
+	],
+	onAttach: function(worker){
+		worker.port.emit('cTouch_selfToOption',self);
+		worker.port.emit('cTouch_defaultConfigToOption',default_config);
+		worker.port.emit('cTouch_configToOption',ss.storage.config);
+		worker.port.on('cTouch_configFromOption',function(config){
+			ss.storage.config=config;
+			loadPageMod();
+		});
+		worker.port.on('cTouch_openFromOption',function(url){
+			tabs.open({url:url.replace('rs:',self.data.url(''))});
+		});
+	},
+});
+
+pageMod.PageMod({
+	include: self.data.url('ctouch_popup.html'),
+	contentScriptFile: self.data.url('ctouch_popup.js'),
+	onAttach: function(worker){
+		worker.port.emit('cTouch_selfToPopup',self);
+		worker.port.emit('cTouch_configToPopup',ss.storage.config);
+		worker.port.on('cTouch_configFromPopup',function(config){
+			ss.storage.config=config;
+			loadPageMod();
+		});
+		worker.port.on('cTouch_openFromPopup',function(url){
+			tabs.open({url:url.replace('rs:',self.data.url(''))});
+		});
+	},
+});
+
+///panel
+var button = ToggleButton({
+	id: 'ctouch',
+	label: 'cTouch',
+	icon: {
+		'16': './icon16.png',
+		'32': './icon32.png',
+	},
+	onChange: handleChange
+});
+
+var first_loadPanel=true;
+var panel;
+function loadPanel(){
+	if(!first_loadPanel)panel.destroy();
+	panel = panels.Panel({
+		contentURL: self.data.url('ctouch_popup.html'),
+		contentScriptFile: self.data.url('ctouch_popup.js'),
+		onHide: handleHide
+	});
+	first_loadPanel=false;
+}
+loadPanel();
+
+function handleChange(state){
+	if(state.checked){
+		panel.show({
+			position: button
+		});
+		panel.port.emit('cTouch_selfToPopup',self);
+		panel.port.emit('cTouch_configToPopup',ss.storage.config);
+		panel.port.on('cTouch_configFromPopup',function(config){
+			ss.storage.config=config;
+			loadPageMod();
+		});
+		panel.port.on('cTouch_openFromPopup',function(url){
+			tabs.open({url:url.replace('rs:',self.data.url(''))});
+		});
+	}
+}
+function handleHide(){
+	loadPanel();
+	button.state('window', {checked: false});
 }
