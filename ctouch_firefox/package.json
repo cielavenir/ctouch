@@ -5,8 +5,7 @@
 	"description": "You can browse smartphone websites.",
 	"homepage": "https://code.google.com/p/ctouch/",
 	"author": "ciel <cielartisan@gmail.com>",
-	"lib": "lib",
-	"main": "main.js",
+	"main": "lib/main.js",
 	"license": "2-clause BSDL",
 	"version": "2.5.3.40625",
 	"permissions": {
