@@ -26,12 +26,14 @@
 		"all_frames": true,
 		"js": ["ctouch_bootstrap.js"],
 		"matches": ["<all_urls>"],
+		"match_about_blank": true,
 		"run_at": "document_start"
 	},
 	{
 		"all_frames": true,
 		"js": ["ctouch_css.js"],
 		"matches": ["<all_urls>"],
+		"match_about_blank": true,
 		"run_at": "document_end"
 	}
 	],

@@ -354,6 +354,7 @@ myself.parentNode.removeChild(myself);\
 
 document.documentElement.appendChild(s);
 
+/*
 if(navigator.userAgent.match(/Chrome\/(\d+)/)&&(RegExp.$1^0)<28){ // This "if" is very nasty ^^
 // Chrome 27 or less (no Safari)
 
@@ -412,7 +413,6 @@ HTMLDocument.prototype.createElement=function createElement("+randomelem+"){\
 	return d;\
 };\
 HTMLDocument.prototype.createElement"+randomname+".toString=function(){return 'function createElement"+randomname+"() { [native code] }';};\
-/*HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};*/\
 document.createElement.toString=function(){return 'function createElement() { [native code] }';};\
 HTMLDocument.prototype.appendChild.toString=function(){return 'function appendChild() { [native code] }';};\
 HTMLDocument.prototype.insertBefore.toString=function(){return 'function insertBefore() { [native code] }';};\
@@ -421,8 +421,9 @@ if(myself)myself.parentNode.removeChild(myself);\
 })();\
 ";
 document.documentElement.appendChild(s);
-
+//HTMLDocument.prototype.createElement.toString=function(){return 'function createElement() { [native code] }';};
 }
+*/
 
 var s=document.createElement('script');
 s.type='text/javascript';
