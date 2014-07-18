@@ -14,6 +14,7 @@ all: safari crx zip
 safari: $(SAFARI)
 crx: $(CRX)
 zip: $(ZIP)
+firefox: ctouch_firefox/ctouch_r3.xpi
 
 CTOUCH_SAFARI := ctouch.safariextension/Info.plist
 CTOUCH_COMMON := ctouch_common/*
@@ -124,8 +125,12 @@ ctouch_filesystem/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 ctouch_true/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
+ctouch_firefox/data/ctouch_bootstrap.js: src/ctouch_bootstrap.js
+	@ruby support/ctouch_insert.rb $@ $<
 
 ctouch_common2/ctouch_bg.js: src/ctouch_ualist.json
+	@ruby support/ctouch_insert.rb $@ $<
+ctouch_firefox/lib/main.js: src/ctouch_ualist.json
 	@ruby support/ctouch_insert.rb $@ $<
 
 clean:
