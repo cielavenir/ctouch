@@ -131,3 +131,4 @@
 2.5.3.40119
 * Modified window.ontouchmove/window.ontouchend handling (fix ameba::kamefarm etc).
 * This change might have some issues with some games. Tell me if you find some.
+2.5.4.40722 Tweaked generated iframe handling.
