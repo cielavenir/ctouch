@@ -31,7 +31,7 @@ EOM
 		<key>CFBundleShortVersionString</key>
 		<string>#{V}</string>
 		<key>URL</key>
-		<string>http://master.dl.sourceforge.net/project/ctouch/files/#{V}/#{e}.safariextz</string>
+		<string>http://master.dl.sourceforge.net/project/ctouch/#{V}/#{e}.safariextz</string>
 	</dict>
 EOM
 }
@@ -44,4 +44,4 @@ EOM
 
 __END__
 https://ctouch.googlecode.com/files/#{e}-#{V}.safariextz
-http://master.dl.sourceforge.net/project/ctouch/files/#{V}/#{e}.safariextz
+http://master.dl.sourceforge.net/project/ctouch/#{V}/#{e}.safariextz
