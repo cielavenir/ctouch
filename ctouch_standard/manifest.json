@@ -1,5 +1,5 @@
 {
-	"name": "cTouch r3 (standard)",
+	"name": "cTouch r4 (standard)",
 	"description": "You can browse smartphone websites. Configuration is saved to background localStorage; loading is asynchronous.",
 	"version": "2.5.5.40908",
 	"manifest_version": 2,
