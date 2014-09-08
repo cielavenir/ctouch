@@ -2,6 +2,7 @@
 VERSION := $(shell ruby support/genversion.rb)
 
 SAFARI := bin/ctouch.safariextz
+FIREFOX := bin/ctouch_firefox.xpi
 CRX := bin/ctouch_standard.crx bin/ctouch_fixed.crx bin/ctouch_external.crx bin/ctouch_browserua.crx bin/ctouch_filesystem.crx
 #bin/ctouch_true.crx
 ZIP := bin/ctouch_browserua.zip bin/ctouch_filesystem.zip bin/ctouch_external.zip
@@ -14,7 +15,7 @@ all: safari crx zip
 safari: $(SAFARI)
 crx: $(CRX)
 zip: $(ZIP)
-firefox: bin/ctouch_firefox.xpi
+firefox: $(FIREFOX)
 
 CTOUCH_SAFARI := ctouch.safariextension/Info.plist
 CTOUCH_COMMON := ctouch_common/*
@@ -156,7 +157,7 @@ release:
 	make all firefox
 
 publish:
-	ruby support/sourceforge_upload.rb $(VERSION) $(SAFARI) $(CRX) $(firefox)
+	ruby support/sourceforge_upload.rb $(VERSION) $(SAFARI) $(CRX) $(FIREFOX)
 	@#ln -f bin/ctouch.safariextz bin/ctouch-$(VERSION).safariextz
 	@#ln -f bin/ctouch_standard.crx bin/ctouch_standard-$(VERSION).crx
 	@#ln -f bin/ctouch_fixed.crx bin/ctouch_fixed-$(VERSION).crx
