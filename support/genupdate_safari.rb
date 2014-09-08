@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 DOMAIN='com.cielavenir'
 DEVID='ZMS86BA3S8'
@@ -31,7 +31,7 @@ EOM
 		<key>CFBundleShortVersionString</key>
 		<string>#{V}</string>
 		<key>URL</key>
-		<string>https://ctouch.googlecode.com/files/#{e}-#{V}.safariextz</string>
+		<string>https://sourceforge.net/projects/ctouch/files/#{V}/#{e}.safariextz</string>
 	</dict>
 EOM
 }
@@ -41,3 +41,7 @@ print <<EOM
 </dict>
 </plist>
 EOM
+
+__END__
+https://ctouch.googlecode.com/files/#{e}-#{V}.safariextz
+https://sourceforge.net/projects/ctouch/files/#{V}/#{e}.safariextz

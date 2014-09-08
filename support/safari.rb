@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #target.crx target.pem dir...
 
 XAR=ENV['HOME']+'/bin/xar'

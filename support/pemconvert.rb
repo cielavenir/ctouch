@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #Convert PKCS1 to PKCS8
 require 'rubygems'
 require 'openssl_pkcs8'

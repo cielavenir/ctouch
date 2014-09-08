@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #target.crx target.pem dir...
 
 #based on crxmake under MIT License.
