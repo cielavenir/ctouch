@@ -33,7 +33,7 @@ print <<EOM
 EOM
 
 ['ctouch_standard','ctouch_fixed','ctouch_external','ctouch_browserua','ctouch_filesystem'].each{|e|
-	puts "<app appid='#{pkey_to_id(e)}'><updatecheck codebase='https://sourceforge.net/projects/ctouch/files/#{V}/#{e}.crx' version='#{V}'/></app>"
+	puts "<app appid='#{pkey_to_id(e)}'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/files/#{V}/#{e}.crx' version='#{V}'/></app>"
 }
 
 print <<EOM
@@ -42,4 +42,4 @@ EOM
 
 __END__
 https://ctouch.googlecode.com/files/#{e}-#{V}.crx
-https://sourceforge.net/projects/ctouch/files/#{V}/#{e}.crx
+http://master.dl.sourceforge.net/project/ctouch/files/#{V}/#{e}.crx

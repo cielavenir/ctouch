@@ -3,7 +3,7 @@
 	"description": "You can browse smartphone websites. Configuration is saved to background localStorage; loading is asynchronous.",
 	"version": "2.5.5.40908",
 	"manifest_version": 2,
-	"update_url": "http://ctouch.googlecode.com/hg/updates.xml",
+	"update_url": "https://sourceforge.net/p/ctouch/code/ci/default/tree/updates.xml?format=raw",
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"background": {
 		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js"]
