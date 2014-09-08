@@ -47,7 +47,7 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://ctouch.googlecode.com/hg/updates.plist</string>
+	<string>https://sourceforge.net/p/ctouch/code/ci/default/tree/updates.plist?format=raw</string>
 	<key>Website</key>
 	<string>https://code.google.com/p/ctouch/</string>
 </dict>
