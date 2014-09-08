@@ -1,6 +1,6 @@
-#!/usr/bin/ruby -Ku
+#!/usr/bin/env ruby -Ku
 #coding:utf-8
-if RUBY_VERSION < '1.9.0' then $KCODE='u' end
+if RUBY_VERSION < '1.9' then $KCODE='u' end
 BOUNDARY="///__BOUNDARY__///\n"
 
 open(ARGV[0],'r+b'){|fout|

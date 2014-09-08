@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # https://USER:PASS@code.google.com/p/PROJ/
 # https://USER:PASS@PROJ.googlecode.com/hg/
