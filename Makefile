@@ -157,7 +157,7 @@ release:
 	make all firefox
 
 publish:
-	ruby support/sourceforge_upload.rb $(VERSION) $(SAFARI) $(CRX) $(FIREFOX)
+	ruby support/sourceforge_upload.rb $(VERSION) $(SAFARI)
 	@#ln -f bin/ctouch.safariextz bin/ctouch-$(VERSION).safariextz
 	@#ln -f bin/ctouch_standard.crx bin/ctouch_standard-$(VERSION).crx
 	@#ln -f bin/ctouch_fixed.crx bin/ctouch_fixed-$(VERSION).crx
