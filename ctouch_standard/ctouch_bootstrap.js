@@ -205,41 +205,45 @@ document.createTouchList.toString=function(){return 'function createTouchList() 
 s[innerText] += "\
 document.ondragstart = function(){return false;};\
 window.ondragstart = function(){return false;};\
-\
-Object.defineProperty(document,'ontouchstart',{\
-	writable: false,\
-	value: null,\
-});\
-Object.defineProperty(document.documentElement,'ontouchstart',{\
-	writable: false,\
-	value: null,\
-});\
-window.ontouchstart = null;\
-\
-Object.defineProperty(document,'ontouchmove',{\
-	writable: false,\
-	value: null,\
-});\
-Object.defineProperty(document.documentElement,'ontouchmove',{\
-	writable: false,\
-	value: null,\
-});\
-window.ontouchmove = null;\
-\
-Object.defineProperty(document,'ontouchend',{\
-	writable: false,\
-	value: null,\
-});\
-Object.defineProperty(document.documentElement,'ontouchend',{\
-	writable: false,\
-	value: null,\
-});\
-window.ontouchend = null;\
-\
 window.orientation = 0;\
 window.ondeviceorientation = null;\
 window.ondevicemotion = null;\
 window.onorientationchange = null;\
+\
+/*self test about ontouchstart*/\
+document.ontouchstart=undefined;\
+if(document.ontouchstart!=null){\
+	/*chrome native touch simulation not available; patch required*/\
+	Object.defineProperty(document,'ontouchstart',{\
+		writable: false,\
+		value: null,\
+	});\
+	Object.defineProperty(document.documentElement,'ontouchstart',{\
+		writable: false,\
+		value: null,\
+	});\
+	window.ontouchstart = null;\
+	\
+	Object.defineProperty(document,'ontouchmove',{\
+		writable: false,\
+		value: null,\
+	});\
+	Object.defineProperty(document.documentElement,'ontouchmove',{\
+		writable: false,\
+		value: null,\
+	});\
+	window.ontouchmove = null;\
+	\
+	Object.defineProperty(document,'ontouchend',{\
+		writable: false,\
+		value: null,\
+	});\
+	Object.defineProperty(document.documentElement,'ontouchend',{\
+		writable: false,\
+		value: null,\
+	});\
+	window.ontouchend = null;\
+}\
 ";
 
 if(useragent.indexOf('Chrome')==-1&&useragent.indexOf('CrMo')==-1){ //un-chrome-ize
