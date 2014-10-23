@@ -110,6 +110,7 @@ window.onload=function(){
 		saveConfig();
 	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
+	//external?
 	if(chrome.app.getDetails().permissions.indexOf('management')>=0 && current_config.external_daemon_chrome)chrome.management.launchApp(current_config.external_daemon_id.trim());
 };
 
