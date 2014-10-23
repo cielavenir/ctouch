@@ -87,7 +87,7 @@
 		["Android Firefox Mobile 33.0",
 			"Mozilla/5.0 (Android; Mobile; rv:33.0) Gecko/33.0 Firefox/33.0"],
 		["Android Firefox Tablet 33.0",
-			"Mozilla/5.0 (Android; Tablet; rv:30.0) Gecko/33.0 Firefox/33.0"]
+			"Mozilla/5.0 (Android; Tablet; rv:33.0) Gecko/33.0 Firefox/33.0"]
 	],
 	"config_version": 3,
 	"preferedUA": -1,
