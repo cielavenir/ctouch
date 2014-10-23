@@ -1,34 +1,26 @@
 {
-	"name": "cTouch r4 (filesystem)",
-	"description": "You can browse smartphone websites. Configuration is saved to HTML5 filesystem.",
+	"name": "cTouch r4 (true)",
+	"description": "You can browse smartphone websites. Communication with background is completely synchronous.",
 	"version": "2.5.5.40908",
 	"manifest_version": 2,
 	"update_url": "https://sourceforge.net/p/ctouch/code/ci/default/tree/updates.xml?format=raw",
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"background": {
-		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js"]
+		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js","ctouch_bg_tab.js"]
 	},
 	"permissions": [
 		"tabs",
 		"webRequest",
 		"webRequestBlocking",
-		"unlimitedStorage",
 		"<all_urls>"
 	],
 	"options_page": "ctouch_option.html",
 	"browser_action": {
 		"default_icon": "icon16.png",
-		"default_title": "cTouch r4 (filesystem)",
+		"default_title": "cTouch r4 (true)",
 		"default_popup": "ctouch_popup.html"
 	},
 	"content_scripts": [
-	{
-		"all_frames": true,
-		"js": ["ctouch_bootstrap.js"],
-		"matches": ["<all_urls>"],
-		"match_about_blank": true,
-		"run_at": "document_start"
-	},
 	{
 		"all_frames": true,
 		"js": ["ctouch_css.js"],

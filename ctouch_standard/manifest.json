@@ -17,7 +17,7 @@
 	"options_page": "ctouch_option.html",
 	"browser_action": {
 		"default_icon": "icon16.png",
-		"default_title": "cTouch r3 (standard)",
+		"default_title": "cTouch r4 (standard)",
 		"default_popup": "ctouch_popup.html"
 	},
 	"content_scripts": [
