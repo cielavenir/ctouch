@@ -10,4 +10,7 @@ var postFile=function(url, passData){
 	AJAX.send(passData);
 	return AJAX.responseText;
 };
-var saveConfig=function(){postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(localStorage['config']));}
+var saveConfig=function(json){
+	postFile('http://localhost:12380/ctouch_external.cgi',window.btoa(json));
+	return true;
+};
