@@ -75,6 +75,14 @@ window.onload=function(){
 
 	initialize();
 
+	document.getElementById('UNSET').onclick=function(){
+		var table=document.getElementById('UA');
+		var i=0;
+		for(;i<table.children.length;i++){
+			table.children[i].children[0].children[0].checked=false;
+		}
+	}
+
 	document.getElementById('ADD').onclick=function(){
 		var table=document.getElementById('UA');
 		var tr=document.createElement('tr');
@@ -130,6 +138,7 @@ window.onload=function(){
 	document.getElementById('SAVE').onclick=function(){
 		var config=JSON.parse(localStorage['config']);
 		config.UA=[];
+		config.preferedUA=-1;
 		var table=document.getElementById('UA');
 		var i=0;
 		for(;i<table.children.length;i++){

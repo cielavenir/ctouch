@@ -1,1 +1,3 @@
-var saveConfig=function(){};
+var saveConfig=function(json){
+	return true;
+};

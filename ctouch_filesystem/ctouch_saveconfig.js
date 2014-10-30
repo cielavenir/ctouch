@@ -14,4 +14,7 @@ var writeFile=function(file, data){
 		});
 	});
 };
-var saveConfig=function(){writeFile('ctouch_filesystem.json',localStorage['config']);}
+var saveConfig=function(json){
+	writeFile('ctouch_filesystem.json',json);
+	return true;
+};

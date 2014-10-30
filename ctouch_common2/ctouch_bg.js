@@ -127,7 +127,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 		var headers=details.requestHeaders;
 		for(var i=0;i<headers.length;i++){
 			if(headers[i].name=='User-Agent'){
-				var config=JSON.parse(localStorage['config']);
+				var config=JSON.parse(localStorage[chrome.app.getDetails().name.indexOf('true')>=0 ? details.tabId : 'config']);
 				if(config.preferedUA!=-1)headers[i].value=config.UA[config.preferedUA][1];
 				if(headers[i].value.indexOf('Chrome')==-1&&headers[i].value.indexOf('CrMo')==-1){
 					for(var j=0;j<headers.length;j++){
