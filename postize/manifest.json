@@ -1,13 +1,13 @@
 {
 	"name": "POSTize",
 	"description": "Patch HTML form to use POST if it uses GET and has password.",
-	"version": "0.0.3.2",
+	"version": "0.0.3.3",
 	"manifest_version": 2,
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"content_scripts": [
 	{
 		"all_frames": true,
-		"js": ["postize_css.js"],
+		"js": ["postize_css.user.js"],
 		"matches": ["<all_urls>"],
 		"run_at": "document_end"
 	}

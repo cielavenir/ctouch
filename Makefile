@@ -31,7 +31,7 @@ bin/ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFAR
 	ruby support/safari.rb ctouch pem/ctouch_safari.pem pem/ctouch_safari.der
 	rm -f ctouch.safariextension/*.js
 bin/postize.safariextz: postize/* postize.safariextension/*
-	ln -f postize/postize_css.js postize.safariextension/
+	ln -f postize/postize_css.user.js postize.safariextension/
 	ruby support/safari.rb postize pem/ctouch_safari.pem pem/ctouch_safari.der
 	rm -f postize.safariextension/*.js
 #need to port chrome.browserAction API part.

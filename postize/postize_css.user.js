@@ -3,7 +3,7 @@
 // @namespace   com.cielavenir
 // @description Patch HTML form to use POST if it uses GET and has password.
 // @include     https://ssl.doctorqube.com/*
-// @version     0.0.3.1
+// @version     0.0.3.3
 // ==/UserScript==
 
 (function(){
