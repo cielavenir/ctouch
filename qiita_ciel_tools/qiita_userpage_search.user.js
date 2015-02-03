@@ -6,7 +6,7 @@
 // @version     0.0.0.2
 // ==/UserScript==
 
-(function(){
+var main=function(){
 	var span=document.querySelector('.userPage_heading > span');
 	if(!span)return;
 	var user_name=span.textContent;
@@ -20,4 +20,11 @@
 		tspan[i].textContent='';
 		tspan[i].appendChild(a);
 	}
-})();
+};
+if(typeof 'chrome'=='undefined'){
+	main();
+}else{
+	chrome.runtime.sendMessage({tool:'userpage_search'},function(res){
+		if(res['result'])main();
+	});
+}

@@ -2,7 +2,7 @@
 // @name        Qiita TopPage Search
 // @namespace   com.cielavenir
 // @description Add search button in top page.
-// @include     http://qiita.com/
+// @include     https://qiita.com/
 // @version     0.0.0.1
 // ==/UserScript==
 

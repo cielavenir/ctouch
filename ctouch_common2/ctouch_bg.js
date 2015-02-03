@@ -89,7 +89,7 @@ window.onload=function(){
 			"Mozilla/5.0 (iPad; CPU OS 8_1_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B466 Safari/600.1.4"],
 		["Android Firefox Mobile 35.0",
 			"Mozilla/5.0 (Android; Mobile; rv:35.0) Gecko/35.0 Firefox/35.0"],
-		["Android Firefox Tablet 33.0",
+		["Android Firefox Tablet 35.0",
 			"Mozilla/5.0 (Android; Tablet; rv:35.0) Gecko/35.0 Firefox/35.0"]
 	],
 	"config_version": 3,
