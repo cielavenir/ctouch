@@ -39,10 +39,6 @@ bin/postize.safariextz: postize/* postize.safariextension/*
 #	ln -f unpassword/unpassword_css.js unpassword.safariextension/
 #	ruby support/safari.rb unpassword ctouch_safari.pem
 #	rm -f unpassword.safariextension/*.js
-bin/sgfaker.safariextz: sgfaker/* sgfaker.safariextension/*
-	ln -f sgfaker/sgfaker_bootstrap.js sgfaker.safariextension/
-	ruby support/safari.rb sgfaker pem/ctouch_safari.pem pem/ctouch_safari.der
-	rm -f sgfaker.safariextension/*.js
 
 bin/ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -72,10 +68,9 @@ bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
 bin/codeiqdiswriter.crx: codeiqdiswriter/*
 	ruby support/crx.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
+bin/qiita_ciel_tools.crx: qiita_ciel_tools/*
+	ruby support/crx.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 
-#SGFaker has been merged to cTouch.
-#bin/sgfaker.crx: sgfaker/*
-#	ruby support/crx.rb $@ pem/sgfaker.pem sgfaker
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
 bin/dragonleaguexhtmlize.crx: dragonleaguexhtmlize/*
@@ -106,6 +101,8 @@ bin/undisposition.zip: undisposition/*
 	ruby support/zip.rb $@ pem/undisposition.pem undisposition
 bin/codeiqdiswriter.zip: codeiqdiswriter/*
 	ruby support/zip.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
+bin/qiita_ciel_tools.zip: qiita_ciel_tools/*
+	ruby support/zip.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@

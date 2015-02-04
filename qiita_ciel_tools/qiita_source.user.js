@@ -7,7 +7,7 @@
 // @version     0.0.0.3
 // ==/UserScript==
 
-(function(){
+var source_main=function(){
 	var ul=document.getElementsByClassName('itemsShowHeaderTitle_status')[0];
 	if(!ul)return;
 	var li=document.createElement('li');
@@ -16,4 +16,12 @@
 	a.textContent='Markdownを表示する';
 	li.appendChild(a);
 	ul.appendChild(li);
-})();
+};
+
+if(typeof 'chrome'==='undefined'){
+	source_main();
+}else{
+	chrome.runtime.sendMessage({tool:'source'},function(res){
+		if(res['result'])source_main();
+	});
+}
