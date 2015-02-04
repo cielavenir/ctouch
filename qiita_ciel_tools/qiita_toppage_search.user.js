@@ -6,7 +6,7 @@
 // @version     0.0.0.1
 // ==/UserScript==
 
-(function(){
+var toppage_search_main=function(){
 	var before=document.getElementsByClassName('landingHeaderCatchCopy')[0];
 	if(!before)return;
 	var div=document.getElementsByClassName('col-sm-7')[0];
@@ -44,4 +44,12 @@
 		}
 	});
 	div.insertBefore(form,before);
-})();
+};
+
+if(typeof 'chrome'==='undefined'){
+	toppage_search_main();
+}else{
+	chrome.runtime.sendMessage({tool:'toppage_search'},function(res){
+		if(res['result'])toppage_search_main();
+	});
+}
