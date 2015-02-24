@@ -3,7 +3,7 @@
 // @namespace   com.cielavenir
 // @description Add search button in top page.
 // @include     https://qiita.com/
-// @version     0.0.0.1
+// @version     0.0.0.2
 // ==/UserScript==
 
 var toppage_search_main=function(){
@@ -24,23 +24,26 @@ var toppage_search_main=function(){
 	document.addEventListener('keydown',function(e){
 		if(window.event)e=window.event;
 		var keycode=e.keyCode||e.which;
-		console.log(keycode);
-		switch(keycode){
-			case 83: case 115:
-				document.getElementById('toppage-search').value='';
-				document.getElementById('toppage-search').focus();
-				e.preventDefault();
-				break;
-			case 84: case 116:
-				document.getElementById('toppage-search').value='tag:';
-				document.getElementById('toppage-search').focus();
-				e.preventDefault();
-				break;
-			case 85: case 117:
-				document.getElementById('toppage-search').value='user:';
-				document.getElementById('toppage-search').focus();
-				e.preventDefault();
-				break;
+		//console.log(keycode);
+		var input=document.getElementById('toppage-search');
+		if(document.activeElement!=input){
+			switch(keycode){
+				case 83: case 115:
+					input.value='';
+					input.focus();
+					e.preventDefault();
+					break;
+				case 84: case 116:
+					input.value='tag:';
+					input.focus();
+					e.preventDefault();
+					break;
+				case 85: case 117:
+					input.value='user:';
+					input.focus();
+					e.preventDefault();
+					break;
+			}
 		}
 	});
 	div.insertBefore(form,before);

@@ -1,7 +1,7 @@
 {
 	"name": "Qiita Ciel Tools",
 	"description": "Patch some of Qiita website",
-	"version": "0.0.1",
+	"version": "0.0.1.1",
 	"manifest_version": 2,
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"background": {
