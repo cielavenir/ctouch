@@ -1,0 +1,15 @@
+{
+	"name": "CodeIQ FormerBack",
+      "description": "Open old feedback link.",
+	"version": "0.0.0.1",
+	"manifest_version": 2,
+	"homepage_url": "https://code.google.com/p/ctouch/",
+	"background": {
+		"scripts": ["codeiqformerback.user.js"]
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://codeiq.jp/my_feedback.php*"
+	]
+}

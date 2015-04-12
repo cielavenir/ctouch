@@ -68,6 +68,8 @@ bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
 bin/codeiqdiswriter.crx: codeiqdiswriter/*
 	ruby support/crx.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
+bin/codeiqformerback.crx: codeiqformerback/*
+	ruby support/crx.rb $@ pem/codeiqformerback.pem codeiqformerback
 bin/qiita_ciel_tools.crx: qiita_ciel_tools/*
 	ruby support/crx.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 
@@ -101,6 +103,8 @@ bin/undisposition.zip: undisposition/*
 	ruby support/zip.rb $@ pem/undisposition.pem undisposition
 bin/codeiqdiswriter.zip: codeiqdiswriter/*
 	ruby support/zip.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
+bin/codeiqformerback.zip: codeiqformerback/*
+	ruby support/zip.rb $@ pem/codeiqformerback.pem codeiqformerback
 bin/qiita_ciel_tools.zip: qiita_ciel_tools/*
 	ruby support/zip.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 

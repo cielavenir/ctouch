@@ -5,7 +5,7 @@
 	"manifest_version": 2,
 	"homepage_url": "https://code.google.com/p/ctouch/",
 	"background": {
-		"scripts": ["codeiq_redirect.js"]
+		"scripts": ["codeiqdiswriter.user.js"]
 	},
 	"permissions": [
 		"webRequest",
