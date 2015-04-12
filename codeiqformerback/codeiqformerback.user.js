@@ -2,6 +2,7 @@
 // @name        CodeIQ FormerBack
 // @namespace   com.cielavenir
 // @description Open old feedback link.
+// @run-at      document-start
 // @include     https://codeiq.jp/my_feedback.php*
 // @version     0.0.0.1
 // ==/UserScript==
