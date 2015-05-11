@@ -7,7 +7,7 @@
 # git: .git/config url=
 # hg:  .hg/hgrc default=
 
-open('.hg/hgrc','rb'){|f|
+open('.git/config','rb'){|f|
 	s=f.read
 	s=~/:\/\/(\w+):(\w+)@/
 	if ARGV[0]=='-googlecode'
