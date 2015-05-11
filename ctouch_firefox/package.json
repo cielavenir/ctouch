@@ -3,11 +3,11 @@
 	"title": "cTouch r4",
 	"id": "ctouch@com.cielavenir",
 	"description": "You can browse smartphone websites.",
-	"homepage": "https://code.google.com/p/ctouch/",
+	"homepage": "https://github.com/cielavenir/ctouch/",
 	"author": "ciel <cielartisan@gmail.com>",
 	"main": "lib/main.js",
 	"license": "2-clause BSDL",
-	"version": "2.5.5.40908",
+	"version": "2.5.6.50511",
 	"permissions": {
 		"private-browsing": true
 	},

@@ -149,7 +149,7 @@ release:
 	@ruby support/updatemanifest.rb ctouch_external/manifest.json
 	@ruby support/updatemanifest.rb ctouch_browserua/manifest.json
 	@ruby support/updatemanifest.rb ctouch_filesystem/manifest.json
-	@#ruby support/updatemanifest.rb ctouch_true/manifest.json
+	@ruby support/updatemanifest.rb ctouch_true/manifest.json
 	@ruby support/updatemanifest.rb ctouch_firefox/package.json
 	ruby support/genupdate.rb > updates.xml
 	make all firefox
@@ -179,4 +179,5 @@ publish:
 	@#rm -f bin/ctouch_true-$(VERSION).crx
 
 setupwiki:
-	hg clone --insecure https://wiki.ctouch.googlecode.com/hg/ wiki
+	@#hg clone --insecure https://wiki.ctouch.googlecode.com/hg/ wiki
+	git clone https://github.com/cielavenir/ctouch.wiki wiki
