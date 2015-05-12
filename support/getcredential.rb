@@ -7,12 +7,15 @@
 # git: .git/config url=
 # hg:  .hg/hgrc default=
 
-open('.git/config','rb'){|f|
+File.open('.git/config','rb'){|f|
 	s=f.read
-	s=~/:\/\/(\w+):(\w+)@/
-	if ARGV[0]=='-googlecode'
-		print '-u '+$1+' -w '+$2
+	if s=~/:\/\/(\w+):(\w+)@/
+		if ARGV[0]=='-googlecode'
+			print '-u '+$1+' -w '+$2
+		else
+			print $1+':'+$2
+		end
 	else
-		print $1+':'+$2
+		#perhaps ssh
 	end
 }

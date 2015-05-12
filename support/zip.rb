@@ -28,7 +28,7 @@ def run(argv)
 	pkey=argv.shift
 	keybody=''
 	begin
-		open(pkey,'rb'){|f|
+		File.open(pkey,'rb'){|f|
 			keybody=f.read
 		}
 	rescue
@@ -37,7 +37,7 @@ def run(argv)
 			$stderr.puts 'To suppress this message, do: gem install openssl_pkcs8'
 		end
 		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
-		open(pkey,'wb'){|f|
+		File.open(pkey,'wb'){|f|
 			f<<key.to_pem
 		}
 	end
@@ -49,7 +49,7 @@ def run(argv)
 			Find.find(e){|path|
 				if path != e && !File.directory?(path)
 					name=get_relative(e, path)
-					open(path,'rb'){|f|
+					File.open(path,'rb'){|f|
 						if name=='manifest.json'
 							a=f.readlines
 							a.map!{|e|
@@ -73,7 +73,7 @@ def run(argv)
 			Find.find(e){|path|
 				if path != e && !File.directory?(path)
 					name=get_relative(e, path)
-					open(path,'rb'){|f|
+					File.open(path,'rb'){|f|
 						if name=='manifest.json'
 							a=f.readlines
 							a.map!{|e|

@@ -37,7 +37,7 @@ def run(argv)
 	pkey=argv.shift
 	key=''
 	begin
-		open(pkey,'rb'){|f|
+		File.open(pkey,'rb'){|f|
 			key=OpenSSL::PKey::RSA.new(f)
 		}
 	rescue
@@ -46,7 +46,7 @@ def run(argv)
 			$stderr.puts 'To suppress this message, do: gem install openssl_pkcs8'
 		end
 		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
-		open(pkey,'wb'){|f|
+		File.open(pkey,'wb'){|f|
 			f<<key.to_pem
 		}
 	end
@@ -58,7 +58,7 @@ def run(argv)
 			Find.find(e){|path|
 				if path != e && !File.directory?(path)
 					name=get_relative(e, path)
-					open(path,'rb'){|f|
+					File.open(path,'rb'){|f|
 						zipb.add_buffer(name, f.read)
 					}
 				end
@@ -72,7 +72,7 @@ def run(argv)
 			Find.find(e){|path|
 				if path != e && !File.directory?(path)
 					name=get_relative(e, path)
-					open(path,'rb'){|f|
+					File.open(path,'rb'){|f|
 						zipb.put_next_entry(name,nil,nil,Zip::Entry::DEFLATED,Zlib::BEST_COMPRESSION)
 						zipb.write(f.read)
 					}

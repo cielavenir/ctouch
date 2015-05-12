@@ -26,7 +26,7 @@ def run(argv)
 	pder=argv.shift
 	key=''
 	begin
-		open(pkey,'rb'){|f|
+		File.open(pkey,'rb'){|f|
 			key=OpenSSL::PKey::RSA.new(f)
 		}
 	rescue
@@ -66,7 +66,7 @@ def run(argv)
 	#}
 
 =begin
-	open(argv.shift,'rb'){|f|
+	File.open(argv.shift,'rb'){|f|
 		certs.push(OpenSSL::X509::Certificate.new(f))
 	}
 =end

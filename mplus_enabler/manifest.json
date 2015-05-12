@@ -1,15 +1,15 @@
 {
-	"name": "CodeIQ FormerBack",
-	"description": "Open old feedback link.",
+	"name": "M+ WebFont resurrection",
+	"description": "M+ WebFont resurrection",
 	"version": "0.0.0.1",
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
-		"scripts": ["codeiqformerback.user.js"]
+		"scripts": ["mplus_redirect.js"]
 	},
 	"permissions": [
 		"webRequest",
 		"webRequestBlocking",
-		"https://codeiq.jp/my_feedback.php*"
+		"http://mplus-fonts.osdn.jp/webfonts/mplus_webfonts.css"
 	]
 }
