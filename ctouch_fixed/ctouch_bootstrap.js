@@ -213,7 +213,7 @@ window.onorientationchange = null;\
 \
 /*self test about ontouchstart*/\
 document.ontouchstart=undefined;\
-if(document.ontouchstart!=null){\
+if(document.ontouchstart!==null){\
 	/*chrome native touch simulation not available; patch required*/\
 	Object.defineProperty(document,'ontouchstart',{\
 		writable: false,\
@@ -223,7 +223,6 @@ if(document.ontouchstart!=null){\
 		writable: false,\
 		value: null,\
 	});\
-	window.ontouchstart = null;\
 	\
 	Object.defineProperty(document,'ontouchmove',{\
 		writable: false,\
@@ -233,7 +232,6 @@ if(document.ontouchstart!=null){\
 		writable: false,\
 		value: null,\
 	});\
-	window.ontouchmove = null;\
 	\
 	Object.defineProperty(document,'ontouchend',{\
 		writable: false,\
@@ -243,6 +241,11 @@ if(document.ontouchstart!=null){\
 		writable: false,\
 		value: null,\
 	});\
+}\
+window.ontouchstart=undefined;\
+if(window.ontouchstart!==null){\
+	window.ontouchstart = null;\
+	window.ontouchmove = null;\
 	window.ontouchend = null;\
 }\
 ";

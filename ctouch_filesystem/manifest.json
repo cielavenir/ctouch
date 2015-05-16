@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r4 (filesystem)",
 	"description": "You can browse smartphone websites. Configuration is saved to HTML5 filesystem.",
-	"version": "2.5.6.50511",
+	"version": "2.5.7.50517",
 	"manifest_version": 2,
 	"update_url": "https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.xml",
 	"homepage_url": "https://github.com/cielavenir/ctouch/",

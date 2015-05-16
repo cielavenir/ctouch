@@ -72,6 +72,8 @@ bin/codeiqformerback.crx: codeiqformerback/*
 	ruby support/crx.rb $@ pem/codeiqformerback.pem codeiqformerback
 bin/qiita_ciel_tools.crx: qiita_ciel_tools/*
 	ruby support/crx.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
+bin/mplus_enabler.crx: mplus_enabler/*
+	ruby support/crx.rb $@ pem/mplus_enabler.pem mplus_enabler
 
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
@@ -107,6 +109,8 @@ bin/codeiqformerback.zip: codeiqformerback/*
 	ruby support/zip.rb $@ pem/codeiqformerback.pem codeiqformerback
 bin/qiita_ciel_tools.zip: qiita_ciel_tools/*
 	ruby support/zip.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
+bin/mplus_enabler.zip: mplus_enabler/*
+	ruby support/zip.rb $@ pem/mplus_enabler.pem mplus_enabler
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
