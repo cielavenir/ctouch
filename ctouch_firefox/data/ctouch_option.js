@@ -1,4 +1,4 @@
-var ctouch_ualist_url='http://ctouch.googlecode.com/hg/src/ctouch_ualist.json';
+var ctouch_ualist_url='https://raw.githubusercontent.com/cielavenir/ctouch/master/src/ctouch_ualist.json';
 
 var initialize=function(config){
 	var table=document.getElementById('UA');
