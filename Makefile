@@ -74,6 +74,8 @@ bin/qiita_ciel_tools.crx: qiita_ciel_tools/*
 	ruby support/crx.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 bin/mplus_enabler.crx: mplus_enabler/*
 	ruby support/crx.rb $@ pem/mplus_enabler.pem mplus_enabler
+bin/redome_block.crx: redome_block/*
+	ruby support/crx.rb $@ pem/redome_block.pem redome_block
 
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
@@ -111,6 +113,8 @@ bin/qiita_ciel_tools.zip: qiita_ciel_tools/*
 	ruby support/zip.rb $@ pem/qiita_ciel_tools.pem qiita_ciel_tools
 bin/mplus_enabler.zip: mplus_enabler/*
 	ruby support/zip.rb $@ pem/mplus_enabler.pem mplus_enabler
+bin/redome_block.zip: redome_block/*
+	ruby support/zip.rb $@ pem/redome_block.pem redome_block
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
