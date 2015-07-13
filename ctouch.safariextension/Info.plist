@@ -47,8 +47,8 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>https://sourceforge.net/p/ctouch/code/ci/default/tree/updates.plist?format=raw</string>
+	<string>https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.plist</string>
 	<key>Website</key>
-	<string>https://code.google.com/p/ctouch/</string>
+	<string>https://github.com/cielavenir/ctouch/</string>
 </dict>
 </plist>

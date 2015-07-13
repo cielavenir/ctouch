@@ -3,7 +3,7 @@
 	"description": "SGFaker: allows sgviewer.com (use with cTouch)",
 	"version": "0.0.1.1",
 	"manifest_version": 2,
-	"homepage_url": "https://code.google.com/p/ctouch/",
+	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"content_scripts": [
 	{
 		"all_frames": true,

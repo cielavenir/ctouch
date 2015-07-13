@@ -3,7 +3,7 @@
 	"description": "Patch input password to text.",
 	"version": "0.0.1",
 	"manifest_version": 2,
-	"homepage_url": "https://code.google.com/p/ctouch/",
+	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
 		"scripts": ["unpassword_bg.js"]
 	},

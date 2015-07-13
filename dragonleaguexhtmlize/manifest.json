@@ -3,7 +3,7 @@
 	"description": "ドラゴンリーグのHTMLが実際にはXHTMLであるにも関わらずContent-Typeがtext/htmlになっている不具合を、application/xhtml+xmlに書き換えて修正します",
 	"version": "0.0.0.1",
 	"manifest_version": 2,
-	"homepage_url": "https://code.google.com/p/ctouch/",
+	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
 		"scripts": ["452_header.js"]
 	},
