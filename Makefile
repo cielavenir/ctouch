@@ -66,6 +66,8 @@ bin/linksource.crx: linksource/*
 	ruby support/crx.rb $@ pem/linksource.pem linksource
 bin/undisposition.crx: undisposition/*
 	ruby support/crx.rb $@ pem/undisposition.pem undisposition
+bin/dragonleaguexhtmlize.crx: dragonleaguexhtmlize/*
+	ruby support/crx.rb $@ pem/dragonleaguexhtmlize.pem dragonleaguexhtmlize
 bin/codeiqdiswriter.crx: codeiqdiswriter/*
 	ruby support/crx.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
 bin/codeiqformerback.crx: codeiqformerback/*
@@ -76,11 +78,10 @@ bin/mplus_enabler.crx: mplus_enabler/*
 	ruby support/crx.rb $@ pem/mplus_enabler.pem mplus_enabler
 bin/redome_block.crx: redome_block/*
 	ruby support/crx.rb $@ pem/redome_block.pem redome_block
-
+bin/lfize.crx: redome_block/*
+	ruby support/crx.rb $@ pem/lfize.pem lfize
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
-bin/dragonleaguexhtmlize.crx: dragonleaguexhtmlize/*
-	ruby support/crx.rb $@ pem/dragonleaguexhtmlize.pem dragonleaguexhtmlize
 
 bin/ctouch_browserua.zip: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/zip.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
@@ -105,6 +106,8 @@ bin/linksource.zip: linksource/*
 	ruby support/zip.rb $@ pem/linksource.pem linksource
 bin/undisposition.zip: undisposition/*
 	ruby support/zip.rb $@ pem/undisposition.pem undisposition
+bin/dragonleaguexhtmlize.zip: dragonleaguexhtmlize/*
+	ruby support/zip.rb $@ pem/dragonleaguexhtmlize.pem dragonleaguexhtmlize
 bin/codeiqdiswriter.zip: codeiqdiswriter/*
 	ruby support/zip.rb $@ pem/codeiqdiswriter.pem codeiqdiswriter
 bin/codeiqformerback.zip: codeiqformerback/*
@@ -115,6 +118,8 @@ bin/mplus_enabler.zip: mplus_enabler/*
 	ruby support/zip.rb $@ pem/mplus_enabler.pem mplus_enabler
 bin/redome_block.zip: redome_block/*
 	ruby support/zip.rb $@ pem/redome_block.pem redome_block
+bin/lfize.zip: lfize/*
+	ruby support/zip.rb $@ pem/lfize.pem lfize
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
