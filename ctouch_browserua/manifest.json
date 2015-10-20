@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r4 (browserUA)",
 	"description": "You can browse smartphone websites. No configuration screens; command line --user-agent value is used.",
-	"version": "2.5.7.50517",
+	"version": "2.5.8.51020",
 	"manifest_version": 2,
 	"update_url": "https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.xml",
 	"homepage_url": "https://github.com/cielavenir/ctouch/",

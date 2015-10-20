@@ -146,3 +146,4 @@
 2.5.5.40904 Migrated to sourceforge. Released as binary.
 2.5.6.50511 Updated UA list. You can unset UA from option page.
 2.5.7.50517 Fixed official touch event detection.
+2.5.8.51020 Updated UA list (2.5.7 forgot to update UA list URL).
