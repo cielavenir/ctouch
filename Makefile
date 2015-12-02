@@ -78,8 +78,8 @@ bin/mplus_enabler.crx: mplus_enabler/*
 	ruby support/crx.rb $@ pem/mplus_enabler.pem mplus_enabler
 bin/redome_block.crx: redome_block/*
 	ruby support/crx.rb $@ pem/redome_block.pem redome_block
-bin/lfize.crx: redome_block/*
-	ruby support/crx.rb $@ pem/lfize.pem lfize
+bin/linkis_block.crx: linkis_block/*
+	ruby support/crx.rb $@ pem/linkis_block.pem linkis_block
 bin/firefoxz.crx: firefoxz/*
 	ruby support/crx.rb $@ pem/firefoxz.pem firefoxz
 
@@ -118,8 +118,8 @@ bin/mplus_enabler.zip: mplus_enabler/*
 	ruby support/zip.rb $@ pem/mplus_enabler.pem mplus_enabler
 bin/redome_block.zip: redome_block/*
 	ruby support/zip.rb $@ pem/redome_block.pem redome_block
-bin/lfize.zip: lfize/*
-	ruby support/zip.rb $@ pem/lfize.pem lfize
+bin/linkis_block.zip: linkis_block/*
+	ruby support/zip.rb $@ pem/linkis_block.pem linkis_block
 
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
