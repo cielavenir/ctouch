@@ -1,7 +1,7 @@
 {
 	"name": "Qiita Ciel Tools",
 	"description": "Patch some of Qiita website",
-	"version": "0.0.1.1",
+	"version": "0.0.1.2",
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
@@ -21,7 +21,7 @@
 	},
 	{
 		"js": ["qiita_userpage_search.user.js"],
-		"matches": ["http://qiita.com/*"],
+		"matches": ["http://qiita.com/*/items"],
 		"run_at": "document_end"
 	}
 	]
