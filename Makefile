@@ -132,7 +132,7 @@ ctouch_browserua/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 ctouch_standard/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
-ctouch_fixed/ctouch_bootstrap.js: src/ctouch_bootstrap.js
+ctouch_fixed/ctouch_bootstrap.user.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 ctouch_external/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
@@ -159,6 +159,7 @@ release:
 	ruby support/genupdate_safari.rb > updates.plist
 	@ruby support/updatemanifest.rb ctouch_standard/manifest.json
 	@ruby support/updatemanifest.rb ctouch_fixed/manifest.json
+	@ruby support/updatemanifest.rb ctouch_fixed/ctouch_bootstrap.user.js
 	@ruby support/updatemanifest.rb ctouch_external/manifest.json
 	@ruby support/updatemanifest.rb ctouch_browserua/manifest.json
 	@ruby support/updatemanifest.rb ctouch_filesystem/manifest.json

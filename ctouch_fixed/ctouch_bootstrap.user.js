@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name        cTouch
+// @namespace   com.cielavenir
+// @description cTouch
+// @include     *://*/*
+// @run-at      document-start
+// @version     2.5.9.51020
+// ==/UserScript==
+
 /*
  * cTouch (to mimic smartphone) [config fixed] by ciel.
  * javascript imitation / touch event / modifying UserAgent -> all in one.
