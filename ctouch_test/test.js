@@ -68,13 +68,13 @@ test("[cTouch 1.8.6] 'chrome' in window is true only when Android Chrome",functi
 
 if(navigator.userAgent.match(/iPhone|iPod|iPhone/)){
 	test("[cTouch 1.4.1] iOS has ongesturestart",function(){ok('ongesturestart' in document);});
-	test("[cTouch 1.8.2] iOS does not have flash",function(){ok(!navigator.plugins||!navigator.plugins.length||!'application/x-shockwave-flash' in navigator.mimeTypes);});
+	test("[cTouch 1.8.2] iOS does not have flash",function(){ok(!navigator.plugins||(navigator.plugins.constructor.length===0||navigator.plugins.length===0)||!'application/x-shockwave-flash' in navigator.mimeTypes);});
 }else{
 	test("Android does not have ongesturestart",function(){ok(!('ongesturestart' in document));});
 }
 
 if(navigator.userAgent.indexOf("CrMo")!=-1||navigator.userAgent.indexOf("Chrome")!=-1)
-test("[cTouch 1.9.0] Android Chrome does not have flash",function(){ok(!navigator.plugins||!navigator.plugins.length||!'application/x-shockwave-flash' in navigator.mimeTypes);});
+test("[cTouch 1.9.0] Android Chrome does not have flash",function(){ok(!navigator.plugins||(navigator.plugins.constructor.length===0||navigator.plugins.length===0)||!'application/x-shockwave-flash' in navigator.mimeTypes);});
 
 test("[mpw] DOM is not tainted",function(){
 	var count=0;
