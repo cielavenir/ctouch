@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r5 (config fixed)",
 	"description": "You can browse smartphone websites. No configuration screens; UserAgent is fixed.",
-	"version": "2.5.9.51020",
+	"version": "2.6.0.60807",
 	"manifest_version": 2,
 	"update_url": "https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.xml",
 	"homepage_url": "https://github.com/cielavenir/ctouch/",

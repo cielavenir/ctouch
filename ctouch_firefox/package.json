@@ -7,7 +7,7 @@
 	"author": "ciel <cielartisan@gmail.com>",
 	"main": "lib/main.js",
 	"license": "2-clause BSDL",
-	"version": "2.5.9.51020",
+	"version": "2.6.0.60807",
 	"permissions": {
 		"private-browsing": true
 	},

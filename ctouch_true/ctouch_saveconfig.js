@@ -5,4 +5,5 @@ var saveConfig=function(json){
 	});
 	return false;
 */
+	return true; // currently continue to default
 };

@@ -5,12 +5,15 @@
  * [Potion Notice]
  * ctouch_touch.js is rewritten based on mouse2touch (@jkumo).
  * navigator.* writer (C) wakuworks under MIT license.
+ *
+ * [Note] This edition cannot capture generated iframe yet.
 */
 
 chrome.webRequest.onResponseStarted.addListener(
 	function(details){
 		var tabId=details.tabId;
 		var frameId=details.frameId;
+		if(tabId<0||frameId<0)return;
 		var inject_tag=function(id,script){
 			var s="\
 (function(){\
