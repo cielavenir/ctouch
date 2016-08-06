@@ -3,7 +3,7 @@ test("[WebKit] 'WebKitAnimationEvent' in window",function(){
 });
 
 test("[cTouch 1.0.1] 'navigator.userAgent is mobile",function(){
-	ok(/Android|iPhone|iPod|iPhone/.test(navigator.userAgent));
+	ok(/Android|iPhone|iPod|iPad/.test(navigator.userAgent));
 });
 
 test("[cTouch 1.7.3] navigator.appCodeName+'/'+navigator.appVersion==navigator.userAgent",function(){
@@ -18,7 +18,7 @@ test("navigator.userAgent==navigator.__proto__.userAgent",function(){
 }catch(e){}
 
 test("[cTouch 1.0.1] navigator.platform is mobile",function(){
-	ok(/Linux arm|iPhone|iPod|iPhone/.test(navigator.platform));
+	ok(/Linux arm|iPhone|iPod|iPad/.test(navigator.platform));
 	deepEqual(navigator.userAgent.indexOf('Simulator'),-1);
 });
 
@@ -66,7 +66,7 @@ test("[cTouch 1.8.6] 'chrome' in window is true only when Android Chrome",functi
 	);
 });
 
-if(navigator.userAgent.match(/iPhone|iPod|iPhone/)){
+if(navigator.userAgent.match(/iPhone|iPod|iPad/)){
 	test("[cTouch 1.4.1] iOS has ongesturestart",function(){ok('ongesturestart' in document);});
 	test("[cTouch 1.8.2] iOS does not have flash",function(){ok(!navigator.plugins||(navigator.plugins.constructor.length===0||navigator.plugins.length===0)||!'application/x-shockwave-flash' in navigator.mimeTypes);});
 }else{
@@ -170,10 +170,10 @@ test("[cTouch 2.0.5] generated iframe is patched lv2",function(){
 	var s=document.createElement('script');
 	var innerText=('innerText' in s) ? 'innerText' : 'textContent';
 	s.type='text/javascript';
-	s[innerText]='parent.test("generated iframe is patched lv1",function(){parent.ok(/Linux arm|iPhone|iPod|iPhone/.test(navigator.platform));});';
+	s[innerText]='parent.test("generated iframe is patched lv1",function(){parent.ok(/Linux arm|iPhone|iPod|iPad/.test(navigator.platform));});';
 	d.appendChild(s);
 	document.documentElement.appendChild(d);
-	ok(/Linux arm|iPhone|iPod|iPhone/.test(d.contentWindow.navigator.platform));
+	ok(/Linux arm|iPhone|iPod|iPad/.test(d.contentWindow.navigator.platform));
 	deepEqual(d.contentWindow.screen.width,window.screen.width);
 	deepEqual(d.contentWindow.screen.height,window.screen.height);
 });
