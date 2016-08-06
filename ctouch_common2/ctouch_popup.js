@@ -122,7 +122,8 @@ var loaded=function(config){
 	};
 };
 
-if(chrome.app.getDetails().name.indexOf('true')>=0){
+
+if(/*chrome.app.getDetails().name.indexOf('true')>=*/0){
 	window.addEventListener('load',function(){
 		chrome.tabs.getSelected(function(tab){
 			if(!(tab.id in localStorage))localStorage[tab.id]=localStorage['config'];

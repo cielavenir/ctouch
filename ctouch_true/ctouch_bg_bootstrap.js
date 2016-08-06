@@ -1,5 +1,5 @@
 /*
- * cTouch (to mimic smartphone) [standard] by ciel.
+ * cTouch (to mimic smartphone) [true] by ciel.
  * javascript imitation / touch event / modifying UserAgent -> all in one.
  * 
  * [Potion Notice]
@@ -7,31 +7,30 @@
  * navigator.* writer (C) wakuworks under MIT license.
 */
 
-(function(){
-if(typeof sessionStorage['config'] === 'undefined')document.location.href=document.location.href; //reload...
-var ctouch_option=JSON.parse(sessionStorage['config']);
+chrome.webRequest.onResponseStarted.addListener(
+	function(details){
+		var tabId=details.tabId;
+		var frameId=details.frameId;
+		var inject_tag=function(id,script){
+			var s="\
+(function(){\
+var s=document.createElement('script');\
+var innerText=('innerText' in s) ? 'innerText' : 'textContent';\
+s.type='text/javascript';\
+s.id='"+id+"';\
+s[innerText] = window.atob('"+script+"');\
+document.documentElement.appendChild(s);\
+})();";
+			chrome.tabs.executeScript(tabId,{code:s,frameId:frameId,matchAboutBlank:true,runAt:'document_start'});
+		};
 
-var init=function(){
-	//var s;
-	//s = document.createElement('script');
-	//s.type = 'text/javascript';
-	//s.id = 'ctouch_touch_js';
-	//s.src = chrome.extension.getURL('ctouch_touch.js'); // need to embed to DOM to access x.ontouchstart().
-	//document.documentElement.appendChild(s); //DOM isn't constructed yet. inserted to before any javascripts.
 
+		var ctouch_option=JSON.parse(localStorage['config']);
 	if(ctouch_option.preferedUA!=-1){
 var useragent=ctouch_option.UA[ctouch_option.preferedUA][1];
 var enable_imitation=ctouch_option.enable_imitation;
 var generate_touch=ctouch_option.generate_touch;
 var install_createtouch=ctouch_option.install_createtouch;
-var inject_tag=function(id,script){
-	var s=document.createElement('script');
-	var innerText=('innerText' in s) ? 'innerText' : 'textContent';
-	s.type='text/javascript';
-	s.id=id;
-	s[innerText]=window.atob(script);
-	document.documentElement.appendChild(s);
-};
 
 ///__BOUNDARY__///
 //cTouch bootstrap core: var useragent/enable_imitation/generate_touch is defined.
@@ -242,6 +241,9 @@ inject_tag('ctouch_imitation_js',window.btoa(script));
 }
 ///__BOUNDARY__///
 	}
-};
-init();
-})();
+	},
+	{
+		urls: ['<all_urls>'],
+		types: ['main_frame','sub_frame']
+	}
+);

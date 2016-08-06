@@ -52,6 +52,7 @@ bin/ctouch_filesystem.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTE
 	ruby support/crx.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
 bin/ctouch_true.crx: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
 	ruby support/crx.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
+
 bin/ctouch_firefox.xpi: ctouch_firefox/* ctouch_firefox/lib/* ctouch_firefox/data/*
 	cd ctouch_firefox && cfx xpi
 	mv ctouch_firefox/ctouch_firefox.xpi bin/
@@ -138,7 +139,7 @@ ctouch_external/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 ctouch_filesystem/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
-ctouch_true/ctouch_bg_tab.js: src/ctouch_bootstrap.js
+ctouch_true/ctouch_bg_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
 ctouch_firefox/data/ctouch_bootstrap.js: src/ctouch_bootstrap.js
 	@ruby support/ctouch_insert.rb $@ $<
