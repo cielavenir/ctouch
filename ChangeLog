@@ -148,3 +148,6 @@
 2.5.7.50517 Fixed official touch event detection.
 2.5.8.51020 Updated UA list (2.5.7 forgot to update UA list URL).
 2.5.9.51020 Fixed UA list...
+
+[cTouch r5]
+2.6.0.60807 Updated internal structure.
