@@ -1,5 +1,5 @@
 {
-	"name": "cTouch r4 (true)",
+	"name": "cTouch r5 (true)",
 	"description": "You can browse smartphone websites. Communication with background is completely synchronous.",
 	"version": "2.5.9.51020",
 	"manifest_version": 2,
@@ -18,7 +18,7 @@
 	"options_page": "ctouch_option.html",
 	"browser_action": {
 		"default_icon": "icon16.png",
-		"default_title": "cTouch r4 (true)",
+		"default_title": "cTouch r5 (true)",
 		"default_popup": "ctouch_popup.html"
 	},
 	"content_scripts": [

@@ -1,5 +1,5 @@
 {
-	"name": "cTouch r4 (standard)",
+	"name": "cTouch r5 (standard)",
 	"description": "You can browse smartphone websites. Configuration is saved to background localStorage; loading is asynchronous.",
 	"version": "2.5.9.51020",
 	"manifest_version": 2,
@@ -17,7 +17,7 @@
 	"options_page": "ctouch_option.html",
 	"browser_action": {
 		"default_icon": "icon16.png",
-		"default_title": "cTouch r4 (standard)",
+		"default_title": "cTouch r5 (standard)",
 		"default_popup": "ctouch_popup.html"
 	},
 	"content_scripts": [
