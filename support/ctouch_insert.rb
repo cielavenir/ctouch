@@ -6,8 +6,7 @@ BOUNDARY="///__BOUNDARY__///\n"
 open(ARGV[0],'r+b'){|fout|
 	a=fout.read.split(BOUNDARY)
 	fout.rewind
-	open(ARGV[1],'rb'){|fin|
-		fout.write(a[0]+BOUNDARY+fin.read.gsub(BOUNDARY,'')+BOUNDARY+a[2])
-		fout.truncate(fout.pos)
-	}
+
+	fout.write(a[0]+BOUNDARY+STDIN.read.gsub(BOUNDARY,'')+BOUNDARY+a[2])
+	fout.truncate(fout.pos)
 }

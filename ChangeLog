@@ -151,3 +151,4 @@
 
 [cTouch r5]
 2.6.0.60807 Updated internal structure.
+2.6.0.60808 (true edition only) Now CSS is not patched if original UA is used.

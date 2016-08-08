@@ -1,15 +1,14 @@
 {
 	"name": "cTouch r5 (true)",
-	"description": "You can browse smartphone websites. Communication with background is completely synchronous.",
-	"version": "2.6.0.60807",
+	"description": "You can browse smartphone websites. Background page injects content script on receiving response.",
+	"version": "2.6.0.60808",
 	"manifest_version": 2,
 	"update_url": "https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.xml",
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
-		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js","ctouch_bg_bootstrap.js"]
+		"scripts": ["ctouch_saveconfig.js","ctouch_bg.js","ctouch_bg_bootstrap.js","ctouch_bg_css.js"]
 	},
 	"permissions": [
-		"activeTab",
 		"tabs",
 		"webRequest",
 		"webRequestBlocking",
@@ -21,15 +20,6 @@
 		"default_title": "cTouch r5 (true)",
 		"default_popup": "ctouch_popup.html"
 	},
-	"content_scripts": [
-	{
-		"all_frames": true,
-		"js": ["ctouch_css.js"],
-		"matches": ["<all_urls>"],
-		"match_about_blank": true,
-		"run_at": "document_end"
-	}
-	],
 	"icons": {
 		"128": "icon128.png",
 		"16": "icon16.png",

@@ -125,29 +125,29 @@ bin/linkis_block.zip: linkis_block/*
 src/ctouch_touch_inner.js: src/ctouch_touch.js
 	@ruby support/ctouch_inner.rb $< > $@
 src/ctouch_bootstrap.js: src/ctouch_touch_inner.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_common/ctouch_css.js: src/ctouch_css.js
-	@ruby support/ctouch_inner.rb $< > $@
+	@ruby support/ctouch_inner.rb $< | ruby support/ctouch_insert.rb $@
 
 ctouch_browserua/ctouch_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_standard/ctouch_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_fixed/ctouch_bootstrap.user.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_external/ctouch_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_filesystem/ctouch_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_true/ctouch_bg_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_firefox/data/ctouch_bootstrap.js: src/ctouch_bootstrap.js
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 
 ctouch_common2/ctouch_bg.js: src/ctouch_ualist.json
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 ctouch_firefox/lib/main.js: src/ctouch_ualist.json
-	@ruby support/ctouch_insert.rb $@ $<
+	@ruby support/ctouch_insert.rb $@ < $<
 
 clean:
 	rm -f $(SAFARI) $(CRX) $(ZIP)
