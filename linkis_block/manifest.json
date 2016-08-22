@@ -1,7 +1,7 @@
 {
 	"name": "LinkisBlock",
-	"description": "Redirects linkis.com to original website.",
-	"version": "0.0.0.1",
+	"description": "Redirects linkis.com to original website",
+	"version": "0.0.0.2",
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"content_scripts": [
@@ -10,5 +10,11 @@
 		"matches": ["http://linkis.com/*"],
 		"run_at": "document_end"
 	}
-	]
+	],
+	"icons": {
+		"128": "icon128.png",
+		"16": "icon16.png",
+		"32": "icon32.png",
+		"48": "icon48.png"
+	}
 }
