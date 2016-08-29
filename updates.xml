@@ -5,4 +5,5 @@
 <app appid='blebjmmceflglbgfanihlnlhjbbdpdkp'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_external.crx' version='2.6.1.60829'/></app>
 <app appid='mmdfdidopkacakhmchghgjdcfdnbhmej'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_browserua.crx' version='2.6.1.60829'/></app>
 <app appid='iemofinbkpbpamdjljafoheiaamajgdn'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_filesystem.crx' version='2.6.1.60829'/></app>
+<app appid='nandgdgkehbimcjgfnkcebjkidimenee'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_true.crx' version='2.6.1.60829'/></app>
 </gupdate>
