@@ -28,17 +28,20 @@ CTOUCH_TRUE_FILES := ctouch_true/*
 bin/ctouch.safariextz: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES) $(CTOUCH_SAFARI)
 	ln -f ctouch_common/ctouch_css.js ctouch.safariextension/
 	ln -f ctouch_browserua/ctouch_bootstrap.js ctouch.safariextension/
-	ruby support/safari.rb ctouch pem/ctouch_safari.pem pem/ctouch_safari.der
-	rm -f ctouch.safariextension/*.js
+	gcc -shared -fPIC -O2 -o src/faketime.so src/faketime.c
+	FAKETIME=2015-08-01_00:00:00 LD_PRELOAD=src/faketime.so DYLD_INSERT_LIBRARIES=src/faketime.so DYLD_FORCE_FLAT_NAMESPACE=YES ruby support/safari.rb ctouch pem/ctouch_safari.pem pem/ctouch_safari.der
+	rm -f src/faketime.so ctouch.safariextension/*.js
 bin/postize.safariextz: postize/* postize.safariextension/*
 	ln -f postize/postize_css.user.js postize.safariextension/
-	ruby support/safari.rb postize pem/ctouch_safari.pem pem/ctouch_safari.der
-	rm -f postize.safariextension/*.js
+	gcc -shared -fPIC -O2 -o src/faketime.so src/faketime.c
+	FAKETIME=2015-08-01_00:00:00 LD_PRELOAD=src/faketime.so DYLD_INSERT_LIBRARIES=src/faketime.so DYLD_FORCE_FLAT_NAMESPACE=YES ruby support/safari.rb postize pem/ctouch_safari.pem pem/ctouch_safari.der
+	rm -f src/faketime.so postize.safariextension/*.js
 #need to port chrome.browserAction API part.
 #bin/unpassword.safariextz: unpassword/* unpassword.safariextension/*
 #	ln -f unpassword/unpassword_css.js unpassword.safariextension/
-#	ruby support/safari.rb unpassword ctouch_safari.pem
-#	rm -f unpassword.safariextension/*.js
+#	gcc -shared -fPIC -O2 -o src/faketime.so src/faketime.c
+#	FAKETIME=2015-08-01_00:00:00 LD_PRELOAD=src/faketime.so DYLD_INSERT_LIBRARIES=src/faketime.so DYLD_FORCE_FLAT_NAMESPACE=YES ruby support/safari.rb unpassword ctouch_safari.pem
+#	rm -f src/faketime.so unpassword.safariextension/*.js
 
 bin/ctouch_browserua.crx: $(CTOUCH_COMMON) $(CTOUCH_BROWSERUA_FILES)
 	ruby support/crx.rb $@ pem/ctouch_browserua.pem ctouch_common ctouch_browserua
