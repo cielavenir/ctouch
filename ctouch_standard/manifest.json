@@ -1,7 +1,7 @@
 {
 	"name": "cTouch r5 (standard)",
 	"description": "You can browse smartphone websites. Configuration is saved to background localStorage; loading is asynchronous.",
-	"version": "2.6.0.60807",
+	"version": "2.6.1.60829",
 	"manifest_version": 2,
 	"update_url": "https://raw.githubusercontent.com/cielavenir/ctouch/master/updates.xml",
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
