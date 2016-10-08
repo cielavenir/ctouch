@@ -9,7 +9,8 @@ chrome.webRequest.onHeadersReceived.addListener(
 			parser.hostname=='raw.github.com' ||
 			parser.hostname=='raw.githubusercontent.com' ||
 			(parser.hostname=='gist.github.com'&&parser.pathname.indexOf('/raw/')>=0) ||
-			(parser.hostname=='bitbucket.org'&&parser.pathname.indexOf('/raw/')>=0)
+			(parser.hostname=='bitbucket.org'&&parser.pathname.indexOf('/raw/')>=0) ||
+			parser.hostname=='dl.dropboxusercontent.com'
 		){
 			if(parser.pathname.substr(-3)=='.js'){
 				return resp('Content-Type','text/javascript');
@@ -43,7 +44,8 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 			parser.hostname=='raw.github.com' ||
 			parser.hostname=='raw.githubusercontent.com' ||
 			(parser.hostname=='gist.github.com'&&parser.pathname.indexOf('/raw/')>=0) ||
-			(parser.hostname=='bitbucket.org'&&parser.pathname.indexOf('/raw/')>=0)
+			(parser.hostname=='bitbucket.org'&&parser.pathname.indexOf('/raw/')>=0) ||
+			parser.hostname=='dl.dropboxusercontent.com'
 		){
 			if(parser.pathname.substr(-3)=='.js'){
 				return req('Accept-Encoding','');
