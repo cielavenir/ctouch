@@ -28,14 +28,15 @@
 	var li=document.createElement('li');
 	li.appendChild(a);
 	li.id='__atcoder_ciel_statistics__';
-	li.style.visibility='hidden';
+	//display:none or visibility:hidden confuses jQuery
+	//li.style.display='none';
 	document.documentElement.appendChild(li);
 
 	document.addEventListener('DOMContentLoaded',function(){
 		var li=document.getElementById('__atcoder_ciel_statistics__');
 		li.id='';
 		document.getElementsByClassName('nav-tabs')[0].appendChild(li);
-		li.style.visibility='';
+		//li.style.display='';
 
 		//fix pagination
 		var _parser_=document.createElement('a');
