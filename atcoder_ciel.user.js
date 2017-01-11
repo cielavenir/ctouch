@@ -2,7 +2,7 @@
 // @name        AtCoder Ciel Tools
 // @namespace   com.cielavenir
 // @description AtCoder Ciel Tools
-// @include     http://*.contest.atcoder.jp/*
+// @include     http*://*.contest.atcoder.jp/*
 // @run-at      document-start
 // @version     0.0.0.1
 // ==/UserScript==
