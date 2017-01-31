@@ -44,6 +44,8 @@ def run(argv)
 		if defined?($pkcs8_warning)
 			$stderr.puts 'Warn: generated pem must be converted into PKCS8 in order to upload to Chrome WebStore.'
 			$stderr.puts 'To suppress this message, do: gem install openssl_pkcs8'
+			$stderr.puts 'Note: On Ruby 2.2.x or later, use ksarantakos/openssl_pkcs8 instead.'
+			$stderr.puts 'Note: to use with OSX default Ruby, you will need to add "-- --with-opt-include=MacOSX10.10.sdk/usr/include" (get the sdk from somewhere)'
 		end
 		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
 		File.open(pkey,'wb'){|f|
