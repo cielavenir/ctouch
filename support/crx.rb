@@ -21,7 +21,7 @@ class OpenSSL::PKey::RSA
 		return to_der if !private?
 		OpenSSL::ASN1::Sequence([
 			OpenSSL::ASN1::Integer(0),
-			OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId("rsaEncryption"),OpenSSL::ASN1::Null(nil)]),
+			OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId("rsaEncryption"),OpenSSL::ASN1::Null.new(nil)]),
 			OpenSSL::ASN1::OctetString(to_der)
 		]).to_der
 	end
