@@ -8,13 +8,25 @@ require 'openssl'
 require 'find'
 require 'pathname'
 
-begin
-	require 'openssl_pkcs8'
-	class OpenSSL::PKey::RSA
-		alias_method :to_pem, :to_pem_pkcs8
+#openssl_pkcs8_pure (C) @cielavenir
+#https://github.com/cielavenir/openssl_pkcs8_pure
+class OpenSSL::PKey::RSA
+	# Returns RSA (private) key in PKCS#8 DER format.
+	def to_der_pkcs8
+		#if public, just use x509 default output
+		return to_der if !private?
+		OpenSSL::ASN1::Sequence([
+			OpenSSL::ASN1::Integer(0),
+			OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId("rsaEncryption"),OpenSSL::ASN1::Null(nil)]),
+			OpenSSL::ASN1::OctetString(to_der)
+		]).to_der
 	end
-rescue LoadError
-	$pkcs8_warning=1
+	# Returns RSA (private) key in PKCS#8 PEM format.
+	def to_pem_pkcs8
+		return to_pem if !private?
+		body=RUBY_VERSION<'1.9' ? Base64.encode64(to_der_pkcs8) : Base64.strict_encode64(to_der_pkcs8).chars.each_slice(64).map(&:join).join("\n")+"\n"
+		"-----BEGIN PRIVATE KEY-----\n"+body+"-----END PRIVATE KEY-----\n"
+	end
 end
 
 KEY_SIZE = 1024
@@ -32,13 +44,9 @@ def run(argv)
 			keybody=f.read
 		}
 	rescue
-		if defined?($pkcs8_warning)
-			$stderr.puts 'Warn: generated pem must be converted into PKCS8 in order to upload to Chrome WebStore.'
-			$stderr.puts 'To suppress this message, do: gem install openssl_pkcs8'
-		end
 		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
 		File.open(pkey,'wb'){|f|
-			f<<key.to_pem
+			f<<key.to_pem_pkcs8
 		}
 	end
 
