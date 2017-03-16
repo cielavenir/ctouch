@@ -6,7 +6,8 @@
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
-		"scripts": ["mplus_redirect.js"]
+		"scripts": ["mplus_redirect.js"],
+		"persistent": true
 	},
 	"permissions": [
 		"webRequest",

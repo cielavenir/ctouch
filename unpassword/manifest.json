@@ -6,7 +6,8 @@
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
-		"scripts": ["unpassword_bg.js"]
+		"scripts": ["unpassword_bg.js"],
+		"persistent": true
 	},
 	"browser_action": {
 		"default_title": "Unpassword"

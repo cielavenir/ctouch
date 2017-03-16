@@ -1,11 +1,13 @@
 {
+	"author": "@cielavenir",
 	"name": "Content-Type Fixer",
 	"description": "Fix Content-Type",
 	"version": "0.0.0.2",
 	"manifest_version": 2,
 	"homepage_url": "https://github.com/cielavenir/ctouch/",
 	"background": {
-		"scripts": ["cfix.js"]
+		"scripts": ["cfix.js"],
+		"persistent": true
 	},
 	"permissions": [
 		"tabs",
