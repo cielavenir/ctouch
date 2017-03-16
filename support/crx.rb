@@ -4,13 +4,15 @@
 #based on crxmake under MIT License.
 #https://github.com/Constellation/crxmake
 
-require 'rubygems'
-#require 'zipruby'
-require 'zip'
 require 'openssl'
 require 'digest/sha1'
 require 'find'
 require 'pathname'
+require 'base64'
+
+require 'rubygems'
+#require 'zipruby'
+require 'zip'
 
 #openssl_pkcs8_pure (C) @cielavenir
 #https://github.com/cielavenir/openssl_pkcs8_pure
