@@ -1,4 +1,5 @@
 {
+	"author": "@cielavenir",
 	"name": "CodeIQ Diswriter",
 	"description": "Relax CodeIQ's GitHub OAuth2 permission from scope=user to scope=user:email.",
 	"version": "0.0.0.1",

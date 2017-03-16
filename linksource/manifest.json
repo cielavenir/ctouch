@@ -1,4 +1,5 @@
 {
+	"author": "@cielavenir",
 	"name": "LinkSource",
 	"description": "Add Open link with view-source to context menu.",
 	"version": "0.0.2",

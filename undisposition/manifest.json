@@ -1,4 +1,5 @@
 {
+	"author": "@cielavenir",
 	"name": "Undisposition",
 	"description": "Remove Content-Disposition: attachment HTTP header.",
 	"version": "0.0.1",
