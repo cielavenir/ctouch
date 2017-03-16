@@ -49,7 +49,7 @@ end
 def run(argv)
 	crx=argv.shift
 	pkey=argv.shift
-	key=''
+	key=nil
 	begin
 		File.open(pkey,'rb'){|f|
 			key=OpenSSL::PKey::RSA.new(f)

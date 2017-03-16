@@ -5,6 +5,7 @@ SAFARI := bin/ctouch.safariextz
 FIREFOX := bin/ctouch_firefox.xpi
 CRX := bin/ctouch_standard.crx bin/ctouch_fixed.crx bin/ctouch_external.crx bin/ctouch_browserua.crx bin/ctouch_filesystem.crx bin/ctouch_true.crx
 ZIP := bin/ctouch_fixed.zip bin/ctouch_external.zip bin/ctouch_browserua.zip bin/ctouch_filesystem.zip bin/ctouch_true.zip
+EDGE := bin/ctouch_fixed_edge.zip bin/ctouch_external_edge.zip bin/ctouch_browserua_edge.zip bin/ctouch_filesystem_edge.zip bin/ctouch_true_edge.zip
 
 .PHONY: all clean publish
 all: safari crx zip
@@ -12,11 +13,13 @@ all: safari crx zip
 safari: $(SAFARI)
 crx: $(CRX)
 zip: $(ZIP)
+edge: $(EDGE)
 firefox: $(FIREFOX)
 
 CTOUCH_SAFARI := ctouch.safariextension/Info.plist
 CTOUCH_COMMON := ctouch_common/*
 CTOUCH_COMMON2 := ctouch_common2/*
+CTOUCH_EDGE := ctouch_common_edge/*
 CTOUCH_STANDARD_FILES := ctouch_standard/*
 CTOUCH_FIXED_FILES := ctouch_fixed/*
 CTOUCH_EXTERNAL_FILES := ctouch_external/*
@@ -99,6 +102,19 @@ bin/ctouch_filesystem.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTE
 	ruby support/zip.rb $@ pem/ctouch_filesystem.pem ctouch_common ctouch_common2 ctouch_filesystem
 bin/ctouch_true.zip: $(CTOUCH_COMMON) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
 	ruby support/zip.rb $@ pem/ctouch_true.pem ctouch_common ctouch_common2 ctouch_true
+
+bin/ctouch_browserua_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_BROWSERUA_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_browserua
+bin/ctouch_standard_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_COMMON2) $(CTOUCH_STANDARD_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_common2 ctouch_standard
+bin/ctouch_fixed_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_FIXED_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_fixed
+bin/ctouch_external_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_COMMON2) $(CTOUCH_EXTERNAL_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_common2 ctouch_external
+bin/ctouch_filesystem_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_COMMON2) $(CTOUCH_FILESYSTEM_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_common2 ctouch_filesystem
+bin/ctouch_true_edge.zip: $(CTOUCH_COMMON) $(CTOUCH_EDGE) $(CTOUCH_COMMON2) $(CTOUCH_TRUE_FILES)
+	ruby support/zip.rb $@ ctouch_common ctouch_common_edge ctouch_common2 ctouch_true
 
 bin/ctouch_chromesocket.zip: ctouch_chromesocket/*
 	ruby support/zip.rb $@ pem/ctouch_chromesocket.pem ctouch_chromesocket

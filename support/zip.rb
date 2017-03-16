@@ -39,17 +39,19 @@ end
 
 def run(argv)
 	crx=argv.shift
-	pkey=argv.shift
-	keybody=''
-	begin
-		File.open(pkey,'rb'){|f|
-			keybody=f.read
-		}
-	rescue
-		key=OpenSSL::PKey::RSA.generate(KEY_SIZE)
-		File.open(pkey,'wb'){|f|
-			f<<key.to_pem_pkcs8
-		}
+	keybody=nil
+	if argv[0]&&argv[0].end_with?('.pem')
+		pkey=argv.shift
+		begin
+			File.open(pkey,'rb'){|f|
+				keybody=f.read
+			}
+		rescue
+			keybody=OpenSSL::PKey::RSA.generate(KEY_SIZE).to_pem_pkcs8
+			File.open(pkey,'wb'){|f|
+				f<<keybody
+			}
+		end
 	end
 
 =begin
@@ -100,8 +102,10 @@ def run(argv)
 				end
 			}
 		}
-		zipb.put_next_entry('key.pem',nil,nil,Zip::Entry::DEFLATED,Zlib::BEST_COMPRESSION)
-		zipb.write(keybody)
+		if keybody
+			zipb.put_next_entry('key.pem',nil,nil,Zip::Entry::DEFLATED,Zlib::BEST_COMPRESSION)
+			zipb.write(keybody)
+		end
 	}).string
 #=end
 	File.open(crx,'wb'){|f|
