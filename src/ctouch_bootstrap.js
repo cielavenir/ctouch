@@ -28,7 +28,16 @@ return false;\
 var isMouseDown=null;\
 var preventDefault=false;\
 var touchevent=function(e,type){\
-var ev=document.createEvent('Event');\
+var ev;\
+try{\
+ev=document.createEvent('TouchEvent');\
+}catch(x){\
+try{\
+ev=document.createEvent('UIEvent');\
+}catch(x){\
+ev=document.createEvent('Event');\
+}\
+}\
 ev.initEvent(type,true,true);\
 ev.altkey=false;\
 ev.bubbles=true;\
@@ -38,7 +47,7 @@ ev.charCode=0;\
 ev.clientX=e.clientX;\
 ev.clientY=e.clientY;\
 ev.ctrlKey=false;\
-ev.currentTarget=ev.currentTarget;\
+ev.currentTarget=e.currentTarget;\
 ev.keyCode=0;\
 ev.metaKey=false;\
 ev.offsetX=e.offsetX;\
