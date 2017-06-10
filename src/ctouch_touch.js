@@ -43,7 +43,16 @@ var rec=function(x,y,d,e,z){
 var isMouseDown=null;
 var preventDefault=false;
 var touchevent=function(e,type){
-	var ev=document.createEvent('Event');
+	var ev;
+	try{
+		ev=document.createEvent('TouchEvent');
+	}catch(x){
+		try{
+			ev=document.createEvent('UIEvent');
+		}catch(x){
+			ev=document.createEvent('Event');
+		}
+	}
 	ev.initEvent(type,true,true);
 	ev.altkey=false;
 	ev.bubbles=true;
@@ -54,7 +63,7 @@ var touchevent=function(e,type){
 	ev.clientY=e.clientY;
 	//ev.clipboardData
 	ev.ctrlKey=false;
-	ev.currentTarget=ev.currentTarget;
+	ev.currentTarget=e.currentTarget;
 	//ev.detail
 	//ev.eventPhase
 	ev.keyCode=0;
