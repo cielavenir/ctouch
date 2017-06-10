@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
-<app appid='mcekdlcnjgikdollcdciklionpbdledk'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_standard.crx' version='2.6.1.60829'/></app>
-<app appid='dlfkkflnlipgkphcdncfpcnaiemdjekc'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_fixed.crx' version='2.6.1.60829'/></app>
-<app appid='blebjmmceflglbgfanihlnlhjbbdpdkp'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_external.crx' version='2.6.1.60829'/></app>
-<app appid='mmdfdidopkacakhmchghgjdcfdnbhmej'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_browserua.crx' version='2.6.1.60829'/></app>
-<app appid='iemofinbkpbpamdjljafoheiaamajgdn'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_filesystem.crx' version='2.6.1.60829'/></app>
-<app appid='nandgdgkehbimcjgfnkcebjkidimenee'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.6.1.60829/ctouch_true.crx' version='2.6.1.60829'/></app>
+<app appid='mcekdlcnjgikdollcdciklionpbdledk'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.7.0.06117/ctouch_standard.crx' version='2.7.0.06117'/></app>
+<app appid='dlfkkflnlipgkphcdncfpcnaiemdjekc'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.7.0.06117/ctouch_fixed.crx' version='2.7.0.06117'/></app>
+<app appid='blebjmmceflglbgfanihlnlhjbbdpdkp'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.7.0.06117/ctouch_external.crx' version='2.7.0.06117'/></app>
+<app appid='mmdfdidopkacakhmchghgjdcfdnbhmej'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.7.0.06117/ctouch_browserua.crx' version='2.7.0.06117'/></app>
+<app appid='iemofinbkpbpamdjljafoheiaamajgdn'><updatecheck codebase='http://master.dl.sourceforge.net/project/ctouch/2.7.0.06117/ctouch_filesystem.crx' version='2.7.0.06117'/></app>
 </gupdate>
