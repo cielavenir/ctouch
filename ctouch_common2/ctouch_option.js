@@ -146,24 +146,27 @@ window.onload=function(){
 			if(table.children[i].children[0].children[0].checked)config.preferedUA=i;
 		}
 		if(config.preferedUA>=table.children.length)config.preferedUA=-1;
-		localStorage['config']=JSON.stringify(config,null,' ');
-		initialize();
-		saveConfig();
+		if(saveConfig(JSON.stringify(config,null,' '))){
+			localStorage['config']=JSON.stringify(config,null,' ');
+			initialize();
+		}
 	};
 
 	document.getElementById('RESET').onclick=function(){
 		if(!window.confirm('Are you sure to reset?'))return;
-		localStorage['config']=localStorage['config_default'];
-		initialize();
-		saveConfig();
+		if(saveConfig(localStorage['config_default'])){
+			localStorage['config']=localStorage['config_default'];
+			initialize();
+		}
 	};
 
 	document.getElementById('RESURRECT').onclick=function(){
 		JSON.parse(document.getElementById('BACKUP').value); //exception will be thrown if error
 		if(!window.confirm('Are you sure to cast resurrection spell?'))return;
-		localStorage['config']=document.getElementById('BACKUP').value;
-		initialize();
-		saveConfig();
+		if(saveConfig(document.getElementById('BACKUP').value)){
+			localStorage['config']=document.getElementById('BACKUP').value;
+			initialize();
+		}
 	};
 
 	document.getElementById('DLUALIST').onclick=function(){

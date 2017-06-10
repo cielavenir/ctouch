@@ -122,7 +122,7 @@ window.onload=function(){
 	;
 	if(typeof localStorage['config'] === 'undefined' || localStorage['config'] == ''){
 		localStorage['config']=JSON.stringify(config,null,' ');
-		saveConfig();
+		saveConfig(localStorage['config']);
 	}
 	var current_config=JSON.parse(localStorage['config']);
 	if((current_config.config_version||0) < config.config_version){
@@ -133,7 +133,7 @@ window.onload=function(){
 		if(typeof current_config.install_createtouch === 'undefined')current_config.install_createtouch=false;
 
 		localStorage['config']=JSON.stringify(current_config,null,' ');
-		saveConfig();
+		saveConfig(localStorage['config']);
 	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
 	//external?
