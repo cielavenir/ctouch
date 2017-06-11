@@ -22,7 +22,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	},
 	{
 		urls: ['<all_urls>'],
-		types: ['main_frame','sub_frame','stylesheet','script','image','object','xmlhttprequest','other']
+		types: ['main_frame','sub_frame','stylesheet','script','image','object','xmlhttprequest','font','media','websocket','other']
 	},
 	['blocking', 'requestHeaders']
 );
