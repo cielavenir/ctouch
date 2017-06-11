@@ -144,7 +144,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	function(details){
 		var headers=details.requestHeaders;
 		for(var i=0;i<headers.length;i++){
-			if(headers[i].name=='User-Agent'){
+			if(headers[i].name.toLowerCase()=='user-agent'){
 				var config=JSON.parse(localStorage[/*chrome.runtime.getManifest().name.indexOf('true')>=0 ? details.tabId :*/ 'config']);
 				if(config.preferedUA!=-1)headers[i].value=config.UA[config.preferedUA][1];
 				if(headers[i].value.indexOf('Chrome')==-1&&headers[i].value.indexOf('CrMo')==-1){
