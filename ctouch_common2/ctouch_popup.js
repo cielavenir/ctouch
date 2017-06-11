@@ -3,7 +3,7 @@ var loaded=function(config){
 		var table=document.getElementById('UA');
 
 			var tr=document.createElement('tr');
-			var td,label;
+			var td,label,input;
 			td=document.createElement('td');
 				input=document.createElement('input');
 				input.type='radio';
@@ -30,7 +30,7 @@ var loaded=function(config){
 		for(i=0;i<config.UA.length;i++){
 			var x=i;
 			var tr=document.createElement('tr');
-			var td,label;
+			var td,label,input;
 			td=document.createElement('td');
 				input=document.createElement('input');
 				input.type='radio';
