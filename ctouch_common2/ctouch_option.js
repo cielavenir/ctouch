@@ -65,8 +65,8 @@ window.onload=function(){
 		$("tbody").sortable();
 		//$("tbody").disableSelection();
 	});
-	document.getElementById('title')[innerText]=chrome.app.getDetails().name;
-	document.getElementById('extensions_page')[innerText]=chrome.app.getDetails().name+' '+chrome.app.getDetails().version;
+	document.getElementById('title')[innerText]=chrome.runtime.getManifest().name;
+	document.getElementById('extensions_page')[innerText]=chrome.runtime.getManifest().name+' '+chrome.runtime.getManifest().version;
 	var flash_plugin=null;
 	var flash=navigator.mimeTypes['application/x-shockwave-flash'];
 	if(flash)flash_plugin=flash.enabledPlugin;
@@ -194,7 +194,7 @@ window.onload=function(){
 
 	//easter for debug
 	document.getElementById('popup_page').onclick=function(){
-		window.open(chrome.extension.getURL(chrome.app.getDetails().browser_action.default_popup));
+		window.open(chrome.extension.getURL(chrome.runtime.getManifest().browser_action.default_popup));
 	};
 	document.getElementById('extensions_page').onclick=function(){
 		//window.open('chrome://extensions');

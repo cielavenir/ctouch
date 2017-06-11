@@ -137,7 +137,7 @@ window.onload=function(){
 	}
 	localStorage['config_default']=JSON.stringify(config,null,' ');
 	//external?
-	if(chrome.app.getDetails().permissions.indexOf('management')>=0 && current_config.external_daemon_chrome)chrome.management.launchApp(current_config.external_daemon_id.trim());
+	if(chrome.runtime.getManifest().permissions.indexOf('management')>=0 && current_config.external_daemon_chrome)chrome.management.launchApp(current_config.external_daemon_id.trim());
 };
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
@@ -145,7 +145,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 		var headers=details.requestHeaders;
 		for(var i=0;i<headers.length;i++){
 			if(headers[i].name=='User-Agent'){
-				var config=JSON.parse(localStorage[/*chrome.app.getDetails().name.indexOf('true')>=0 ? details.tabId :*/ 'config']);
+				var config=JSON.parse(localStorage[/*chrome.runtime.getManifest().name.indexOf('true')>=0 ? details.tabId :*/ 'config']);
 				if(config.preferedUA!=-1)headers[i].value=config.UA[config.preferedUA][1];
 				if(headers[i].value.indexOf('Chrome')==-1&&headers[i].value.indexOf('CrMo')==-1){
 					for(var j=0;j<headers.length;j++){
