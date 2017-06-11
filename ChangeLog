@@ -158,3 +158,4 @@
 * Updated some variables initialization (Firefox compatibility)
 * Updated UA list.
 2.7.0.6127 Reverted touch event initialization.
+2.7.1.6127 Updated webRequest resource type (fix gree::66421).
