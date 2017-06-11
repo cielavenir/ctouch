@@ -37,42 +37,51 @@ var inject_tag=function(id,script){
 if(generate_touch){
 var script="\
 (function(){\
-var rec1=function(o,n,d,e,z){\
+var rec1=function(other,elem,ownerDocument,ev,typ){\
 var sent=false;\
-if(n==o||!n)return false;\
-if(n[z]){n[z](e);sent=true;}\
-if(rec1(n,n.parentNode,d,e,z)){sent=true;}\
+if(elem==other||!elem)return false;\
+if(elem[typ]){elem[typ](ev);sent=true;}\
+if(rec1(elem,elem.parentNode,ownerDocument,ev,typ)){sent=true;}\
 return sent;\
 };\
-var rec2=function(o,x,y,d,e,z){\
+var rec2=function(other,x,y,ownerDocument,ev,typ){\
 var sent=false;\
-var n = d.elementFromPoint(x,y);\
-if(n==o||!n)return false;\
-if(n[z]){n[z](e);sent=true;}\
-var v = n.style.visibility;\
-n.style.visibility = 'hidden';\
-if(rec2(n,x,y,d,e,z)){sent=true;}\
-n.style.visibility=v;\
+var elem = ownerDocument.elementFromPoint(x,y);\
+if(elem==other||!elem)return false;\
+if(elem[typ]){elem[typ](ev);sent=true;}\
+var v = elem.style.visibility;\
+elem.style.visibility = 'hidden';\
+if(rec2(elem,x,y,ownerDocument,ev,typ)){sent=true;}\
+elem.style.visibility=v;\
 return sent;\
 };\
-var rec=function(x,y,d,e,z){\
-if(rec1(null,d.elementFromPoint(x,y),d,e,z))return true;\
+var rec=function(x,y,ownerDocument,ev,typ){\
+if(rec1(null,ownerDocument.elementFromPoint(x,y),ownerDocument,ev,typ))return true;\
 return false;\
 };\
 var isMouseDown=null;\
+var g_touchID=null;\
 var preventDefault=false;\
 var touchevent=function(e,type){\
+var touch={\
+clientX: e.clientX,\
+clientY: e.clientY,\
+force: 1.0,\
+pageX: e.pageX,\
+pageY: e.pageY,\
+screenX: e.screenX,\
+screenY: e.screenY,\
+target: e.target,\
+};\
 var ev;\
-try{\
-ev=document.createEvent('TouchEvent');\
-}catch(x){\
-try{\
-ev=document.createEvent('UIEvent');\
-}catch(x){\
+{\
 ev=document.createEvent('Event');\
-}\
-}\
 ev.initEvent(type,true,true);\
+var touches=new Array();\
+touches[0]=touch;\
+ev.touches=touches;\
+ev.changedTouches=ev.targetTouches=ev.touches;\
+}\
 ev.altkey=false;\
 ev.bubbles=true;\
 ev.cancelBubble=false;\
@@ -98,19 +107,7 @@ ev.timeStamp=e.timeStamp;\
 ev.view=e.view;\
 ev.rotation=0.0;\
 ev.scale=1.0;\
-ev.touches=new Array();\
-ev.touches[0]={\
-clientX: e.clientX,\
-clientY: e.clientY,\
-force: 1.0,\
-pageX: e.pageX,\
-pageY: e.pageY,\
-screenX: e.screenX,\
-screenY: e.screenY,\
-target: e.target,\
-};\
 if(type=='touchstart'||isMouseDown)isMouseDown=ev.touches;\
-ev.changedTouches=ev.targetTouches=isMouseDown;\
 if(type=='touchend')isMouseDown=null;\
 return ev;\
 };\

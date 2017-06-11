@@ -152,8 +152,9 @@
 [cTouch r5]
 2.6.0.60807 Updated internal structure.
 2.6.0.60808 (true edition only) Now CSS is not patched if original UA is used.
-2.6.1.40829 Update ctouch_inner.rb for compliance...
-2.7.0.06117
+2.6.1.60829 Update ctouch_inner.rb for compliance...
+2.7.0.6117
 * Fixed: save in ctouch_bg and ctouch_option broke content-script side.
 * Updated some variables initialization (Firefox compatibility)
 * Updated UA list.
+2.7.0.6127 Reverted touch event initialization.
