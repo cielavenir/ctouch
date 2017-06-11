@@ -41,19 +41,52 @@ var rec=function(x,y,d,e,z){
 //Compile touch event.
 //http://kozy.heteml.jp/pukiwiki/JavaScript%2528iPhone%2529%2520%25A5%25A4%25A5%25D9%25A5%25F3%25A5%25C8/index.html
 var isMouseDown=null;
+var g_touchID=null;
 var preventDefault=false;
 var touchevent=function(e,type){
+	//if(type=='touchstart')g_touchID=parseInt(Math.random()*1000000000)+1;
+	var touch={
+		clientX: e.clientX,
+		clientY: e.clientY,
+		force: 1.0,
+		identifier: g_touchID,
+		pageX: e.pageX,
+		pageY: e.pageY,
+		//radiusX:
+		//radiusY:
+		screenX: e.screenX,
+		screenY: e.screenY,
+		target: e.target,
+	};
+
 	var ev;
 	try{
-		ev=document.createEvent('TouchEvent');
+		throw 'TouchEvent is temporarily disabled.';
+		var touches=new Array();
+		touches[0]=new Touch(touch);
+		ev=new TouchEvent(type,{
+			touches: touches,
+			changedTouches: touches,
+			targetTouches: touches,
+		});
 	}catch(x){
-		try{
-			ev=document.createEvent('UIEvent');
-		}catch(x){
-			ev=document.createEvent('Event');
-		}
+		//console.log(x);
+		//try{
+		//	ev=document.createEvent('TouchEvent');
+		//}catch(x){
+			try{
+				ev=document.createEvent('UIEvent');
+			}catch(x){
+				ev=document.createEvent('Event');
+			}
+		//}
+		ev.initEvent(type,true,true);
+		var touches=new Array();
+		touches[0]=touch;
+		ev.touches=touches;
+		ev.changedTouches=ev.targetTouches=ev.touches;
 	}
-	ev.initEvent(type,true,true);
+
 	ev.altkey=false;
 	ev.bubbles=true;
 	ev.cancelBubble=false;
@@ -87,22 +120,7 @@ var touchevent=function(e,type){
 	ev.rotation=0.0;
 	ev.scale=1.0;
 
-	ev.touches=new Array();
-	ev.touches[0]={
-		clientX: e.clientX,
-		clientY: e.clientY,
-		force: 1.0,
-		//identifier:
-		pageX: e.pageX,
-		pageY: e.pageY,
-		//radiusX:
-		//radiusY:
-		screenX: e.screenX,
-		screenY: e.screenY,
-		target: e.target,
-	};
 	if(type=='touchstart'||isMouseDown)isMouseDown=ev.touches;
-	ev.changedTouches=ev.targetTouches=isMouseDown;
 	if(type=='touchend')isMouseDown=null;
 	return ev;
 };

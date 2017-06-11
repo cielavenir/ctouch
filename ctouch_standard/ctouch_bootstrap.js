@@ -61,19 +61,42 @@ if(rec1(null,d.elementFromPoint(x,y),d,e,z))return true;\
 return false;\
 };\
 var isMouseDown=null;\
+var g_touchID=null;\
 var preventDefault=false;\
 var touchevent=function(e,type){\
+var touch={\
+clientX: e.clientX,\
+clientY: e.clientY,\
+force: 1.0,\
+identifier: g_touchID,\
+pageX: e.pageX,\
+pageY: e.pageY,\
+screenX: e.screenX,\
+screenY: e.screenY,\
+target: e.target,\
+};\
 var ev;\
 try{\
-ev=document.createEvent('TouchEvent');\
+throw 'TouchEvent is temporarily disabled.';\
+var touches=new Array();\
+touches[0]=new Touch(touch);\
+ev=new TouchEvent(type,{\
+touches: touches,\
+changedTouches: touches,\
+targetTouches: touches,\
+});\
 }catch(x){\
 try{\
 ev=document.createEvent('UIEvent');\
 }catch(x){\
 ev=document.createEvent('Event');\
 }\
-}\
 ev.initEvent(type,true,true);\
+var touches=new Array();\
+touches[0]=touch;\
+ev.touches=touches;\
+ev.changedTouches=ev.targetTouches=ev.touches;\
+}\
 ev.altkey=false;\
 ev.bubbles=true;\
 ev.cancelBubble=false;\
@@ -99,19 +122,7 @@ ev.timeStamp=e.timeStamp;\
 ev.view=e.view;\
 ev.rotation=0.0;\
 ev.scale=1.0;\
-ev.touches=new Array();\
-ev.touches[0]={\
-clientX: e.clientX,\
-clientY: e.clientY,\
-force: 1.0,\
-pageX: e.pageX,\
-pageY: e.pageY,\
-screenX: e.screenX,\
-screenY: e.screenY,\
-target: e.target,\
-};\
 if(type=='touchstart'||isMouseDown)isMouseDown=ev.touches;\
-ev.changedTouches=ev.targetTouches=isMouseDown;\
 if(type=='touchend')isMouseDown=null;\
 return ev;\
 };\
