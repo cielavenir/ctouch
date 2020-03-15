@@ -48,8 +48,9 @@ int main(){
 	int c;
 	FILE *f;
 	//chdir("."); //change this, if curdir isn't the same as CGI dir.
-	puts("Content-Type: text/plain");
+	puts("Content-Type: application/json");
 	puts("Cache-Control: no-store, no-cache, must-revalidate");
+	puts("Access-Control-Allow-Origin: *");
 	puts("Pragma: no-cache");
 	puts("Expires: 0");
 	puts("");

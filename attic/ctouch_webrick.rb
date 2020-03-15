@@ -24,8 +24,9 @@ class CTouchDaemon < WEBrick::HTTPServlet::AbstractServlet
 			return
 		end
 		response.status = 200
-		response['Content-Type'] = 'text/plain'
+		response['Content-Type'] = 'application/json'
 		response['Cache-Control'] = 'no-store, no-cache, must-revalidate'
+		response['Access-Control-Allow-Origin'] = '*'
 		response['Pragma'] = 'no-cache'
 		response['Expires'] = '0'
 		if f_post==true

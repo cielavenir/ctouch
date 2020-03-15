@@ -23,7 +23,11 @@ var RESPHEAD = [
   "HTTP/1.1 200 OK",
   "Content-Length: {%len%}",
   "Connection: Close",
-  "Content-Type: application/json"
+  "Content-Type: application/json",
+  "Cache-Control: no-store, no-cache, must-revalidate",
+  "Access-Control-Allow-Origin: *",
+  "Pragma: no-cache",
+  "Expires: 0",
 ].join("\r\n")+"\r\n\r\n";
 
 var response = function(str){
