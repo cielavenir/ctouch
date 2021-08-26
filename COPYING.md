@@ -1,16 +1,9 @@
 * cTouch can be used free-of-charge.
-* In Derivative Works (in GPL term) of cTouch,
-  * If it uses cTouch MAINLY, cTouch must be licensed under 2-clause BSDL.
-  * If it uses cTouch PARTLY, cTouch can be licensed under 2-clause BSDL or Creative Commons CC0 (aka Public Domain).
-* In this way I can moniter clones of cTouch and warn them.
-  * Please do not use clones with advertisements.
-* I believe using cTouch in research purpose will not force BSDL.
-  * Thank you for your understanding.
+* In Derivative Works (in GPL term) of cTouch, cTouch is licensed under 2-clause BSDL, or Creative Commons CC0 (aka Public Domain) along with Commons Clause.
 
-----
-* I feel sorry about paid fee-charging articles about cTouch.
-  * I have to add the limitation that such articles must not be higher than 1000 yen.
-  * If you say I cannot add such limitation for open source, I will warn that your merchandise is illegal.
+* In this way I can moniter clones of cTouch and warn them.
+* I believe using cTouch in research purpose will not force BSDL.
+* Also, I sometimes see paid fee-charging articles about cTouch. I believe those are illegal.
 
 2-clause BSDL
 ===
@@ -46,3 +39,11 @@ Creative Commons CC0 (Summary)
 * In no way are the patent or trademark rights of any person affected by CC0, nor are the rights that other persons may have in the work or in how the work is used, such as publicity or privacy rights.
 * Unless expressly stated otherwise, the person who associated a work with this deed makes no warranties about the work, and disclaims liability for all uses of the work, to the fullest extent permitted by applicable law.
 * When using or citing the work, you should not imply endorsement by the author or the affirmer.
+
+“Commons Clause” License Condition v1.0
+===
+The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
+
+Without limiting other conditions in the License, the grant of rights under the License will not include, and the License does not grant to you, the right to Sell the Software.
+
+For purposes of the foregoing, “Sell” means practicing any or all of the rights granted to you under the License to provide to third parties, for a fee or other consideration (including without limitation fees for hosting or consulting/ support services related to the Software), a product or service whose value derives, entirely or substantially, from the functionality of the Software. Any license notice or attribution required by the License must also include this Commons Clause License Condition notice.
